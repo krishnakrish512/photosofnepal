@@ -95,7 +95,7 @@ while ( have_posts() ):
                                                 <span class="resolution"></span>
                                             </div>
 											<?php
-											$price[ $term_name ] = ( ! empty( $_POST["{$term_name}_price"] ) ) ? $_POST["{$term_name}_price"] : get_field( 'price', $term );
+//											$price[ $term_name ] = ( ! empty( $_POST["{$term_name}_price"] ) ) ? $_POST["{$term_name}_price"] : get_field( 'price', $term );
 										}
 										?>
                                     </div>

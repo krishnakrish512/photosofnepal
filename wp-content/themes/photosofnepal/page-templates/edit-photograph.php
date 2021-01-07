@@ -62,43 +62,34 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 		$tags = isset( $_POST['tags'] ) ? (array) $_POST['tags'] : [];
 		$tags = array_map( 'esc_attr', $tags );
-		$tags = array_map( 'intval', $tags );
+
+		foreach ( $tags as &$tag ) {
+			if ( (int) $tag == 0 ) {
+				$new_tag = wp_insert_term( $tag, 'product_tag', [] );
+				$tag     = $new_tag['term_id'];
+			} else {
+				$tag = (int) $tag;
+			}
+		}
+
+//		var_dump( $tags );
+//		exit;
 
 		$product->set_tag_ids( $tags );
 
-		if ( $small_product->get_price() !== $_POST['small_price'] ) {
-			if ( empty( $_POST['small_price'] ) ) {
-				$term = get_term_by( 'name', 'small', $taxonomy );
-				$small_product->set_regular_price( get_field( 'price', $term ) );
-			} else {
-				$small_product->set_regular_price( $_POST['small_price'] );
-			}
-			$small_product->save();
-		}
 
-		if ( $medium_product->get_price() !== $_POST['medium_price'] ) {
-			if ( empty( $_POST['medium_price'] ) ) {
-				$term = get_term_by( 'name', 'medium', $taxonomy );
-				$medium_product->set_regular_price( get_field( 'price', $term ) );
-			} else {
-				$medium_product->set_regular_price( $_POST['medium_price'] );
-			}
-			$medium_product->save();
-		}
+		$small_product->set_regular_price( $_POST['small_price'] );
+		$small_product->save();
 
-		if ( $large_product->get_price() !== $_POST['large_price'] ) {
-			if ( empty( $_POST['large_price'] ) ) {
-				$term = get_term_by( 'name', 'large', $taxonomy );
-				$large_product->set_regular_price( get_field( 'price', $term ) );
-			} else {
-				$large_product->set_regular_price( $_POST['large_price'] );
-			}
-			$large_product->save();
-		}
+		$medium_product->set_regular_price( $_POST['medium_price'] );
+		$medium_product->save();
+
+		$large_product->set_regular_price( $_POST['large_price'] );
+		$large_product->save();
 
 		$product->save();
 
-		wp_redirect( get_wcfm_products_url() );
+		wp_redirect( admin_url( "/edit.php?post_type=product" ) );
 		exit;
 
 	}
@@ -117,7 +108,7 @@ get_header();
     <main class="main">
         <section class="upload-section section-spacing">
             <div class="container upload-container">
-                <form action="" id="image-upload" method="post" enctype="multipart/form-data">
+                <form action="" id="image-edit" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-6 text-center">
                             <div id="err-msg">
@@ -180,7 +171,7 @@ get_header();
 										foreach ( $categories as $category ):
 											?>
                                             <option value="<?= $category->term_id ?>"
-											        <?= ( in_array( $category->term_id, $product_categories ) ? "selected='selected'" : "" ) ?>><?= $category->name ?></option>
+												<?= ( in_array( $category->term_id, $product_categories ) ? "selected='selected'" : "" ) ?>><?= $category->name ?></option>
 										<?php
 										endforeach;
 										?>
@@ -201,7 +192,7 @@ get_header();
 										foreach ( $tags as $tag ):
 											?>
                                             <option value="<?= $tag->term_id ?>"
-											        <?= ( in_array( $tag->term_id, $product_tags ) ? "selected='selected'" : "" ) ?>><?= $tag->name ?></option>
+												<?= ( in_array( $tag->term_id, $product_tags ) ? "selected='selected'" : "" ) ?>><?= $tag->name ?></option>
 										<?php
 										endforeach;
 										?>
@@ -211,7 +202,7 @@ get_header();
                                                 class="icon-plus-square"></span></a>
                                 </div>
 								<?php wp_nonce_field( 'add_photograph', 'add_photograph_nonce' ); ?>
-                                <input type="submit" value="Upload" class="btn btn-primary">
+                                <input type="submit" value="Update" class="btn btn-primary">
                             </div>
                         </div>
                     </div>

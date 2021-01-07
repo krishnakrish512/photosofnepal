@@ -273,6 +273,8 @@ $(document).ready(function () {
     });
 
     $('.select2').select2();
+
+    $('.tag-select').select2({tags: true});
 });
 
 
