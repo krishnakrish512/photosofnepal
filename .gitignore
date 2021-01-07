@@ -1,0 +1,23 @@
+## PHP IDEA
+.idea
+
+## WP files and directorie
+
+error
+log
+
+wp-content/log
+
+###
+
+html/assets/node_modules
+wp-content/themes/photosofnepal/assets/node_modules
+
+
+wp-content/uploads/GeoLite2-Country.mmdb
+
+## image cache
+cache
+
+##wc logs 
+wp-content/uploads/wc-logs/
