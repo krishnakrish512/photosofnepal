@@ -66,7 +66,8 @@ if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current
 		wp_enqueue_script( 'photography-admin-js', get_template_directory_uri() . '/scripts/admin.js', [], '1.0', true );
 
 		wp_localize_script( 'photography-admin-js', 'localized_var', [
-			'add_photograph_url' => get_page_link( get_page_by_title( 'Add Photograph' ) ),
+			'add_photograph_url'  => get_page_link( get_page_by_title( 'Add Photograph' ) ),
+			'edit_photograph_url' => get_page_link( get_page_by_title( 'Edit Photograph' ) ),
 		] );
 	}
 
