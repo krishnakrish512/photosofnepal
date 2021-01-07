@@ -26,8 +26,6 @@ add_action( 'admin_init', function () {
 	}
 }, 100 );
 
-add_action( "admin_print_styles-upload.php", 'photography_admin_media_style' );
-
 function custom_post_author_archive( $query ) {
 
 	if ( ! is_admin() && $query->is_author && $query->is_main_query() ) {

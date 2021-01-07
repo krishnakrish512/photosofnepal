@@ -267,11 +267,10 @@ $(document).ready(function () {
             success: function (data) {
                 $("form#image-upload .spinner-border").toggleClass('d-none');
                 $submitButton.val('Uploaded');
-                window.location = localized_var.wcfm_products_list;
+                window.location = localized_var.admin_products_list;
             }
         });
     });
-
 
     $('.select2').select2();
 });

@@ -51,7 +51,7 @@ function photos_scripts() {
 	wp_localize_script( 'photos-script', 'localized_var', [
 		'ajax_url'            => admin_url( 'admin-ajax.php' ),
 		'home_url'            => get_home_url(),
-//		'wcfm_products_list'  => get_wcfm_products_url(),
+		'admin_products_list' => admin_url( "/edit.php?post_type=product" ),
 		'edit_photograph_url' => get_page_link( get_page_by_title( 'Edit Photograph' ) ),
 		'image_sizes'         => get_photography_image_sizes()
 	] );

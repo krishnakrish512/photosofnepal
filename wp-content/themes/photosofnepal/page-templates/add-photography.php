@@ -3,7 +3,7 @@
 Template Name: Add Photography Page
 */
 
-if ( ! wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) ) {
+if ( ! ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) ) ) {
 	wp_redirect( get_home_url() );
 	exit;
 }
