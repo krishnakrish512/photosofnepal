@@ -1,0 +1,19 @@
+.pagination-wrap{
+    .page-numbers{
+        display: block;
+        width: pxToRem(35, 10);
+        height: pxToRem(35, 10);
+        background: $gray-200;
+        line-height: pxToRem(35, 10);
+        text-align: center;
+        @include border-radius(5px);
+        margin:0  pxToRem(5, 10);
+        color: inherit;
+
+        &.current,
+        &:hover{
+            background-color: $primary;
+            color : $white;
+        }
+    } 
+}

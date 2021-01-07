@@ -1,0 +1,14 @@
+.footer{
+  border-top:1px solid #ccc;
+  &__logo{
+  	font-size: pxToRem(18, 10);
+    text-transform: uppercase;
+  }
+  &__social-icon{
+    a{
+      display: block;
+      padding:0 pxToRem(10, 10);
+      font-size: pxToRem(16, 10);
+    }
+  }
+}

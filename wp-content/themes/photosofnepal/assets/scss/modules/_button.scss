@@ -1,0 +1,47 @@
+.btn{
+	padding: pxToRem(8, 10) pxToRem(23, 10);
+	@include border-radius(5px);
+
+	// span{
+	// 	margin-right: pxToRem(10, 10);
+	// 	font-size: pxToRem(18, 10);
+	// }
+	&-sm{
+		padding: pxToRem(5, 10) pxToRem(15, 10);
+		font-size: pxToRem(14, 10);
+	}
+
+	&-primary{
+		color: $white !important;
+	}
+
+	&-white{
+		background: transparent;
+		color: $black;
+
+		&:hover{
+			background-color: $primary;
+			color: $white;
+		}
+	}
+
+	&-outline{
+		border-color: $black;
+		color: $black;
+
+		&--white{
+			border-color: $white;
+			color: $white;
+			&:hover{
+				border-color: $black;
+			}
+		}
+		&:hover{
+			background-color: $black;
+			color: $white;
+		}
+	}
+	&-width--lg{
+		width: pxToRem(150,10);
+	}
+}

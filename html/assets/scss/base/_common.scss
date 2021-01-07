@@ -1,0 +1,65 @@
+/* ================ Common Styles =============== */
+
+html {
+    font-size: 62.5%; //~10/16px, where 16px is a default font size of the browser
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+   // @include media(">=xl") {
+   //     font-size: $font-size-lg-base;
+   // }
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+a,
+button,
+input {
+    outline: none;
+    text-decoration: none;
+    box-shadow: none;
+    //@include transition(all $transition-base);
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:active:focus {
+        box-shadow: none;
+        outline: none;
+        text-decoration: none;
+    }
+}
+ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+img{
+    max-width: 100%;
+}
+
+sup {
+    font-size: 55%;
+}
+
+// == WYSIWYG editor content
+// ##
+
+[href^="tel:"],
+[href^="mailto:"] {
+    color: $primary;
+}
+
+// Enable debuggin mode in development environment
+//@include debug($brand-primary-alt);

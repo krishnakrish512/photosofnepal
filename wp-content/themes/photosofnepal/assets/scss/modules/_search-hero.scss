@@ -1,0 +1,223 @@
+
+.search-hero{
+  position: relative;
+  overflow: hidden;
+  height: pxToRem(300, 10);
+  display: flex;
+  align-items:center;
+
+
+  @include media-breakpoint-up(sm){
+    height: pxToRem(400, 10);
+  }
+  @include media-breakpoint-up(lg){
+    height: pxToRem(508, 10);
+    padding: pxToRem(100, 10) 0;
+  }
+
+  &__inner{
+    height: auto;
+    padding:pxToRem(20, 10);
+    background: #efefef;
+    .search-hero__img,
+    .search-hero__title,
+    .search-hero__trending,
+    .search-hero__image-info{
+      display: none;
+    }
+    .search-hero__content{
+      margin-top: 0;
+      &.is-sticky{
+        top: 0;
+      }
+    }
+  }
+
+  &__image-info{
+    position: absolute;
+    z-index: 2;
+    bottom:pxToRem(20, 10);
+    left: 0;
+    right: 0;
+    .container-fluid{
+      display: flex;
+      justify-content: space-between;
+      color: $white;
+    }
+    .social-links{
+      li{
+        margin-left: pxToRem(10, 10);
+
+        a{
+          width: pxToRem(35, 10);
+          height: pxToRem(35, 10);
+          line-height: 40px;
+          border-radius: 100%;
+          background-color: $white;
+          color:$primary;
+          display: block;
+          @include transition(all 0.25s ease);
+          &:hover{
+            background-color: $primary;
+            color: $white
+          }
+        }
+      }
+    }
+  }
+
+  &__img{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    transform: translateY(-50%);
+    
+
+    img{
+      max-width: 150%;
+      @include media-breakpoint-up(lg){
+        max-width: 100%;
+      }
+    }
+  }
+  &__content{
+    margin : 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 0 15px;
+    width: 100%;
+
+    @include media-breakpoint-up(md){
+      margin-top: -43px;
+      width: 650px;
+    }
+       &.sticky{
+        width: 100%;
+        position:   fixed;
+        left:   0;
+        right: 0;
+        z-index:  2;
+        top: -70px;
+        padding:15px 0;
+        margin-top: 0;
+        z-index: 10;
+
+        transition: all 0.3s ease;
+
+        &.is-sticky{
+          top: 0;
+        }
+        .search-hero__title{
+          display: none;
+        }
+        .search-hero__form{
+          padding-left: pxToRem(15, 10);
+          padding-right: pxToRem(15, 10);
+          @include media-breakpoint-up(lg){
+            width:  1000px;
+            padding: 0;
+          }
+          
+        }
+        .search-hero__trending{
+          display: none;
+        }
+      }
+
+  }
+  &__title{
+    font-weight: 300;
+    margin-bottom: 20px;
+    font-size: 26px;
+    @include media-breakpoint-up(md){
+      font-size: $h1-font-size;
+    }
+  }
+
+  &__trending{
+    font-weight: 200;
+    padding: pxToRem(5, 10) 0 0;
+    text-align: left;
+  }
+
+  &__form{
+    
+    margin: 0 auto;
+    transition : all 0.25s ease;
+
+    @include media-breakpoint-up(md){
+      width: 100%;
+    }
+    @include media-breakpoint-up(lg){
+      // width: pxToRem(1000, 10);
+    }
+
+    &.has-badge{
+      display: flex;
+      justify-content: space-between;
+
+      .badge{
+        max-width: 20%;
+        flex: 0 0 20%;
+        line-height: 43px;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: #f4f4f4;
+        i{
+          cursor: pointer;
+        }
+      }
+      form{
+        max-width: 80%;
+        flex: 0 0 80%;
+      }
+    }
+    &.input-style{
+      border : 1px solid #E9E9E9;
+      background-color: $white;
+      border-radius: 5px;
+      padding: 3px;
+      .form-control{
+        border:none;
+      }
+    }
+
+
+    form{
+      position: relative;
+      span{
+        position: absolute;
+        top: 50%;
+        left: 22px;
+        transform: translateY(-50%);
+        display: block;
+        font-size: pxToRem(18, 10);
+        height: pxToRem(22, 10);
+        color: #000;
+      }
+    }
+
+    .form-control{
+      height: pxToRem(50,10);
+      border-radius: 5px;
+      padding-left: 25px;
+      padding-left: 60px;
+    }
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

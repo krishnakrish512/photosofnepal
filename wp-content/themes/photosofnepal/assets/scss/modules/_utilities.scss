@@ -1,0 +1,89 @@
+.lead{
+	font-size: pxToRem(16, 10);
+}
+.small-font{
+    font-size: $font-size-sm;
+  }
+  .bg-gray{
+    background-color: $gray-200;
+  }
+  .facebook{
+    background-color: #3b5998;
+  }
+  .twitter{
+    background-color: #00aced;
+  }
+  .instagram{
+    background-color: #C13584;
+  }
+  .google{
+    background-color: #DB4437;
+  }
+  
+
+.row{
+  &.gutter-md{
+    margin-left: -8px;
+    margin-right: -8px;
+
+    [class*="col-"],
+    [class*="col-"]{
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+}
+.column-5{
+  .column{
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+
+    @include media-breakpoint-up(md){
+      flex: 0 0 20%;
+      max-width: 20%;
+    }
+  }
+}
+  
+.card{
+    .card-image{
+      overflow: hidden;
+
+      img{
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        transform: scale(1);
+
+        @include transition(all 1s ease); 
+      }
+    }
+
+    &:hover{
+      img{
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+      }
+    }
+}
+.aspect-ratio{
+  position: relative;
+  overflow: hidden;
+
+  &::after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+    background: #000;
+  }
+  img{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+  }
+}

@@ -1,0 +1,53 @@
+
+.slidemenu{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	left: 0;
+	background-color: rgba(0,0,0,.6);
+	height: 100vh;
+	z-index: 1000;
+	display: flex;
+	justify-content: flex-end;
+	opacity: 0;
+	visibility: hidden;
+	@include transition(all 0.3s ease);
+
+	&__inner{
+		flex: 0 0 pxToRem(320, 10);
+		max-width: pxToRem(320, 10);
+		background-color: $white;
+		height: 100vh;
+		position: relative;
+		right: 0;
+		padding: pxToRem(70, 10) pxToRem(30, 10) pxToRem(30, 10);
+		@include transform(translateX(100%));
+		@include transition(all 0.3s ease);
+	}
+	
+	&__nav{	
+		li{
+			padding: pxToRem(8, 10) 0;
+			a{
+				color: inherit;
+			}
+		}
+		
+	}
+	&__close{
+		font-size: pxToRem(26, 10);
+		position: absolute;
+		top: pxToRem(30, 10);
+		right: pxToRem(30, 10);
+		cursor: pointer;
+		color: $primary;
+	}
+	&.is-open{
+		opacity: 1;
+		visibility: visible;
+
+		.slidemenu__inner{
+			@include transform(translateX(0));
+		}
+	}
+}

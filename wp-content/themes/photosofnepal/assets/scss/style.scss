@@ -1,0 +1,59 @@
+/* ================ Import partials ============== */
+
+
+
+// == Import partials from base directory
+
+@import "base/functions";
+@import "base/variables";
+
+// == Import partials from vendor directory
+
+@import "vendors/bootstrap/bootstrap";
+@import "vendors/icomoon";
+
+// == Import partials from mixin directory
+
+@import "mixins/mixins";
+
+// == Import partials from base directory
+
+@import "base/type";
+@import "base/common";
+
+// == Import partials from layouts directory
+
+@import "layouts/header";
+//@import "layouts/masnory";
+@import "layouts/footer";
+
+
+//== Importing nav modules from nav directory
+@import "modules/global";
+@import "modules/utilities";
+@import "modules/search-hero";
+@import "modules/registration";
+@import "modules/button";
+@import "modules/profile";
+@import "modules/discover-photos";
+@import "modules/single-image-page";
+@import "modules/checkout";
+@import "modules/upload";
+@import "modules/pagination";
+@import "modules/modal";
+@import "modules/slidemenu";
+
+//== Importing overrides partials from overrides directory
+//@import "modules/overrides/overrides";
+
+// == Importing utilities modules from utilities directory
+//@import "modules/utilities/utilities";
+
+// == Importing utilities modules from utilities directory
+//@import "modules/shared/shared";
+
+// == Including banner modules from banner directory
+//@import "modules/promo/promo";
+
+// == Include cards modules from card folder
+//@import "modules/cards/cards";

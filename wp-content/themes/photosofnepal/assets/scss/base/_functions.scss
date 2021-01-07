@@ -1,0 +1,9 @@
+/* =============== SASS functions =============== */
+
+/**
+ * Default value is 10px, since we are using 10px as a browser's default font size to make it easy to calculate
+ * Eg, it's easier to calculate 50px gap with 10px threshold rather than 16px or 18px.
+ */
+@function pxToRem($input, $default: 10px) {
+    @return ($input / $default) * 1rem;
+}

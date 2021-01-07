@@ -1,0 +1,94 @@
+.flex-center-y{
+	display: flex;
+	align-items:center;
+}
+.container-small{
+	max-width: pxToRem(700, 10);
+}
+.profile{
+	.container{
+		background: $white;
+		padding: pxToRem(30, 10) pxToRem(80, 10);
+		border-radius: pxToRem(5, 10);
+		position: relative;
+		z-index: 2;
+	}
+	&__image{
+		width: pxToRem(150, 10);
+		height: pxToRem(150, 10);
+		@include border-radius(100%);
+		overflow: hidden;
+		margin: 0 auto;
+	}
+	&__info{
+		&-name{
+			margin-bottom: pxToRem(10, 10);
+		}
+		p{
+			font-size: pxToRem(16, 10);
+		}
+	}
+	&__tab{
+		border-top: 1px solid #efefef;
+		
+	}
+}
+
+.nav-tabs{
+	border:none;
+	.nav-link{
+		border: none;
+		font-weight: 400;
+		color: inherit;
+		position: relative;
+		padding: pxToRem(10, 10) pxToRem(5, 10);
+		margin-right: pxToRem(20, 10);
+
+		&:before,
+		&:after{
+			content: "";
+			display: block;
+			height: pxToRem(2, 10);
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+		}
+
+		&:before{
+			background-color: #C4C4C4;
+		}
+
+		&:after{
+	          width: 0;
+	          background-color: $primary;
+			  margin: 0 auto;
+			  
+	          @include transition(width 0.25s ease);
+		}
+		.icon-stack{
+			font-size: pxToRem(16, 10);
+		}
+
+		&:hover,
+		&.active{
+			border:none;
+			color: $primary;
+
+			&:after{
+			          width: 100%;
+				}
+
+		}
+
+		&.active{
+			font-weight: 600;
+			&:after{
+				width: 100%;
+			}
+			
+		}
+	}
+}
+

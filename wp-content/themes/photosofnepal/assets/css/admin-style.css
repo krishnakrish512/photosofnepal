@@ -1,0 +1,27 @@
+.attachment-info .settings .setting[data-setting="alt"],
+.attachment-info .settings .setting[data-setting="caption"],
+.attachment-info .settings .setting[data-setting="alt"],
+.attachment-info .settings .setting[data-setting="url"] {
+    display: none;
+}
+
+.attachment-info .settings p.description {
+    display: none;
+}
+
+.attachment-info .settings .setting span.name,
+.attachment-info .settings .setting span.value {
+    display: none;
+}
+
+.attachment-info p.media-types-required-info {
+    display: none;
+}
+
+.attachment-info .actions {
+    display: none;
+}
+
+.view-switch .view-list {
+    display: none;
+}

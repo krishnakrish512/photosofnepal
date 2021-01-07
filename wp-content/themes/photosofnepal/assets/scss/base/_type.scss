@@ -1,0 +1,99 @@
+// == Common tags to nullify bottom gap of the last child
+// ##
+
+p,
+.para,
+address,
+.address,
+blockquote, .blockquote,
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6,
+ul, ol {
+    &:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+// == Heading tags
+// ##
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    //letter-spacing: pxToRem(2, 10);
+}
+
+h1, .h1 {
+    //font-weight: 300;
+    //line-height: (48 / 38);
+    //text-transform: uppercase;
+
+    // @include media(">=xl") {
+    //     font-size: $h1-font-lg-size;
+    //     line-height: (72 / 72);
+    // }
+}
+
+h2, .h2 {
+    margin-bottom: pxToRem(18, 10);
+
+    // @include media(">=xl") {
+    //     margin-bottom: pxToRem(22, 10);
+    //     font-size: $h2-font-lg-size;
+    // }
+}
+
+h3, .h3 {
+    margin-bottom: pxToRem(30, 10);
+    //line-height: (30 / 24); //(36 / 24);
+    // @include media(">=xl") {
+    //     font-size: $h3-font-lg-size;
+    // }
+}
+
+h4, .h4 {
+    margin-bottom: pxToRem(8, 10);
+    //letter-spacing: pxToRem(2, 10);
+    // @include media(">=xl") {
+    //     font-size: $h4-font-lg-size;
+    // }
+}
+
+h5, .h5 {
+    //line-height: 1.5;
+
+    // @include media(">=xl") {
+    //     font-size: $h5-font-lg-size;
+    // }
+}
+h6, .h6 {
+    font-size: pxToRem(16, 10);
+    //line-height: 1.5;
+
+    // @include media(">=xl") {
+    //     font-size: $h5-font-lg-size;
+    // }
+}
+
+
+// == Block quote
+// ##
+
+blockquote {
+    margin-bottom: pxToRem(30, 10);
+    //font-family: $font-family-garamond;
+    font-size: pxToRem(20, 10);
+
+    // @include media(">=lg") {
+    //     margin-bottom: pxToRem(45, 10);
+    //     font-size: pxToRem(24, 10);
+    // }
+
+}

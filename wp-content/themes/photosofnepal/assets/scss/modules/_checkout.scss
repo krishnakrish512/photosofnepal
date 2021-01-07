@@ -1,0 +1,77 @@
+.checkout-content{
+    .container{
+        max-width: pxToRem(1000, 10);
+    }
+    .purchase-detail{
+       @include media-breakpoint-up(sm){
+           padding-right: pxToRem(60,10);
+       }
+        &__list{
+            .media{
+                flex-direction: column;
+                border-bottom: 1px solid #efefef;
+                margin-bottom: pxToRem(30,10);
+                padding-bottom: pxToRem(30,10);
+    
+                &:last-child{
+                    border:none;
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
+                
+                @include media-breakpoint-up(sm){
+                    position: relative;
+                    flex-direction: row;
+                }
+                &-image{
+                    @include media-breakpoint-up(sm){
+                        max-width: pxToRem(210,10);
+                    }
+                }
+                &-body{
+                    @include media-breakpoint-up(sm){
+                        position: absolute;
+                        left : pxToRem(210, 10);
+                        padding:0  0 pxToRem(30, 10) pxToRem(20, 10);
+                        height: 100%;
+                        display:flex;
+                        flex-direction : column;
+                        justify-content: space-between;
+                    }
+                }
+                &:last-child{
+                    .media-body{
+                        padding-bottom: 0;  
+                    }
+                   
+                }
+            }
+        }
+    }
+    .purchase-form{
+        @include media-breakpoint-up(sm){
+            padding:0  pxToRem(40,10);
+        }
+    }
+}
+
+
+.radio-btn{
+    position :relative;
+
+    input[type="radio"]{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height : 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .radio:checked + .btn{
+        background-color: $primary;
+        border-color: $primary;
+        color  : $white;
+    }
+}
+

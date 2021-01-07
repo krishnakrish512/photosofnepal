@@ -1,0 +1,79 @@
+.upload-section{
+    .upload-container{
+        max-width: 900px;
+    }
+}
+.upload-area{
+    border: 1px dashed #ccc;
+    padding: 40px 0;
+    background: #efefef;
+
+    .fa-cloud-upload-alt{
+        font-size: 42px;
+        color: #ef2853;
+        margin-bottom: 20px;
+    }
+}
+.file-btn-area{
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+
+    [type*="file"]{
+        position: absolute;
+        height: 100%;
+        opacity: 0;
+        width: 300px;
+        left: -100px;
+        cursor: pointer;
+    }
+    .btn{
+        cursor: pointer;
+    }
+}
+
+.upload__withEdit{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    &-left{
+        max-width: 65%;
+        flex: 0 0 65%;
+        padding: 0 15px;
+    }
+    &-right{
+        max-width: 35%;
+        flex: 0 0 35%;
+        padding: 0 30px;
+
+        .edit-panel{
+            border: 1px solid $gray-200;
+            background: #efefef;
+            padding-bottom: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+
+            .photo-selected-cell{
+                padding: 15px;
+                background-color: $black;
+                color : $white
+            }
+            &__form{
+                padding: 0 15px;
+            }
+        }
+    }
+}
+.keyword-area{
+    background-color: $white;
+
+    .btn{
+        margin-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.tjGalleryItem{
+    padding-bottom: 50px;
+}

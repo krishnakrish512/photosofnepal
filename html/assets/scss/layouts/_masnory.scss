@@ -1,0 +1,57 @@
+.discover-photos{
+  &__grid{
+    overflow: hidden;
+    &-item{
+      &:hover{
+        .figure-icons{
+          opacity: 1;
+        }
+      }
+    }
+
+    figure{
+      position: relative;
+
+      figcaption{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content:space-between;
+        flex-direction: column;
+        color: #fff;
+
+        
+
+        .figure-icons{
+            padding:15px 10px;
+            background:linear-gradient(to top, transparent 0%, rgba(0,0,0,0.8) 100%);
+            text-align: right;
+            opacity: 0;
+            transition: all 0.25s ease;
+            a{
+              margin:0 8px;
+              display: inline-block;
+              color: $white;
+              .icon-stack{
+                font-size: 18px;
+              }
+            }
+        }
+        .figure-info{
+           padding:15px 10px; 
+           background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+
+           h6{
+            font-size: 14px;
+           }
+           p{
+            font-size: 14px;
+           }
+
+        }
+      }
+    }
+  }
+}
