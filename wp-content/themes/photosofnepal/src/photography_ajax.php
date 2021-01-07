@@ -40,7 +40,16 @@ function add_new_photograph_callback() {
 
 	$tags = isset( $_POST['tags'] ) ? (array) $_POST['tags'] : [];
 	$tags = array_map( 'esc_attr', $tags );
-	$tags = array_map( 'intval', $tags );
+//	$tags = array_map( 'intval', $tags );
+
+	foreach ( $tags as &$tag ) {
+		if ( (int) $tag == 0 ) {
+			$new_tag = wp_insert_term( $tag, 'product_tag', [] );
+			$tag     = $new_tag['term_id'];
+		} else {
+			$tag = (int) $tag;
+		}
+	}
 
 	$galleries = isset( $_POST['galleries'] ) ? (array) $_POST['galleries'] : [];
 	$galleries = array_map( 'esc_attr', $galleries );

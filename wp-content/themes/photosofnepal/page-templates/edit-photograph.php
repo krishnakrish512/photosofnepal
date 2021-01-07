@@ -136,8 +136,6 @@ get_header();
 
                                 <div class="form-group">
                                     <h5>Price</h5>
-                                    <p>If left empty default price would be Rs1000, Rs1500 & Rs2000 for small,medium and
-                                        large photo respectively. </p>
                                     <div class="row">
                                         <div class="col">
                                             <label for="">Small</label>
