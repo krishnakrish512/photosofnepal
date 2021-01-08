@@ -33,15 +33,19 @@ function photos_scripts() {
 	wp_enqueue_style( 'jquery-gallery-style', get_template_directory_uri() . '/assets/css/justifiedGallery.min.css' );
 	wp_enqueue_style( 'photography-select2-style', get_template_directory_uri() . '/assets/css/select2.min.css' );
 
+	wp_enqueue_style( 'jquery-tagit-style', get_template_directory_uri() . '/assets/css/jquery.tagit.css' );
+
 //	if ( ! is_wcfm_endpoint_url() ) {
 //		wp_deregister_script( 'jquery' );
 //	}
-	wp_enqueue_script( 'jquery-custom', get_template_directory_uri() . '/scripts/jquery-3.5.1.min.js', [], '1.0', true );
+	wp_enqueue_script( 'jquery-custom', get_template_directory_uri() . '/scripts/jquery-3.5.1.min.js', [], '1.0', false );
+	wp_enqueue_script( 'jquery-ui-custom', get_template_directory_uri() . '/scripts/jquery-ui.js', [], '1.0', false );
 
 	wp_enqueue_script( 'popper-script', get_template_directory_uri() . '/scripts/popper.min.js', [], '1.0', true );
 	wp_enqueue_script( 'bootstrap-script', get_template_directory_uri() . '/scripts/bootstrap.min.js', [], '1.0', true );
 	wp_enqueue_script( 'justified-gallery-script', get_template_directory_uri() . '/scripts/jquery.justifiedGallery.min.js', [], '1.0', true );
 	wp_enqueue_script( 'photography-select2-script', get_template_directory_uri() . '/scripts/select2.min.js', [], '1.0', true );
+	wp_enqueue_script( 'photography-tagit-script', get_template_directory_uri() . '/scripts/tag-it.js', [], '1.0', true );
 
 	wp_enqueue_style( 'photos-style', get_template_directory_uri() . '/assets/css/style.css' );
 
@@ -53,7 +57,8 @@ function photos_scripts() {
 		'home_url'            => get_home_url(),
 		'admin_products_list' => admin_url( "/edit.php?post_type=product" ),
 		'edit_photograph_url' => get_page_link( get_page_by_title( 'Edit Photograph' ) ),
-		'image_sizes'         => get_photography_image_sizes()
+		'image_sizes'         => get_photography_image_sizes(),
+		'product_tags'        => get_all_product_tags()
 	] );
 }
 

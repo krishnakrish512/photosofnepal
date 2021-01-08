@@ -11,6 +11,22 @@ function photography_add_product_tag_callback() {
 add_action( 'wp_ajax_nopriv_photography_add_product_tag', 'photography_add_product_tag_callback' );
 add_action( 'wp_ajax_photography_add_product_tag', 'photography_add_product_tag_callback' );
 
+function photography_get_all_product_tags_callback() {
+	$tags = get_terms( 'product_tag', array(
+		'hide_empty' => false,
+	) );
+
+	$tag_names = array_map( function ( $tag ) {
+		return $tag->name;
+	}, $tags );
+
+	wp_send_json( $tag_names );
+	die();
+}
+
+add_action( 'wp_ajax_nopriv_photography_get_all_product_tags', 'photography_get_all_product_tags_callback' );
+add_action( 'wp_ajax_photography_get_all_product_tags', 'photography_get_all_product_tags_callback' );
+
 function photography_upload_attachment_callback() {
 // These files need to be included as dependencies when on the front end.
 	require_once( ABSPATH . 'wp-admin/includes/image.php' );

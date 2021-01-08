@@ -274,7 +274,12 @@ $(document).ready(function () {
 
     $('.select2').select2();
 
-    $('.tag-select').select2({tags: true});
+    // $('.tag-select').select2({tags: true, selectOnClose: false});
+
+    $('.tag-select').tagit({
+        fieldName: 'tags[]',
+        availableTags: localized_var.product_tags,
+    });
 });
 
 
