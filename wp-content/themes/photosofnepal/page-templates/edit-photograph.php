@@ -129,18 +129,18 @@ get_header();
                         <div class="col-lg-6">
                             <div class="photo-detail">
                                 <div class="form-group">
-                                    <label for="">Title</label>
+                                    <label for="" class="h6">Title</label>
                                     <input type="text" name="title" class="form-control"
                                            value="<?= $product->get_name() ?>" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Description</label>
+                                    <label for="" class="h6">Description</label>
                                     <textarea name="description"
                                               class="form-control"><?= $product->get_description() ?></textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <h5>Price</h5>
+                                    <label class="h6">Price</label>
                                     <div class="row">
                                         <div class="col">
                                             <label for="">Small</label>
@@ -161,7 +161,7 @@ get_header();
                                 </div>
 
                                 <div class="form-group">
-                                    <p>Categories</p>
+                                    <label class="h6">Categories</label>
                                     <select name="categories[]" class="select2 form-control category-select" multiple
                                             style="width: 100%">
 										<?php
@@ -181,7 +181,7 @@ get_header();
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <p>Tags</p>
+                                    <label class="h6">Tags</label>
                                     <ul class="tag-select">
 										<?php
 										$product_tags = get_the_terms( $product_id, 'product_tag' );
