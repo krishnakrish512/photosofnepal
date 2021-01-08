@@ -76,7 +76,6 @@ if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current
 		] );
 	}
 
-
 	add_action( 'admin_enqueue_scripts', 'photography_load_admin_scripts' );
 
 }
