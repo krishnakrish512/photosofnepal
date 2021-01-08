@@ -11,6 +11,22 @@ function photography_add_product_tag_callback() {
 add_action( 'wp_ajax_nopriv_photography_add_product_tag', 'photography_add_product_tag_callback' );
 add_action( 'wp_ajax_photography_add_product_tag', 'photography_add_product_tag_callback' );
 
+function photography_get_all_product_tags_callback() {
+	$tags = get_terms( 'product_tag', array(
+		'hide_empty' => false,
+	) );
+
+	$tag_names = array_map( function ( $tag ) {
+		return $tag->name;
+	}, $tags );
+
+	wp_send_json( $tag_names );
+	die();
+}
+
+add_action( 'wp_ajax_nopriv_photography_get_all_product_tags', 'photography_get_all_product_tags_callback' );
+add_action( 'wp_ajax_photography_get_all_product_tags', 'photography_get_all_product_tags_callback' );
+
 function photography_upload_attachment_callback() {
 // These files need to be included as dependencies when on the front end.
 	require_once( ABSPATH . 'wp-admin/includes/image.php' );
@@ -40,7 +56,19 @@ function add_new_photograph_callback() {
 
 	$tags = isset( $_POST['tags'] ) ? (array) $_POST['tags'] : [];
 	$tags = array_map( 'esc_attr', $tags );
-	$tags = array_map( 'intval', $tags );
+//	$tags = array_map( 'intval', $tags );
+
+//	foreach ( $tags as &$tag ) {
+//		if ( (int) $tag == 0 ) {
+//			$new_tag = wp_insert_term( $tag, 'product_tag', [] );
+//			$tag     = $new_tag['term_id'];
+//		} else {
+//			$tag = (int) $tag;
+//		}
+//	}
+
+//	wp_set_object_terms( $product_id, $tags, 'product_tag' );
+
 
 	$galleries = isset( $_POST['galleries'] ) ? (array) $_POST['galleries'] : [];
 	$galleries = array_map( 'esc_attr', $galleries );
@@ -71,6 +99,9 @@ function add_new_photograph_callback() {
 				'product_tag' => $tags
 			]
 		] );
+
+		wp_set_object_terms( $new_post_id, $tags, 'product_tag' );
+
 
 		update_post_meta( $new_post_id, '_thumbnail_id', $attachment_id );
 

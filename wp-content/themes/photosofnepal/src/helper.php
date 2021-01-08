@@ -63,18 +63,18 @@ function photography_myaccount_page_title() {
 function photography_single_product_sharing() {
 	global $product;
 
-	$facebook_url = "https://www.facebook.com/sharer.php?u=" . $product->get_permalink();
-    $pinterest_url = add_query_arg(
-            [
-                'url'      =>urlencode( $product->get_permalink()),
-                'media'     =>urlencode(wp_get_attachment_image_url(get_post_thumbnail_id($product->get_id()),'photography_preview')),
-               'description'=> urlencode($product->get_title())
-            ],
+	$facebook_url  = "https://www.facebook.com/sharer.php?u=" . $product->get_permalink();
+	$pinterest_url = add_query_arg(
+		[
+			'url'         => urlencode( $product->get_permalink() ),
+			'media'       => urlencode( wp_get_attachment_image_url( get_post_thumbnail_id( $product->get_id() ), 'photography_preview' ) ),
+			'description' => urlencode( $product->get_title() )
+		],
 
-        "http://pinterest.com/pin/create/button/"
-    );
+		"http://pinterest.com/pin/create/button/"
+	);
 
-    $twitter_url  = add_query_arg(
+	$twitter_url = add_query_arg(
 		[
 			'text'     => urlencode( $product->get_title() ),
 			'url'      => $product->get_permalink(),
@@ -316,4 +316,14 @@ function get_photography_image_sizes() {
 		'small'  => [ $images_sizes['photography_small']['width'], $images_sizes['photography_small']['height'] ],
 		'medium' => [ $images_sizes['photography_medium']['width'], $images_sizes['photography_medium']['height'] ],
 	];
+}
+
+function get_all_product_tags() {
+	$tags = get_terms( 'product_tag', array(
+		'hide_empty' => false,
+	) );
+
+	return array_map( function ( $tag ) {
+		return $tag->name;
+	}, $tags );
 }

@@ -3,7 +3,7 @@
 Template Name: Add Photography Page
 */
 
-if ( ! wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) ) {
+if ( ! ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) ) ) {
 	wp_redirect( get_home_url() );
 	exit;
 }
@@ -95,7 +95,7 @@ while ( have_posts() ):
                                                 <span class="resolution"></span>
                                             </div>
 											<?php
-											$price[ $term_name ] = ( ! empty( $_POST["{$term_name}_price"] ) ) ? $_POST["{$term_name}_price"] : get_field( 'price', $term );
+//											$price[ $term_name ] = ( ! empty( $_POST["{$term_name}_price"] ) ) ? $_POST["{$term_name}_price"] : get_field( 'price', $term );
 										}
 										?>
                                     </div>
@@ -142,25 +142,8 @@ while ( have_posts() ):
                                 </div>
                                 <div class="form-group">
                                     <p>Tags</p>
-									<?php
-									$tags = get_terms( 'product_tag', array(
-										'hide_empty' => false,
-									) );
-									?>
-                                    <select name="tags[]" multiple class="select2 form-control tag-select"
-                                            style="width: 100%">
-										<?php
-										foreach ( $tags as $tag ):
-											?>
-                                            <option value="<?= $tag->term_id ?>"><?= $tag->name ?></option>
-										<?php
-										endforeach;
-										?>
-                                    </select>
-
-                                    <a href="#" class="add-new-tag" title="Add new tag" data-toggle="modal"
-                                       data-target="#addTagModal"><span
-                                                class="icon-plus-square"></span></a>
+                                    <ul class="tag-select">
+                                    </ul>
                                 </div>
 								<?php wp_nonce_field( 'add_photograph', 'add_photograph_nonce' ); ?>
                                 <input type="submit" value="Upload" class="btn btn-primary">

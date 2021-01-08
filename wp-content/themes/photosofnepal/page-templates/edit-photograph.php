@@ -40,6 +40,11 @@ $large_product = new WC_Product_Variation( $variation_id[0] );
 
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
+//	echo "<pre>";
+//	print_r( $_POST );
+//	echo "</pre>";
+//	exit;
+
 	if ( isset( $_POST['add_photograph_nonce'] ) ) {
 		// The nonce was valid and the user has the capabilities, it is safe to continue.
 
@@ -62,43 +67,34 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 		$tags = isset( $_POST['tags'] ) ? (array) $_POST['tags'] : [];
 		$tags = array_map( 'esc_attr', $tags );
-		$tags = array_map( 'intval', $tags );
 
-		$product->set_tag_ids( $tags );
+//		foreach ( $tags as &$tag ) {
+//			if ( (int) $tag == 0 ) {
+//				$new_tag = wp_insert_term( $tag, 'product_tag', [] );
+//				$tag     = $new_tag['term_id'];
+//			} else {
+//				$tag = (int) $tag;
+//			}
+//		}
 
-		if ( $small_product->get_price() !== $_POST['small_price'] ) {
-			if ( empty( $_POST['small_price'] ) ) {
-				$term = get_term_by( 'name', 'small', $taxonomy );
-				$small_product->set_regular_price( get_field( 'price', $term ) );
-			} else {
-				$small_product->set_regular_price( $_POST['small_price'] );
-			}
-			$small_product->save();
-		}
+//		var_dump( $tags );
+//		exit;
 
-		if ( $medium_product->get_price() !== $_POST['medium_price'] ) {
-			if ( empty( $_POST['medium_price'] ) ) {
-				$term = get_term_by( 'name', 'medium', $taxonomy );
-				$medium_product->set_regular_price( get_field( 'price', $term ) );
-			} else {
-				$medium_product->set_regular_price( $_POST['medium_price'] );
-			}
-			$medium_product->save();
-		}
+//		$product->set_tag_ids( $tags );
 
-		if ( $large_product->get_price() !== $_POST['large_price'] ) {
-			if ( empty( $_POST['large_price'] ) ) {
-				$term = get_term_by( 'name', 'large', $taxonomy );
-				$large_product->set_regular_price( get_field( 'price', $term ) );
-			} else {
-				$large_product->set_regular_price( $_POST['large_price'] );
-			}
-			$large_product->save();
-		}
+		wp_set_object_terms( $product_id, $tags, 'product_tag' );
+		$small_product->set_regular_price( $_POST['small_price'] );
+		$small_product->save();
+
+		$medium_product->set_regular_price( $_POST['medium_price'] );
+		$medium_product->save();
+
+		$large_product->set_regular_price( $_POST['large_price'] );
+		$large_product->save();
 
 		$product->save();
 
-		wp_redirect( get_wcfm_products_url() );
+		wp_redirect( admin_url( "/edit.php?post_type=product" ) );
 		exit;
 
 	}
@@ -117,7 +113,7 @@ get_header();
     <main class="main">
         <section class="upload-section section-spacing">
             <div class="container upload-container">
-                <form action="" id="image-upload" method="post" enctype="multipart/form-data">
+                <form action="" id="image-edit" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-6 text-center">
                             <div id="err-msg">
@@ -145,8 +141,6 @@ get_header();
 
                                 <div class="form-group">
                                     <h5>Price</h5>
-                                    <p>If left empty default price would be Rs1000, Rs1500 & Rs2000 for small,medium and
-                                        large photo respectively. </p>
                                     <div class="row">
                                         <div class="col">
                                             <label for="">Small</label>
@@ -180,7 +174,7 @@ get_header();
 										foreach ( $categories as $category ):
 											?>
                                             <option value="<?= $category->term_id ?>"
-											        <?= ( in_array( $category->term_id, $product_categories ) ? "selected='selected'" : "" ) ?>><?= $category->name ?></option>
+												<?= ( in_array( $category->term_id, $product_categories ) ? "selected='selected'" : "" ) ?>><?= $category->name ?></option>
 										<?php
 										endforeach;
 										?>
@@ -188,30 +182,20 @@ get_header();
                                 </div>
                                 <div class="form-group">
                                     <p>Tags</p>
-									<?php
-									$tags = get_terms( 'product_tag', array(
-										'hide_empty' => false,
-									) );
-									?>
-                                    <select name="tags[]" multiple class="select2 form-control tag-select"
-                                            style="width: 100%">
+                                    <ul class="tag-select">
 										<?php
-										$product_tags = $product->get_tag_ids();
+										$product_tags = get_the_terms( $product_id, 'product_tag' );
 
-										foreach ( $tags as $tag ):
+										foreach ( $product_tags as $tag ):
 											?>
-                                            <option value="<?= $tag->term_id ?>"
-											        <?= ( in_array( $tag->term_id, $product_tags ) ? "selected='selected'" : "" ) ?>><?= $tag->name ?></option>
+                                            <li name="tags[]"><?= $tag->name ?></li>
 										<?php
 										endforeach;
 										?>
-                                    </select>
-                                    <a href="#" class="add-new-tag" title="Add new tag" data-toggle="modal"
-                                       data-target="#addTagModal"><span
-                                                class="icon-plus-square"></span></a>
+                                    </ul>
                                 </div>
 								<?php wp_nonce_field( 'add_photograph', 'add_photograph_nonce' ); ?>
-                                <input type="submit" value="Upload" class="btn btn-primary">
+                                <input type="submit" value="Update" class="btn btn-primary">
                             </div>
                         </div>
                     </div>

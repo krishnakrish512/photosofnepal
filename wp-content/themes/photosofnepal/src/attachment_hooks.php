@@ -49,10 +49,10 @@ function photography_edit_attachment( $post_id ) {
 }
 
 
-if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) ) {
-	add_action( 'edit_attachment', 'photography_edit_attachment' );
-	add_action( 'add_attachment', 'photography_add_attachment' );
-}
+//if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) ) {
+//	add_action( 'edit_attachment', 'photography_edit_attachment' );
+//	add_action( 'add_attachment', 'photography_add_attachment' );
+//}
 
 function photography_add_attachment( $post_id ) {
 //if attachment is not an image, do nothing
