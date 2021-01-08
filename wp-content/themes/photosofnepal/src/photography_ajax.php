@@ -58,14 +58,17 @@ function add_new_photograph_callback() {
 	$tags = array_map( 'esc_attr', $tags );
 //	$tags = array_map( 'intval', $tags );
 
-	foreach ( $tags as &$tag ) {
-		if ( (int) $tag == 0 ) {
-			$new_tag = wp_insert_term( $tag, 'product_tag', [] );
-			$tag     = $new_tag['term_id'];
-		} else {
-			$tag = (int) $tag;
-		}
-	}
+//	foreach ( $tags as &$tag ) {
+//		if ( (int) $tag == 0 ) {
+//			$new_tag = wp_insert_term( $tag, 'product_tag', [] );
+//			$tag     = $new_tag['term_id'];
+//		} else {
+//			$tag = (int) $tag;
+//		}
+//	}
+
+//	wp_set_object_terms( $product_id, $tags, 'product_tag' );
+
 
 	$galleries = isset( $_POST['galleries'] ) ? (array) $_POST['galleries'] : [];
 	$galleries = array_map( 'esc_attr', $galleries );
@@ -96,6 +99,9 @@ function add_new_photograph_callback() {
 				'product_tag' => $tags
 			]
 		] );
+
+		wp_set_object_terms( $new_post_id, $tags, 'product_tag' );
+
 
 		update_post_meta( $new_post_id, '_thumbnail_id', $attachment_id );
 
