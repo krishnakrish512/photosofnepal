@@ -78,7 +78,7 @@ while ( have_posts() ):
                                 </div>
 
                                 <div class="form-group upload-price">
-                                    <h5>Price</h5>
+                                    <label>Price</label>
                                     <p>The given price bellow is the recommended price only, you can set your own price
                                         for different sizes.</p>
                                     <div class="row">
@@ -102,7 +102,7 @@ while ( have_posts() ):
                                 </div>
 
                                 <div class="form-group">
-                                    <p>Galleries</p>
+                                    <label>Galleries</label>
                                     <select name="galleries[]" multiple class="select2 form-control gallery-select"
                                             style="width: 100%">
 										<?php
@@ -124,7 +124,7 @@ while ( have_posts() ):
                                 </div>
 
                                 <div class="form-group">
-                                    <p>Categories</p>
+                                    <label>Categories</label>
                                     <select name="categories[]" class="select2 form-control category-select" multiple
                                             style="width: 100%">
 										<?php
@@ -141,7 +141,7 @@ while ( have_posts() ):
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <p>Tags</p>
+                                    <label>Tags</label>
                                     <ul class="tag-select">
                                     </ul>
                                 </div>
