@@ -40,3 +40,14 @@
 .wp-list-table .manage-column.check-column{
     width: 3%;
 }
+.wp-list-table .column-product_name{
+    font-size: 0;
+}
+.wp-list-table .column-product_name .post-edit-link{
+    font-size: 13px;
+    line-height: 20px;
+}
+.wp-list-table .column-order_id a{
+    pointer-events: none;
+    color: inherit;
+}
