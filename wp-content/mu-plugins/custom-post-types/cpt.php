@@ -51,7 +51,7 @@ add_post_type( 'gallery', [
 	'label'       => 'Galleries',
 	'menu_icon'   => 'dashicons-calendar',
 	'labels'      => [ 'add_new_item' => "Add new gallery" ],
-	'supports'    => [ 'title', 'thumbnail' ],
+	'supports'    => [ 'title', 'thumbnail', 'author' ],
 	'has_archive' => true
 ] );
 
@@ -73,9 +73,9 @@ $labels = [
 	'choose_from_most_used'      => 'Choose from the most used Albums',
 ];
 
-add_taxonomy( "album", 'product', [
-	'labels'       => $labels,
-	'hierarchical' => false
-] );
+//add_taxonomy( "album", 'product', [
+//	'labels'       => $labels,
+//	'hierarchical' => false
+//] );
 // clear the permalinks after the post type has been registered
 flush_rewrite_rules();

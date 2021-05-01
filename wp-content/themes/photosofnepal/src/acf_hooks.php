@@ -11,18 +11,29 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 	) );
 }
 
-function populate_vacancy_applied_for( $field ) {
-	// only on front end
-	if ( is_admin() ) {
-		return $field;
-	}
 
-	global $wp;
-	$gallery_id = $wp->query_vars['wcfm-cpt1-manage'];
+add_filter( 'acf/fields/post_object/query/name=gallery', 'my_acf_fields_post_object_query', 10, 3 );
+function my_acf_fields_post_object_query( $args, $field, $post_id ) {
 
-	$field['value'] = get_field( 'photographs', $gallery_id );
+	$args['author'] = get_current_user_id();
 
-	return $field;
+	$args['meta_key']     = 'photography_product_id';
+	$args['meta_compare'] = 'EXISTS';
+
+
+	return $args;
 }
 
-add_filter( 'acf/prepare_field/key=field_5fa8ce7d8504b', 'populate_vacancy_applied_for' );
+add_filter( 'acf/fields/post_object/query/name=gallery_photographs', 'my_acf_fields_photographs_query', 10, 3 );
+function my_acf_fields_photographs_query( $args, $field, $post_id ) {
+
+//	$args['author'] = get_current_user_id();
+
+	$args['meta_key']     = 'photography_product_id';
+	$args['meta_compare'] = 'EXISTS';
+
+	var_dump( $args );
+
+
+	return $args;
+}

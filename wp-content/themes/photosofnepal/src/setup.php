@@ -64,11 +64,18 @@ function photos_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'photos_scripts' );
 
-if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) ) {
+if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) || wc_current_user_has_role( 'seller' ) ) {
 	function photography_load_admin_scripts() {
-		wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/assets/css/admin-style.css', false, '1.0' );
+		wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/assets/css/admin-style.css', false, '1.1' );
 
-		wp_enqueue_script( 'photography-admin-js', get_template_directory_uri() . '/scripts/admin.js', [], '1.0', true );
+		global $typenow;
+		if ( $typenow === "product" ) {
+			wp_enqueue_style( 'admin-product-css', get_template_directory_uri() . '/assets/css/admin-product.css', false, '1.1' );
+
+			wp_enqueue_script( 'photography-admin-product-js', get_template_directory_uri() . '/scripts/admin-product.js', [], '1.03', true );
+		}
+
+		wp_enqueue_script( 'photography-admin-js', get_template_directory_uri() . '/scripts/admin.js', [], '1.02', true );
 
 		wp_localize_script( 'photography-admin-js', 'localized_var', [
 			'add_photograph_url'  => get_page_link( get_page_by_title( 'Add Photograph' ) ),
@@ -77,5 +84,4 @@ if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current
 	}
 
 	add_action( 'admin_enqueue_scripts', 'photography_load_admin_scripts' );
-
 }

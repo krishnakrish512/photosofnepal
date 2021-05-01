@@ -2,7 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-3 text-center text-md-left">
-                <a href="<?= get_home_url() ?>" class="h1 footer__logo">photosofnepal
+                <a href="<?= get_home_url() ?>" class="h1 footer__logo"><img
+                            src="<?= wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' ) ?>"
+                            class="img-fluid d-block"
+                            alt="<?php bloginfo( 'name' ); ?>">
                 </a>
             </div>
             <div class="col-lg-6 col-md-6 text-center my-4 my-md-0">

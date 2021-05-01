@@ -25,18 +25,27 @@
 .view-switch .view-list {
     display: none;
 }
-.column-order_status{
+
+.column-order_status {
     display: none;
 }
-.column-shipping_address{
+
+.column-shipping_address {
     display: none;
 }
-.column-fulfillment_status{
+
+.column-fulfillment_status {
     display: none;
 }
+
 .wp-list-table .manage-column {
     width: 16.16%;
 }
-.wp-list-table .manage-column.check-column{
+
+.wp-list-table .manage-column.check-column {
     width: 3%;
 }
+
+/*.media-frame-content .attachments-browser {*/
+/*    display: none;*/
+/*}*/

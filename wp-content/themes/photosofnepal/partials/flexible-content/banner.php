@@ -1,13 +1,19 @@
 <?php
-$featured_photo_id       = get_sub_field( 'featured_photograph' );
-$featured_photo          = wc_get_product( $featured_photo_id );
-$featured_photo_image_id = $featured_photo->get_image_id();
-$author_id               = get_post_field( 'post_author', $featured_photo_image_id );
+$featured_photo_id = get_sub_field( 'featured_photograph' );
+if ( $featured_photo_id ) {
+	$featured_photo          = wc_get_product( $featured_photo_id );
+	$featured_photo_image_id = $featured_photo->get_image_id();
+	$author_id               = get_post_field( 'post_author', $featured_photo_image_id );
+}
 ?>
 <section class="search-hero text-center text-white">
     <div class="search-hero__img has-overlay">
-        <img src="<?= wp_get_attachment_image_url( $featured_photo_image_id, 'photography_preview' ) ?>"
-             alt="<?= $featured_photo->get_title() ?>">
+		<?php
+		if ( $featured_photo_id ):
+			?>
+            <img src="<?= wp_get_attachment_image_url( $featured_photo_image_id, 'photography_preview' ) ?>"
+                 alt="<?= $featured_photo->get_title() ?>">
+		<?php endif; ?>
     </div>
 
     <div class="search-hero__content sticky-search-bar">
@@ -28,10 +34,14 @@ $author_id               = get_post_field( 'post_author', $featured_photo_image_
     <div class="search-hero__image-info">
         <div class="container-fluid">
             <p class="mb-0">
-                <a class="text-white"
-                   href="<?= $featured_photo->get_permalink() ?>  "><?= $featured_photo->get_title() ?></a>
-                by <a class="text-white"
-                      href="<?= get_author_posts_url( $author_id ) ?>"><?= get_the_author_meta( 'display_name', $author_id ) ?></a>
+				<?php
+				if ( $featured_photo_id ):
+					?>
+                    <a class="text-white"
+                       href="<?= $featured_photo->get_permalink() ?>  "><?= $featured_photo->get_title() ?></a>
+                    by <a class="text-white"
+                          href="<?= get_author_posts_url( $author_id ) ?>"><?= get_the_author_meta( 'display_name', $author_id ) ?></a>
+				<?php endif; ?>
             </p>
         </div>
     </div>

@@ -1,0 +1,8 @@
+
+#wp-content-editor-container .quicktags-toolbar {
+    display: none !important;
+}
+
+.media-modal-content .media-router #menu-item-browse {
+    display: none;
+}

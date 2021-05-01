@@ -118,10 +118,77 @@ function get_photogtaphy_buy_url( $photograph ) {
 	return wc_get_page_permalink( 'myaccount' );
 }
 
-function create_photography_variations( $post_id, $price = [] ) {
+function photography_insert_post_callback( $post_id ) {
 	$post = get_post( $post_id );
 
-	if ( ! ( $post->post_type == 'product' && $post->post_status == 'publish' && empty( get_post_meta( $post_id, 'check_if_run_once' ) ) ) ) {
+	if ( $post->post_type == 'gallery' ) {
+		$gallery_images = get_field( 'photographs', $post_id );
+
+//		var_dump( $gallery_images );
+//		exit;
+
+		if ( $gallery_images ) {
+			foreach ( $gallery_images as $image_id ) {
+				$new_post_title = get_the_title( $image_id );
+
+				$attachment = get_post( $image_id );
+
+				$tags       = get_field( 'tags', $post_id );
+				$categories = get_field( 'categories', $post_id );
+
+				//get product id associated with the image
+				$photography_product_id = (int) get_post_meta( $post_id, 'photography_product_id', true );
+
+				if ( $photography_product_id ) {
+					wp_update_post( [
+						'ID'           => $photography_product_id,
+						'post_title'   => $attachment->post_title,
+						'post_content' => $attachment->post_content,
+						'tax_input'    => [
+							'product_cat' => $categories,
+							'product_tag' => $tags,
+						]
+					] );
+				} else {
+					$price = [
+						'small'  => 1000,
+						'medium' => 5000,
+						'large'  => 15000
+					];
+
+					$new_post_id = wp_insert_post( [
+						'post_title'   => $attachment->post_title,
+						'post_author'  => get_current_user_id(),
+						'post_content' => $attachment->post_content,
+						'post_type'    => 'product',
+						'post_status'  => 'publish',
+						'tax_input'    => [
+							'product_cat' => $categories,
+							'product_tag' => $tags,
+						]
+					] );
+
+					update_post_meta( $new_post_id, '_thumbnail_id', $image_id );
+
+					// Update the original image (attachment) to reflect new status.
+					wp_update_post( [
+						'ID'          => $image_id,
+						'post_title'  => $new_post_title,
+						'post_parent' => $new_post_id,
+						'post_status' => 'inherit'
+					] );
+
+					add_post_meta( $image_id, 'photography_product_id', $new_post_id );
+
+					photography_create_variations( $new_post_id, $price );
+				}
+			}
+		}
+
+		return;
+	}
+
+	if ( ! ( $post->post_type == 'product' && $post->post_status == 'publish' ) ) {
 		return;
 	}
 
@@ -129,14 +196,73 @@ function create_photography_variations( $post_id, $price = [] ) {
 		return;
 	}
 
+	$price = get_field( 'price', $post_id );
+
+	$galleries = get_field( 'gallery', $post_id );
+
+	if ( $galleries ) {
+		foreach ( $galleries as $gallery_id ) {
+			$photographs = get_field( 'photographs', $gallery_id );
+
+			if ( ! $photographs ) {
+				$photographs = [];
+			}
+
+			array_push( $photographs, $post_id );
+
+			update_field( 'field_5fa8ce7d8504b', $photographs, $gallery_id );
+		}
+	}
+
+	if ( ! empty( get_post_meta( $post_id, 'check_if_run_once' ) ) ) {
+		global $wpdb;
+		$query = "SELECT postmeta.post_id AS product_id FROM {$wpdb->prefix}postmeta AS postmeta LEFT JOIN {$wpdb->prefix}posts AS products ON ( products.ID = postmeta.post_id ) WHERE postmeta.meta_key LIKE 'attribute_%' AND postmeta.meta_value = 'small' AND products.post_parent = {$post_id}";
+
+		$variation_id = $wpdb->get_col( $query );
+
+		$small_product = new WC_Product_Variation( $variation_id[0] );
+
+		$query = "SELECT postmeta.post_id AS product_id FROM {$wpdb->prefix}postmeta AS postmeta LEFT JOIN {$wpdb->prefix}posts AS products ON ( products.ID = postmeta.post_id ) WHERE postmeta.meta_key LIKE 'attribute_%' AND postmeta.meta_value = 'medium' AND products.post_parent = {$post_id}";
+
+		$variation_id = $wpdb->get_col( $query );
+
+		$medium_product = new WC_Product_Variation( $variation_id[0] );
+
+		$query = "SELECT postmeta.post_id AS product_id FROM {$wpdb->prefix}postmeta AS postmeta LEFT JOIN {$wpdb->prefix}posts AS products ON ( products.ID = postmeta.post_id ) WHERE postmeta.meta_key LIKE 'attribute_%' AND postmeta.meta_value = 'large' AND products.post_parent = {$post_id}";
+
+		$variation_id = $wpdb->get_col( $query );
+
+		$large_product = new WC_Product_Variation( $variation_id[0] );
+
+		$small_product->set_regular_price( $price['small'] );
+		$small_product->save();
+
+		$medium_product->set_regular_price( $price['medium'] );
+		$medium_product->save();
+
+		$large_product->set_regular_price( $price['large'] );
+		$large_product->save();
+
+		return;
+	}
+
+	$product_id = $post_id;
+
+	photography_create_variations( $product_id );
+}
+
+add_action( 'wp_insert_post', 'photography_insert_post_callback', 10, 1 );
+
+function photography_create_variations( $post_id, $price = [] ) {
 	$product = wc_get_product( $post_id );
+
+	$product_id = $post_id;
 
 	$attributes = get_terms( [
 		'taxonomy'   => 'pa_resolution',
 		'hide_empty' => false
 	] );
 
-	$product_id = $post_id;
 
 	//make product type be variable:
 	wp_set_object_terms( $product_id, 'variable', 'product_type' );
@@ -218,8 +344,6 @@ function create_photography_variations( $post_id, $price = [] ) {
 	# And update the meta so it won't run again
 	update_post_meta( $post_id, 'check_if_run_once', true );
 }
-
-add_action( 'wp_insert_post', 'create_photography_variations', 10, 1 );
 
 function photography_create_delete_request( $image_id ) {
 	$delete_request_title = "Delete Request for " . get_the_title( $image_id );
