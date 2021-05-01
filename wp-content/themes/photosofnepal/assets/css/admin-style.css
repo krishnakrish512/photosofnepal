@@ -46,6 +46,16 @@
     width: 3%;
 }
 
-/*.media-frame-content .attachments-browser {*/
-/*    display: none;*/
-/*}*/
+.wp-list-table .column-product_name {
+    font-size: 0;
+}
+
+.wp-list-table .column-product_name .post-edit-link {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.wp-list-table .column-order_id a {
+    pointer-events: none;
+    color: inherit;
+}
