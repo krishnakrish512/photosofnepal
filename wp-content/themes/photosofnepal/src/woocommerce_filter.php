@@ -85,7 +85,7 @@ function remove_linked_products( $tabs ) {
 
 }
 
-if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) ) {
+if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) || wc_current_user_has_role( 'seller' ) ) {
 	add_filter( 'woocommerce_product_data_tabs', 'remove_linked_products', 10, 1 );
 
 	add_action( 'add_meta_boxes_product', 'bbloomer_remove_metaboxes_edit_product', 9999 );
@@ -99,7 +99,7 @@ function bbloomer_remove_metaboxes_edit_product() {
 
 	remove_meta_box( 'woocommerce-product-data', 'product', 'normal' );
 
-
+	remove_meta_box( 'tagsdiv-wcpv_product_vendors', 'product', 'side' );
 }
 
 
