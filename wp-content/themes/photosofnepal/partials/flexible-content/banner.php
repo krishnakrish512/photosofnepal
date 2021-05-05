@@ -5,6 +5,17 @@ if ( $featured_photo_id ) {
 	$featured_photo_image_id = $featured_photo->get_image_id();
 	$author_id               = get_post_field( 'post_author', $featured_photo_image_id );
 }
+
+$args = [
+	'taxonomy'   => 'product_tag',
+	'number'     => 5,
+	'orderby'    => 'count',
+	'order'      => 'DESC',
+	'hide_empty' => true,
+	'fields'     => 'names'
+];
+
+$popular_tags = get_terms( $args );
 ?>
 <section class="search-hero text-center text-white">
     <div class="search-hero__img has-overlay">
@@ -28,7 +39,7 @@ if ( $featured_photo_id ) {
         </div>
 
         <p class="search-hero__trending">
-            Trending: Flowers, Wallpapers, Background
+            Trending: <?= implode( ', ', $popular_tags ) ?>
         </p>
     </div>
     <div class="search-hero__image-info">
