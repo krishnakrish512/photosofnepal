@@ -6,3 +6,8 @@
 .media-modal-content .media-router #menu-item-browse {
     display: none;
 }
+
+a.edit-post-status, a.edit-visibility, a.edit-timestamp, a.edit-catalog-visibility {
+    display: none;
+}
+
