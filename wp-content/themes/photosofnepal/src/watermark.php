@@ -21,7 +21,7 @@ function get_text_watermarked_image( $imageId, $text ) {
 	$manager = new ImageManager();
 
 	$image     = $manager->make( $imageSource );
-	$watermark = $manager->make( get_template_directory() . '/assets/images/water-mark.png' );
+	$watermark = $manager->make( get_template_directory() . '/assets/images/watermark_logo.png' );
 
 	$id_watermark = $manager->canvas( 200, 50, '#000000' )->opacity( 10 );
 
@@ -35,7 +35,7 @@ function get_text_watermarked_image( $imageId, $text ) {
 //	$id_watermark->save( "id_watermark.jpg" );
 
 	if ( $imageWidth > $imageHeight ) {
-		$watermark->resize( round( $imageWidth * 0.30 ), null, function ( $constraint ) {
+		$watermark->resize( round( $imageWidth * 0.40 ), null, function ( $constraint ) {
 			$constraint->aspectRatio();
 			$constraint->upsize();
 		} );
@@ -45,7 +45,7 @@ function get_text_watermarked_image( $imageId, $text ) {
 			$constraint->upsize();
 		} );
 	} else {
-		$watermark->resize( round( $imageWidth * 0.50 ), null, function ( $constraint ) {
+		$watermark->resize( round( $imageWidth * 0.60 ), null, function ( $constraint ) {
 			$constraint->aspectRatio();
 			$constraint->upsize();
 		} );
