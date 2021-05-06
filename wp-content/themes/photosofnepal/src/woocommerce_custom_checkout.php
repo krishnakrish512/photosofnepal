@@ -24,6 +24,8 @@ function photography_default_address_fields( $fields ) {
 	$fields['address_1']['type']        = 'textarea';
 	$fields['address_1']['required']    = false;
 
+	$fields['country']['required'] = false;
+
 	$fields['company_email'] = [
 		'label'       => 'Company Email',
 		'placeholder' => 'Company Email',
