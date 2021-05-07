@@ -320,10 +320,10 @@ $(window).scroll(function () {
 });
 
 //Disable right click on images
-$(document).on('contextmenu', 'img', function () {
-    $('.single-image-display__area .caption').toggleClass('d-none');
-    return false;
-})
+// $(document).on('contextmenu', 'img', function () {
+//     $('.single-image-display__area .caption').toggleClass('d-none');
+//     return false;
+// })
 
 
 /* ===================================     header appear on scroll up     ====================================== */
