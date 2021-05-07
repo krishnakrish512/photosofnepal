@@ -99,16 +99,16 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 											<?php do_action( 'woocommerce_login_form_end' ); ?>
 
-                                            <div class="seperate my-4 text-uppercase text-center font-weight-bold">or
+                                            <div class="seperate my-4 text-uppercase text-center font-weight-bold w-100">or
                                             </div>
-                                            <div class="login-option">
+                                            <div class="login-option w-100">
                                                 <ul>
                                                     <li>
                                                         <a href="https://imagepasal.com/wp-login.php?loginSocial=facebook"
                                                            data-plugin="nsl" data-action="connect"
                                                            data-redirect="current" data-provider="facebook"
                                                            data-popupwidth="475" data-popupheight="175"
-                                                           class="fab fa-facebook-f mr-3"> <i
+                                                           class="btn facebook d-block text-white mb-3"> <i
                                                                     class="fab fa-facebook-f mr-3"></i> Login with
                                                             Facebook</a>
                                                     </li>
