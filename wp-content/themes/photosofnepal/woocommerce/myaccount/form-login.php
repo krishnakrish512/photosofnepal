@@ -98,6 +98,31 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
                                             </div>
 
 											<?php do_action( 'woocommerce_login_form_end' ); ?>
+
+                                            <div class="seperate my-4 text-uppercase text-center font-weight-bold">or
+                                            </div>
+                                            <div class="login-option">
+                                                <ul>
+                                                    <li>
+                                                        <a href="https://imagepasal.com/wp-login.php?loginSocial=facebook"
+                                                           data-plugin="nsl" data-action="connect"
+                                                           data-redirect="current" data-provider="facebook"
+                                                           data-popupwidth="475" data-popupheight="175"
+                                                           class="fab fa-facebook-f mr-3"> <i
+                                                                    class="fab fa-facebook-f mr-3"></i> Login with
+                                                            Facebook</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://imagepasal.com/wp-login.php?loginSocial=google"
+                                                           data-plugin="nsl" data-action="connect"
+                                                           data-redirect="current" data-provider="google"
+                                                           data-popupwidth="600" data-popupheight="600"
+                                                           class="btn google d-block text-white"> <i
+                                                                    class="fab fa-google mr-3"></i> Login with
+                                                            Google</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -175,6 +200,28 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
                                 </div>
 
 								<?php do_action( 'woocommerce_register_form_end' ); ?>
+
+                                <div class="registrations__options mt-5 text-center">
+                                    <p class="my-4">OR REGISTER WITH</p>
+                                    <ul>
+                                        <li>
+                                            <a href="https://imagepasal.com/wp-login.php?loginSocial=facebook"
+                                               data-plugin="nsl" data-action="connect"
+                                               data-redirect="current" data-provider="facebook"
+                                               data-popupwidth="475" data-popupheight="175"
+                                               class="btn facebook mb-3  d-block text-white"><span
+                                                        class="icon-facebook mr-2"></span> Facebook</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://imagepasal.com/wp-login.php?loginSocial=google"
+                                               data-plugin="nsl" data-action="connect"
+                                               data-redirect="current" data-provider="google"
+                                               data-popupwidth="600" data-popupheight="600"
+                                               class="btn google  d-block text-white"><span
+                                                        class="fab fa-google mr-2"></span> Google</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </form>
                     </div>

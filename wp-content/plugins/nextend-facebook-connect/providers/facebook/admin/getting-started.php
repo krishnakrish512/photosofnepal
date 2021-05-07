@@ -37,10 +37,24 @@ $provider = $this->getProvider();
             <li><?php printf(__('On the top left side, click on the “<b>%1$s</b>” menu point, then click “<b>%2$s</b>”', 'nextend-facebook-connect'), 'Settings', 'Basic') ?></li>
             <li><?php printf(__('Enter your domain name to the "<b>App Domains</b>" field, probably: <b>%s</b>', 'nextend-facebook-connect'), str_replace('www.', '', $_SERVER['HTTP_HOST'])); ?></li>
             <li><?php _e('Fill up the "<b>Privacy Policy URL</b>" field. Provide a publicly available and easily accessible privacy policy that explains what data you are collecting and how you will use that data.', 'nextend-facebook-connect'); ?></li>
+            <li><?php _e('At "<b>User Data Deletion</b>", choose the "<b>Data Deletion Instructions URL</b>" option, and enter the <i>URL of your page</i>* with the instructions on how users can delete their accounts on your site.', 'nextend-facebook-connect'); ?>
+                <ul>
+                    <li><?php _e('To comply with GDPR, you should already offer possibility to delete accounts on your site, either by the user or by the admin:', 'nextend-facebook-connect'); ?></li>
+                    <li>
+                        <ul>
+                            <li><?php _e('<u>If each user has an option to delete the account</u>: the URL should point to a guide showing the way users can delete their accounts.', 'nextend-facebook-connect'); ?></li>
+                            <li><?php _e('<u>If the accounts are deleted by an admin</u>: then you should have a section - usually in the Privacy Policy - with the contact details, where users can send their account erasure requests. In this case the URL should point to this section of the document.', 'nextend-facebook-connect'); ?></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
             <li><?php _e('Select a “<b>Category</b>”, an “<b>App Icon</b>” and pick the “<b>App Purpose</b>” option that describes your App the best, then press "<b>Save Changes</b>"', 'nextend-facebook-connect'); ?></li>
             <li><?php _e('Your application is currently private, which means that only you can log in with it. In the top bar click on the switch next to the "<b>In development</b>" label, then click the "<b>Switch Mode</b>" button.', 'nextend-facebook-connect'); ?></li>
             <li><?php printf(__('At the top of the page you can find your "<b>App ID</b>" and you can see your "<b>App secret</b>" if you click on the "Show" button. These will be needed in plugin’s settings.', 'nextend-facebook-connect'), 'Settings', 'Basic') ?></li>
         </ol>
+
+        <p><?php printf(__('<b>WARNING:</b> <u>Don\'t replace your Facebook App with another!</u> Since WordPress users with linked Facebook accounts can only login using the %1$s App, that was originally used at the time, when the WordPress account was linked with a %1$s Account.<br>
+If you would like to know the reason of this, or you really need to replace the Facebook App, then please check our %2$sdocumentation%3$s.', 'nextend-facebook-connect'), 'Facebook', '<a href="https://nextendweb.com/nextend-social-login-docs/provider-facebook/#app_scoped_user_id" target="_blank">', '</a>'); ?></p>
 
         <a href="<?php echo $this->getUrl('settings'); ?>"
            class="button button-primary"><?php printf(__('I am done setting up my %s', 'nextend-facebook-connect'), 'Facebook App'); ?></a>

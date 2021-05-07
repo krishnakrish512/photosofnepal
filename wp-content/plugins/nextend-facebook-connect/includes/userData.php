@@ -74,7 +74,7 @@ class NextendSocialUserData {
                 Notices::addError($this->errors->get_error_message());
             }
 
-            wp_redirect(site_url('wp-login.php'));
+            wp_redirect(NextendSocialLogin::enableNoticeForUrl(site_url('wp-login.php')));
             exit();
         }
     }

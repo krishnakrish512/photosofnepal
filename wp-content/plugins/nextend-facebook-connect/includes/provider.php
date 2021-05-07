@@ -418,7 +418,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
         $socialUser->liveConnectGetUserProfile();
 
         $this->deleteLoginPersistentData();
-        $this->redirectToLastLocationOther();
+        $this->redirectToLastLocationOther(true);
     }
 
     /**
@@ -602,7 +602,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
 
         }
 
-        $label                     = $this->settings->get('login_label');
+        $label                  = $this->settings->get('login_label');
         $useCustomRegisterLabel = NextendSocialLogin::$settings->get('custom_register_label');
         if ($labelType == 'register' && $useCustomRegisterLabel) {
             $label = $this->settings->get('register_label');;
@@ -651,7 +651,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
     }
 
     public function redirectToLoginForm() {
-        self::redirect(__('Authentication error', 'nextend-facebook-connect'), NextendSocialLogin::getLoginUrl());
+        self::redirect(__('Authentication error', 'nextend-facebook-connect'), NextendSocialLogin::enableNoticeForUrl(NextendSocialLogin::getLoginUrl()));
     }
 
     /**
@@ -672,7 +672,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
                 }
             }
 
-            $this->redirectToLastLocationOther();
+            $this->redirectToLastLocationOther(true);
             exit;
         }
 
@@ -702,23 +702,34 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
         }
     }
 
-    public function redirectToLastLocation() {
+    public function redirectToLastLocation($notice = false) {
+        $url = $this->getLastLocationRedirectTo();
 
         if (Persistent::get($this->id . '_interim_login') == 1) {
             $this->deleteLoginPersistentData();
+            $args['interim_login'] = 'nsl';
 
-            $url = add_query_arg('interim_login', 'nsl', NextendSocialLogin::getLoginUrl('login'));
+            $url = add_query_arg($args, NextendSocialLogin::getLoginUrl('login'));
+            if ($notice) {
+                $url = NextendSocialLogin::enableNoticeForUrl($url);
+            }
 
             self::redirect(__('Authentication successful', 'nextend-facebook-connect'), $url);
 
             exit;
         }
 
-        self::redirect(__('Authentication successful', 'nextend-facebook-connect'), $this->getLastLocationRedirectTo());
+        if ($notice) {
+            $url = NextendSocialLogin::enableNoticeForUrl($url);
+        }
+        self::redirect(__('Authentication successful', 'nextend-facebook-connect'), $url);
     }
 
-    protected function redirectToLastLocationOther() {
-        $this->redirectToLastLocation();
+    /**
+     * @param bool $notice
+     */
+    protected function redirectToLastLocationOther($notice = false) {
+        $this->redirectToLastLocation($notice);
     }
 
     protected function validateRedirect($location) {

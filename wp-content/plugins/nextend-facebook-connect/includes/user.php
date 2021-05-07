@@ -74,12 +74,12 @@ class NextendSocialUser {
                     Notices::addSuccess(sprintf(__('Your %1$s account is successfully linked with your account. Now you can sign in with %2$s easily.', 'nextend-facebook-connect'), $this->provider->getLabel(), $this->provider->getLabel()));
                 } else {
 
-                    Notices::addError(sprintf(__('You have already linked a(n) %s account. Please unlink the current and then you can link other %s account.', 'nextend-facebook-connect'), $this->provider->getLabel(), $this->provider->getLabel()));
+                    Notices::addError(sprintf(__('You have already linked a(n) %s account. Please unlink the current and then you can link another %s account.', 'nextend-facebook-connect'), $this->provider->getLabel(), $this->provider->getLabel()));
                 }
 
             } else if ($current_user->ID != $user_id) {
 
-                Notices::addError(sprintf(__('This %s account is already linked to other user.', 'nextend-facebook-connect'), $this->provider->getLabel()));
+                Notices::addError(sprintf(__('This %s account is already linked to another user.', 'nextend-facebook-connect'), $this->provider->getLabel()));
             }
         }
     }
@@ -165,7 +165,7 @@ class NextendSocialUser {
                 }
 
 
-                NextendSocialProvider::redirect(__('Authentication error', 'nextend-facebook-connect'), $registerDisabledRedirectURL);
+                NextendSocialProvider::redirect(__('Authentication error', 'nextend-facebook-connect'), NextendSocialLogin::enableNoticeForUrl($registerDisabledRedirectURL));
                 exit;
             }
 
@@ -320,7 +320,7 @@ class NextendSocialUser {
                 Persistent::delete($this->provider->getId() . '_state');
 
                 Notices::addError($errors);
-                $this->redirectToLastLocationLogin();
+                $this->redirectToLastLocationLogin(true);
             }
         }
 
@@ -381,7 +381,7 @@ class NextendSocialUser {
         if (is_wp_error($error)) {
 
             Notices::addError($error);
-            $this->redirectToLastLocationLogin();
+            $this->redirectToLastLocationLogin(true);
 
         } else if ($error === 0) {
             $this->registerError();
@@ -582,6 +582,21 @@ class NextendSocialUser {
             }
 
             $this->finishLogin();
+        } else {
+            $this->provider->deleteLoginPersistentData();
+            $loginDisabledMessage     = apply_filters('nsl_disabled_login_error_message', '');
+            $loginDisabledRedirectURL = apply_filters('nsl_disabled_login_redirect_url', '');
+            if (!empty($loginDisabledMessage)) {
+                Notices::clear();
+                $errors = new WP_Error();
+                $errors->add('logindisabled', $loginDisabledMessage);
+                Notices::addError($errors->get_error_message());
+            }
+
+            if (!empty($loginDisabledRedirectURL)) {
+                NextendSocialProvider::redirect(__('Authentication error', 'nextend-facebook-connect'), NextendSocialLogin::enableNoticeForUrl($loginDisabledRedirectURL));
+            }
+
         }
 
         $this->provider->redirectToLoginForm();
@@ -605,8 +620,10 @@ class NextendSocialUser {
      * -the Fixed redirect url if it is set
      * -where the login happened if redirect is specified in the url
      * -the Default redirect url if it is set, and if redirect was not specified in the url
+     *
+     * @param bool $notice
      */
-    public function redirectToLastLocationLogin() {
+    public function redirectToLastLocationLogin($notice = false) {
 
         if (NextendSocialLogin::$settings->get('redirect_prevent_external') == 0) {
             add_filter('nsl_' . $this->provider->getId() . 'default_last_location_redirect', array(
@@ -615,7 +632,7 @@ class NextendSocialUser {
             ), 9, 2);
         }
 
-        $this->provider->redirectToLastLocation();
+        $this->provider->redirectToLastLocation($notice);
     }
 
     /**

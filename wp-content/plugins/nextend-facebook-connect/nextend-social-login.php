@@ -19,9 +19,9 @@ require_once(NSL_PATH . '/compat.php');
 
 class NextendSocialLogin {
 
-    public static $version = '3.0.26';
+    public static $version = '3.0.27';
 
-    public static $nslPROMinVersion = '3.0.26';
+    public static $nslPROMinVersion = '3.0.27';
 
     public static $proxyPage = false;
 
@@ -301,7 +301,11 @@ class NextendSocialLogin {
         }
 
         add_action('login_form_login', 'NextendSocialLogin::login_form_login');
-        add_action('login_form_register', 'NextendSocialLogin::login_form_register');
+
+        /**
+         * We need smaller priority, as some plugins like Ultimate Member may trigger a redirect before us.
+         */
+        add_action('login_form_register', 'NextendSocialLogin::login_form_register', 9);
         add_action('login_form_link', 'NextendSocialLogin::login_form_link');
         add_action('bp_core_screen_signup', 'NextendSocialLogin::bp_login_form_register');
 
@@ -475,6 +479,7 @@ class NextendSocialLogin {
         $charset_collate = $wpdb->get_charset_collate();
 
         $sql = "CREATE TABLE " . $table_name . " (
+        `social_users_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
         `ID` int(11) NOT NULL,
         `type` varchar(20) NOT NULL,
         `identifier` varchar(100) NOT NULL,
@@ -1266,6 +1271,37 @@ class NextendSocialLogin {
                 add_action('amp_post_template_head', 'NextendSocialLogin::styles', 100);
             }
         }
+    }
+
+    public static function enableNoticeForUrl($url) {
+        return add_query_arg(array('nsl-notice' => 1), $url);
+    }
+
+    public static function getUserIDByIdOrEmail($id_or_email){
+        $id = 0;
+
+        /**
+         * Get the user id depending on the $id_or_email, it can be the user id, email and object.
+         */
+        if (is_numeric($id_or_email)) {
+            $id = $id_or_email;
+        } else if (is_string($id_or_email)) {
+            $user = get_user_by('email', $id_or_email);
+            if ($user) {
+                $id = $user->ID;
+            }
+        } else if (is_object($id_or_email)) {
+            if (!empty($id_or_email->comment_author_email)) {
+                $user = get_user_by('email', $id_or_email->comment_author_email);
+                if ($user) {
+                    $id = $user->ID;
+                }
+            } else if (!empty($id_or_email->user_id)) {
+                $id = $id_or_email->user_id;
+            }
+        }
+
+        return $id;
     }
 }
 

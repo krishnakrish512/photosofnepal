@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nextend-facebook-connect\n"
-"POT-Creation-Date: 2020-11-06 09:38+0100\n"
+"POT-Creation-Date: 2021-01-27 13:55+0100\n"
 "PO-Revision-Date: 2020-06-29 13:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: nextend-facebook-connect\n"
@@ -211,7 +211,7 @@ msgid ""
 msgstr ""
 
 #: nextend-facebook-connect/admin/admin.php:637
-#: nextend-social-login-pro/nextend-social-login-pro.php:109
+#: nextend-social-login-pro/nextend-social-login-pro.php:110
 msgid "Activate"
 msgstr ""
 
@@ -291,7 +291,7 @@ msgstr ""
 #: nextend-facebook-connect/admin/templates/settings/ultimate-member.php:186
 #: nextend-facebook-connect/admin/templates/settings/userpro.php:167
 #: nextend-facebook-connect/admin/templates/settings/woocommerce.php:341
-#: nextend-facebook-connect/providers/facebook/admin/settings.php:57
+#: nextend-facebook-connect/providers/facebook/admin/settings.php:67
 #: nextend-facebook-connect/providers/google/admin/settings.php:62
 #: nextend-facebook-connect/providers/twitter/admin/settings.php:48
 #: nextend-social-login-pro/providers/amazon/admin/settings.php:47
@@ -1389,12 +1389,12 @@ msgid "When not enabled, email will be empty."
 msgstr ""
 
 #: nextend-facebook-connect/admin/templates/settings/privacy.php:91
-#: nextend-facebook-connect/includes/avatar.php:59
+#: nextend-facebook-connect/includes/avatar.php:49
 msgid "Avatar"
 msgstr ""
 
 #: nextend-facebook-connect/admin/templates/settings/privacy.php:102
-#: nextend-facebook-connect/includes/provider.php:1089
+#: nextend-facebook-connect/includes/provider.php:1100
 msgid "Access token"
 msgstr ""
 
@@ -1498,11 +1498,11 @@ msgid ""
 "between your server and the provider."
 msgstr ""
 
-#: nextend-facebook-connect/includes/avatar.php:60
+#: nextend-facebook-connect/includes/avatar.php:50
 msgid "Manage Avatar"
 msgstr ""
 
-#: nextend-facebook-connect/includes/avatar.php:61
+#: nextend-facebook-connect/includes/avatar.php:51
 #, php-format
 msgid "Avatar <span class=\"count\">(%s)</span>"
 msgid_plural "Avatar <span class=\"count\">(%s)</span>"
@@ -1579,13 +1579,14 @@ msgid "Please save your changes before verifying settings."
 msgstr ""
 
 #: nextend-facebook-connect/includes/provider.php:358
-#: nextend-facebook-connect/includes/provider.php:712
 #: nextend-facebook-connect/includes/provider.php:717
+#: nextend-facebook-connect/includes/provider.php:725
 msgid "Authentication successful"
 msgstr ""
 
 #: nextend-facebook-connect/includes/provider.php:654
 #: nextend-facebook-connect/includes/user.php:168
+#: nextend-facebook-connect/includes/user.php:597
 msgid "Authentication error"
 msgstr ""
 
@@ -1597,20 +1598,20 @@ msgstr ""
 msgid "Unlink is not allowed!"
 msgstr ""
 
-#: nextend-facebook-connect/includes/provider.php:875
-#: nextend-facebook-connect/includes/provider.php:882
+#: nextend-facebook-connect/includes/provider.php:886
+#: nextend-facebook-connect/includes/provider.php:893
 msgid "The test was successful"
 msgstr ""
 
-#: nextend-facebook-connect/includes/provider.php:928
+#: nextend-facebook-connect/includes/provider.php:939
 msgid "Authentication failed"
 msgstr ""
 
-#: nextend-facebook-connect/includes/provider.php:1081
+#: nextend-facebook-connect/includes/provider.php:1092
 msgid "Identifier"
 msgstr ""
 
-#: nextend-facebook-connect/includes/provider.php:1097
+#: nextend-facebook-connect/includes/provider.php:1108
 msgid "Profile picture"
 msgstr ""
 
@@ -1625,12 +1626,12 @@ msgstr ""
 #, php-format
 msgid ""
 "You have already linked a(n) %s account. Please unlink the current and "
-"then you can link other %s account."
+"then you can link another %s account."
 msgstr ""
 
 #: nextend-facebook-connect/includes/user.php:82
 #, php-format
-msgid "This %s account is already linked to other user."
+msgid "This %s account is already linked to another user."
 msgstr ""
 
 #: nextend-facebook-connect/includes/user.php:128
@@ -1641,12 +1642,12 @@ msgstr ""
 msgid "Register For This Site!"
 msgstr ""
 
-#: nextend-facebook-connect/nextend-facebook-connect.php:36
+#: nextend-facebook-connect/nextend-facebook-connect.php:37
 #, php-format
 msgid "%1$s requires PHP version %2$s+, plugin is currently NOT ACTIVE."
 msgstr ""
 
-#: nextend-facebook-connect/nextend-facebook-connect.php:43
+#: nextend-facebook-connect/nextend-facebook-connect.php:44
 #, php-format
 msgid ""
 "%1$s requires WordPress version %2$s+. Because you are using an "
@@ -1664,12 +1665,12 @@ msgstr ""
 msgid "Update now!"
 msgstr ""
 
-#: nextend-facebook-connect/nextend-social-login.php:757
-#: nextend-facebook-connect/nextend-social-login.php:1135
+#: nextend-facebook-connect/nextend-social-login.php:762
+#: nextend-facebook-connect/nextend-social-login.php:1140
 msgid "Social Login"
 msgstr ""
 
-#: nextend-facebook-connect/nextend-social-login.php:1116
+#: nextend-facebook-connect/nextend-social-login.php:1121
 msgid "Social Accounts"
 msgstr ""
 
@@ -1735,7 +1736,7 @@ msgid ""
 msgstr ""
 
 #: nextend-facebook-connect/providers/facebook/admin/fix-redirect-uri.php:12
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:34
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:35
 #, php-format
 msgid ""
 "Add the following URL to the \"<b>Valid OAuth redirect URIs</b>\" "
@@ -1820,7 +1821,7 @@ msgstr ""
 #: nextend-facebook-connect/providers/facebook/admin/getting-started.php:26
 msgid ""
 "Click on the \"<b>Create App</b>\" button and in the Popup choose the "
-"\"For Everything Else\" option!"
+"\"<b>Build Connected Experiences</b>\" option!"
 msgstr ""
 
 #: nextend-facebook-connect/providers/facebook/admin/getting-started.php:27
@@ -1833,90 +1834,136 @@ msgstr ""
 #: nextend-facebook-connect/providers/facebook/admin/getting-started.php:28
 #, php-format
 msgid ""
-"Fill \"<b>App Display Name</b>\" and \"<b>App Contact Email</b>\". The "
+"Fill \"<b>App Display Name</b>\", \"<b>App Contact Email</b>\". The "
 "specified \"App Display Name\" will appear on your %s!"
 msgstr ""
 
 #: nextend-facebook-connect/providers/facebook/admin/getting-started.php:29
 msgid ""
+"<b>Optional</b>: choose a \"<b>Business Manager Account</b>\" in the "
+"popup, if you have any."
+msgstr ""
+
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:30
+msgid ""
 "Click the \"<b>Create App ID</b>\" button and complete the Security "
 "Check."
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:30
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:31
 #, php-format
 msgid ""
 "At the \"<b>Add a Product</b>\" panel find \"<b>%1$s</b>\" and click "
 "\"<b>Set Up</b>\""
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:31
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:32
 #, php-format
 msgid ""
 "Select \"<b>Web</b>\" and enter the following URL to the \"<b>Site "
 "URL</b>\" field: <b>%s</b>"
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:32
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:33
 msgid "Press “<b>Save</b>”"
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:33
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:34
 #, php-format
 msgid ""
 "Click on the “<b>%1$s</b>” option what you find on the left side, "
 "under “<b>%2$s</b> - <b>%3$s</b>”"
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:35
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:36
 msgid "Click on “<b>Save Changes</b>”"
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:36
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:37
 #, php-format
 msgid ""
 "On the top left side, click on the “<b>%1$s</b>” menu point, then "
 "click “<b>%2$s</b>”"
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:37
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:38
 #, php-format
 msgid ""
 "Enter your domain name to the \"<b>App Domains</b>\" field, probably: "
 "<b>%s</b>"
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:38
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:39
 msgid ""
 "Fill up the \"<b>Privacy Policy URL</b>\" field. Provide a publicly "
 "available and easily accessible privacy policy that explains what data "
 "you are collecting and how you will use that data."
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:39
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:40
+msgid ""
+"At \"<b>User Data Deletion</b>\", choose the \"<b>Data Deletion "
+"Instructions URL</b>\" option, and enter the <i>URL of your page</i>* "
+"with the instructions on how users can delete their accounts on your "
+"site."
+msgstr ""
+
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:42
+msgid ""
+"To comply with GDPR, you should already offer possibility to delete "
+"accounts on your site, either by the user or by the admin:"
+msgstr ""
+
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:45
+msgid ""
+"<u>If each user has an option to delete the account</u>: the URL "
+"should point to a guide showing the way users can delete their "
+"accounts."
+msgstr ""
+
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:46
+msgid ""
+"<u>If the accounts are deleted by an admin</u>: then you should have a "
+"section - usually in the Privacy Policy - with the contact details, "
+"where users can send their account erasure requests. In this case the "
+"URL should point to this section of the document."
+msgstr ""
+
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:51
 msgid ""
 "Select a “<b>Category</b>”, an “<b>App Icon</b>” and pick the “<b>App "
 "Purpose</b>” option that describes your App the best, then press "
 "\"<b>Save Changes</b>\""
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:40
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:52
 msgid ""
 "Your application is currently private, which means that only you can "
 "log in with it. In the top bar click on the switch next to the \"<b>In "
 "development</b>\" label, then click the \"<b>Switch Mode</b>\" button."
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:41
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:53
 msgid ""
 "At the top of the page you can find your \"<b>App ID</b>\" and you can "
 "see your \"<b>App secret</b>\" if you click on the \"Show\" button. "
 "These will be needed in plugin’s settings."
 msgstr ""
 
-#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:45
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:56
+#, php-format
+msgid ""
+"<b>WARNING:</b> <u>Don't replace your Facebook App with another!</u> "
+"Since WordPress users with linked Facebook accounts can only login "
+"using the %1$s App, that was originally used at the time, when the "
+"WordPress account was linked with a %1$s Account.<br>\n"
+"If you would like to know the reason of this, or you really need to "
+"replace the Facebook App, then please check our %2$sdocumentation%3$s."
+msgstr ""
+
+#: nextend-facebook-connect/providers/facebook/admin/getting-started.php:60
 #: nextend-facebook-connect/providers/google/admin/getting-started.php:40
-#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:32
+#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:37
 #: nextend-social-login-pro/providers/amazon/admin/getting-started.php:39
 #: nextend-social-login-pro/providers/apple/admin/getting-started.php:122
 #: nextend-social-login-pro/providers/disqus/admin/getting-started.php:30
@@ -1986,6 +2033,17 @@ msgstr ""
 msgid "App Secret"
 msgstr ""
 
+#: nextend-facebook-connect/providers/facebook/admin/settings.php:59
+#, php-format
+msgid ""
+"By replacing your existing %1$s App, users with linked %1$s accounts "
+"will no longer be able to login with %1$s."
+msgstr ""
+
+#: nextend-facebook-connect/providers/facebook/admin/settings.php:61
+msgid "Find out why?"
+msgstr ""
+
 #: nextend-facebook-connect/providers/facebook/facebook.php:85
 msgid "Continue with <b>Facebook</b>"
 msgstr ""
@@ -2003,7 +2061,7 @@ msgid "Unlink account from <b>Facebook</b>"
 msgstr ""
 
 #: nextend-facebook-connect/providers/facebook/facebook.php:188
-#: nextend-facebook-connect/providers/google/google.php:176
+#: nextend-facebook-connect/providers/google/google.php:168
 #: nextend-facebook-connect/providers/twitter/twitter.php:97
 #: nextend-social-login-pro/providers/amazon/amazon.php:67
 #: nextend-social-login-pro/providers/apple/apple.php:131
@@ -2173,47 +2231,59 @@ msgid ""
 "login."
 msgstr ""
 
-#: nextend-facebook-connect/providers/google/google.php:107
+#: nextend-facebook-connect/providers/google/google.php:99
 msgid "Continue with <b>Google</b>"
 msgstr ""
 
-#: nextend-facebook-connect/providers/google/google.php:108
+#: nextend-facebook-connect/providers/google/google.php:100
 msgid "Sign up with <b>Google</b>"
 msgstr ""
 
-#: nextend-facebook-connect/providers/google/google.php:109
+#: nextend-facebook-connect/providers/google/google.php:101
 msgid "Link account with <b>Google</b>"
 msgstr ""
 
-#: nextend-facebook-connect/providers/google/google.php:110
+#: nextend-facebook-connect/providers/google/google.php:102
 msgid "Unlink account from <b>Google</b>"
 msgstr ""
 
-#: nextend-facebook-connect/providers/google/google.php:303
+#: nextend-facebook-connect/providers/google/google.php:295
 #, php-format
 msgid "Required API: %1$s"
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/fix-redirect-uri.php:10
-msgid "Find your App and click on the \"<b>Details</b>\" button"
+msgid ""
+"Find your App and click on the <b>App settings</b> icon. (The one that "
+"looks like a gear.)"
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/fix-redirect-uri.php:11
+#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:27
 msgid ""
-"The <b>Edit</b> button can be found on the App details tab. Click on "
-"it and select \"<b>Edit details</b>\""
+"Click on the <b>Edit</b> button at <b>Authentication settings</b>."
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/fix-redirect-uri.php:12
-#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:22
 #, php-format
 msgid ""
 "Add the following URL to the \"<b>Callback URLs</b>\" field: <b>%s</b>"
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/getting-started.php:17
+#: nextend-social-login-pro/providers/amazon/admin/getting-started.php:25
+#: nextend-social-login-pro/providers/apple/admin/getting-started.php:38
+#: nextend-social-login-pro/providers/disqus/admin/fix-redirect-uri.php:9
+#: nextend-social-login-pro/providers/disqus/admin/getting-started.php:16
+#: nextend-social-login-pro/providers/github/admin/getting-started.php:16
+#: nextend-social-login-pro/providers/paypal/admin/fix-redirect-uri.php:9
+#: nextend-social-login-pro/providers/paypal/admin/getting-started.php:17
+#: nextend-social-login-pro/providers/vk/admin/getting-started.php:16
+#: nextend-social-login-pro/providers/wordpress/admin/fix-redirect-uri.php:9
+#: nextend-social-login-pro/providers/wordpress/admin/getting-started.php:16
+#: nextend-social-login-pro/providers/yahoo/admin/getting-started.php:17
 #, php-format
-msgid "Log in with your %s credentials if you are not logged in yet"
+msgid "Log in with your %s credentials if you are not logged in."
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/getting-started.php:18
@@ -2230,45 +2300,71 @@ msgid ""
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/getting-started.php:20
-#, php-format
-msgid ""
-"Fill the <b>App name</b>, <b>Application description</b> fields. Then "
-"enter your site's URL to the <b>Website URL</b> field: <b>%s</b>"
+msgid "Click on <b>+ New Project</b>!"
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/getting-started.php:21
-msgid "Tick the checkbox next to <b>Enable Sign in with Twitter</b>!"
+msgid ""
+"Name your project, and go through the basic setup. You’ll need to "
+"select your use case and give a description."
+msgstr ""
+
+#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:22
+msgid ""
+"Create a new app, or select an existing one, then click <b>Complete</b>"
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/getting-started.php:23
 msgid ""
-"Fill the “<b>Terms of Service URL</b>\", \"<b>Privacy policy URL</b>\" "
-"and \"<b>Tell us how this app will be used</b>\" fields!"
+"You’ll find your API key and secret on this page. Copy and paste the "
+"<b>API key</b> and the <b>API secret key</b> to the corresponding "
+"fields at Nextend Social Login and press <b>Save Changes</b>."
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/getting-started.php:24
-msgid "Click the <b>Create</b> button."
+#, php-format
+msgid "Click on the <b>App Settings</b> button at %s."
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/getting-started.php:25
-msgid ""
-"Read the Developer Terms and click the <b>Create</b> button again!"
+msgid "Find the Apps section, and the app you created a few steps ago."
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/getting-started.php:26
-msgid "Select the <b>Permissions</b> tab and click <b>Edit</b>."
-msgstr ""
-
-#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:27
-msgid ""
-"Tick the <b>Request email address from users</b> under the Additional "
-"permissions section and click <b>Save</b>."
+msgid "Click on the App settings icon. (The one that looks like a gear.)"
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/getting-started.php:28
+msgid "Switch on the <b>Enable 3-legged OAuth</b> option."
+msgstr ""
+
+#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:29
+#, php-format
 msgid ""
-"Go to the <b>Keys and tokens</b> tab and find the <b>API key</b> and "
-"<b>API secret key</b>"
+"Add the following URL to the <b>Callback URLs</b> field: <b>%s</b>"
+msgstr ""
+
+#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:30
+#, php-format
+msgid "Enter your site's URL to the <b>Website URL</b> field: <b>%s</b>"
+msgstr ""
+
+#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:31
+msgid ""
+"If you want to get the email address as well, then don’t forget to "
+"enable the <b>Request email address from users</b> option. In this "
+"case you also need to fill the <b>Terms of service</b> and the "
+"<b>Privacy policy</b> fields with the corresponding URLs!"
+msgstr ""
+
+#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:32
+msgid "Click on <b>Save</b>."
+msgstr ""
+
+#: nextend-facebook-connect/providers/twitter/admin/getting-started.php:33
+#, php-format
+msgid ""
+"Go back to Nextend Social Login and <b>Verify</b> your %s provider."
 msgstr ""
 
 #: nextend-facebook-connect/providers/twitter/admin/settings.php:27
@@ -2419,20 +2515,20 @@ msgid ""
 "link with %1$s."
 msgstr ""
 
-#: nextend-social-login-pro/nextend-social-login-pro.php:103
+#: nextend-social-login-pro/nextend-social-login-pro.php:104
 #, php-format
 msgid "Please install and activate %1$s to use the %2$s"
 msgstr ""
 
-#: nextend-social-login-pro/nextend-social-login-pro.php:117
+#: nextend-social-login-pro/nextend-social-login-pro.php:118
 msgid "Network Activate"
 msgstr ""
 
-#: nextend-social-login-pro/nextend-social-login-pro.php:129
+#: nextend-social-login-pro/nextend-social-login-pro.php:130
 msgid "Install now!"
 msgstr ""
 
-#: nextend-social-login-pro/nextend-social-login-pro.php:820
+#: nextend-social-login-pro/nextend-social-login-pro.php:821
 msgid "Social Providers"
 msgstr ""
 
@@ -2443,7 +2539,7 @@ msgid ""
 "the latest %2$s version!"
 msgstr ""
 
-#: nextend-social-login-pro/provider-extensions/google.php:176
+#: nextend-social-login-pro/provider-extensions/google.php:187
 #, php-format
 msgid ""
 "Most of these information can only be retrieved, when the field is "
@@ -2489,21 +2585,6 @@ msgid ""
 "%1$s App creation process. After you have created your %1$s App, head "
 "over to \"Settings\" and configure the given \"%2$s\" and \"%3$s\" "
 "according to your %1$s App."
-msgstr ""
-
-#: nextend-social-login-pro/providers/amazon/admin/getting-started.php:25
-#: nextend-social-login-pro/providers/apple/admin/getting-started.php:38
-#: nextend-social-login-pro/providers/disqus/admin/fix-redirect-uri.php:9
-#: nextend-social-login-pro/providers/disqus/admin/getting-started.php:16
-#: nextend-social-login-pro/providers/github/admin/getting-started.php:16
-#: nextend-social-login-pro/providers/paypal/admin/fix-redirect-uri.php:9
-#: nextend-social-login-pro/providers/paypal/admin/getting-started.php:17
-#: nextend-social-login-pro/providers/vk/admin/getting-started.php:16
-#: nextend-social-login-pro/providers/wordpress/admin/fix-redirect-uri.php:9
-#: nextend-social-login-pro/providers/wordpress/admin/getting-started.php:16
-#: nextend-social-login-pro/providers/yahoo/admin/getting-started.php:17
-#, php-format
-msgid "Log in with your %s credentials if you are not logged in."
 msgstr ""
 
 #: nextend-social-login-pro/providers/amazon/admin/getting-started.php:27

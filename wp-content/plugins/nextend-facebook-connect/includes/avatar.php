@@ -25,21 +25,11 @@ class NextendSocialLoginAvatar {
             // WP User Avatar https://wordpress.org/plugins/wp-user-avatar/
             // Ultimate member
             if (!defined('WPUA_VERSION') && !class_exists('UM', false) && !class_exists('buddypress', false)) {
-                add_filter('get_avatar', array(
-                    $this,
-                    'renderAvatar'
-                ), 5, 6);
 
-                add_filter('bp_core_fetch_avatar', array(
+                add_filter('pre_get_avatar_data', array(
                     $this,
-                    'renderAvatarBP'
-                ), 3, 2);
-
-                add_filter('bp_core_fetch_avatar_url', array(
-                    $this,
-                    'renderAvatarBPUrl'
-                ), 3, 2);
-
+                    'preGetAvatarData'
+                ), 1, 2);
             }
 
             add_filter('post_mime_types', array(
@@ -68,7 +58,7 @@ class NextendSocialLoginAvatar {
         if (!isset($query['meta_query']) || !is_array($query['meta_query'])) {
             $query['meta_query'] = array();
         }
-        if ($query['post_mime_type'] === 'avatar') {
+        if (isset($query['post_mime_type']) && $query['post_mime_type'] === 'avatar') {
             $query['post_mime_type']         = 'image';
             $query['meta_query']['relation'] = 'AND';
             $query['meta_query'][]           = array(
@@ -345,105 +335,34 @@ class NextendSocialLoginAvatar {
         }
     }
 
-    public function renderAvatar($avatar = '', $id_or_email, $size = 96, $default = '', $alt = false, $args = array()) {
+    public function preGetAvatarData($args, $id_or_email) {
         global $blog_id, $wpdb;
 
-        $id = 0;
-        /**
-         * Get the user id depending on the $id_or_email, it can be the user id, email and object.
-         */
-        if (is_numeric($id_or_email)) {
-            $id = $id_or_email;
-        } else if (is_string($id_or_email)) {
-            $user = get_user_by('email', $id_or_email);
-            if ($user) {
-                $id = $user->ID;
-            }
-        } else if (is_object($id_or_email)) {
-            if (!empty($id_or_email->comment_author_email)) {
-                $user = get_user_by('email', $id_or_email->comment_author_email);
-                if ($user) {
-                    $id = $user->ID;
-                }
-            } else if (!empty($id_or_email->user_id)) {
-                $id = $id_or_email->user_id;
-            }
-        }
-        if ($id == 0) {
-            return $avatar;
-        }
+        $id = NextendSocialLogin::getUserIDByIdOrEmail($id_or_email);
 
-        $url = '';
+        if ($id == 0) {
+            return $args;
+        }
 
         /**
          * Get the avatar attachment id of the user.
          */
         $attachment_id = get_user_meta($id, $wpdb->get_blog_prefix($blog_id) . 'user_avatar', true);
         if (wp_attachment_is_image($attachment_id)) {
-            $get_size        = is_numeric($size) ? array(
-                $size,
-                $size
-            ) : $size;
-            $image_src_array = wp_get_attachment_image_src($attachment_id, $get_size);
+            $image_src_array = wp_get_attachment_image_src($attachment_id);
 
-            $url = $image_src_array[0];
-
-            if (is_numeric($size)) {
-                $args['width']  = $image_src_array[1];
-                $args['height'] = $image_src_array[2];
+            if (isset($args['size'])) {
+                $get_size        = is_numeric($args['size']) ? array(
+                    $args['size'],
+                    $args['size']
+                ) : $args['size'];
+                $image_src_array = wp_get_attachment_image_src($attachment_id, $get_size);
             }
+
+            $args['url'] = $image_src_array[0];
         }
 
-        if (empty($url)) {
-            $url = NextendSocialLogin::getAvatar($id);
-        }
-
-        if (!$url) {
-            return $avatar;
-        }
-
-        if (defined('IS_PROFILE_PAGE') && IS_PROFILE_PAGE) {
-            add_filter('user_profile_picture_description', array(
-                $this,
-                'removeProfilePictureGravatarDescription'
-            ));
-        }
-
-        $class = array(
-            'avatar',
-            'avatar-' . (int)$args['size'],
-            'photo'
-        );
-
-        if ($args['class']) {
-            if (is_array($args['class'])) {
-                $class = array_merge($class, $args['class']);
-            } else {
-                $class[] = $args['class'];
-            }
-        }
-
-        return sprintf("<img alt='%s' src='%s' class='%s' height='%d' width='%d' %s/>", esc_attr($args['alt']), esc_url($url), esc_attr(join(' ', $class)), (int)$args['height'], (int)$args['width'], $args['extra_attr']);
-    }
-
-    public function renderAvatarBP($avatar, $params) {
-
-        if (strpos($avatar, 'gravatar.com', 0) > -1) {
-
-            $avatar = $this->renderAvatar($avatar, ($params['object'] == 'user') ? $params['item_id'] : '', ($params['object'] == 'user') ? (($params['type'] == 'thumb') ? 50 : 150) : 50, '', '');
-        }
-
-        return $avatar;
-    }
-
-    public function renderAvatarBPUrl($avatar, $params) {
-
-        if (strpos($avatar, 'gravatar.com', 0) > -1) {
-
-            $avatar = $this->renderAvatar($avatar, ($params['object'] == 'user') ? $params['item_id'] : '', ($params['object'] == 'user') ? (($params['type'] == 'thumb') ? 50 : 150) : 50, '', '');
-        }
-
-        return $avatar;
+        return $args;
     }
 
     public function removeProfilePictureGravatarDescription($description) {

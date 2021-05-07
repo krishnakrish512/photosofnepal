@@ -3,8 +3,8 @@ Contributors: nextendweb
 Tags: social login, facebook, google, twitter, linkedin, register, login, social, nextend facebook connect, social sign in
 Donate link: https://www.facebook.com/nextendweb
 Requires at least: 4.9
-Tested up to: 5.5.3
-Stable tag: 3.0.26
+Tested up to: 5.6
+Stable tag: 3.0.27
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -117,6 +117,25 @@ Using the Pro Addon you can set where the login buttons should appear on the Reg
 2. Nextend Social Login and Register in the profile page for account linking
 
 == Changelog ==
+
+= 3.0.27 =
+* Fix: Ultimate Member prevents our registration when we need to ask extra information before the registration.
+* Fix: post_mime_type PHP notice.
+* Improvement: Italian translation files added.
+* Improvement: Notice handling logic improvements.
+* Improvement: [Twitter Getting Started](https://nextendweb.com/nextend-social-login-docs/provider-twitter/#configuration) Update
+* Improvement: [Facebook Getting Started](https://nextendweb.com/nextend-social-login-docs/provider-facebook/#configuration) Update
+* Improvement: [Facebook Warning](https://nextendweb.com/nextend-social-login-docs/provider-facebook/#limitations) for App replacing
+* Improvement: Google provider – using OAuth2 v2 endpoint
+* Improvement: [2 new filters](https://nextendweb.com/nextend-social-login-docs/backend-developer/#disabled-login-redirect-override) for customizing the redirect url and error message when login is disabled.
+* Improvement: Database – new column "social_users_id" for Primary Key
+* Improvement: PHP 8.0 compatibility
+* Improvement: We will override the WordPress default avatar using the “pre_get_avatar_data” filter instead of “get_avatar” filter.
+
+* PRO: Fix: [Apple](https://nextendweb.com/nextend-social-login-docs/provider-apple/#guidelines) provider – Logo overlaps the box shadow of the light button skin
+* PRO: Improvement: New [Google Sync data](https://nextendweb.com/nextend-social-login-docs/provider-google/#sync_data) fields: Genders and Locations ( requires People API )
+* PRO: Removed: [Google Sync data](https://nextendweb.com/nextend-social-login-docs/provider-google/#sync_data) fields: Gender, Profile link, Taglines and Residences
+
 
 = 3.0.26 =
 * Fix: PHP notice by AMP plugin

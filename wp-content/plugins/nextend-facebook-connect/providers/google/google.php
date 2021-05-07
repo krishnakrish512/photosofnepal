@@ -18,17 +18,14 @@ class NextendSocialProviderGoogle extends NextendSocialProvider {
     const requiredApi1 = 'Google People API';
 
     protected $sync_fields = array(
-        'gender'        => array(
-            'label' => 'Gender',
-            'node'  => 'me',
-        ),
-        'link'          => array(
-            'label' => 'Profile link',
-            'node'  => 'me',
-        ),
         'locale'        => array(
             'label' => 'Locale',
             'node'  => 'me',
+        ),
+        'genders'       => array(
+            'label'       => 'Genders',
+            'node'        => 'people',
+            'description' => self::requiredApi1,
         ),
         'biographies'   => array(
             'label'       => 'Biographies',
@@ -51,13 +48,8 @@ class NextendSocialProviderGoogle extends NextendSocialProvider {
             'node'        => 'people',
             'description' => self::requiredApi1,
         ),
-        'residences'    => array(
-            'label'       => 'Residences',
-            'node'        => 'people',
-            'description' => self::requiredApi1,
-        ),
-        'taglines'      => array(
-            'label'       => 'Taglines',
+        'locations'     => array(
+            'label'       => 'Locations',
             'node'        => 'people',
             'description' => self::requiredApi1,
         ),
