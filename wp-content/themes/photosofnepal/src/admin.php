@@ -4,6 +4,15 @@ function photographer_remove_menu_items() {
 
 		global $menu, $submenu;
 
+//		echo "<pre>";
+//		print_r( $menu );
+//		echo "</pre>";
+//
+//		echo "<pre>";
+//		print_r( $submenu );
+//		echo "</pre>";
+//		exit;
+
 		//change products menu and submenu
 		$menu[26][0]                                 = "Photographs";
 		$submenu['edit.php?post_type=product'][5][0] = "All Photographs";
@@ -14,6 +23,12 @@ function photographer_remove_menu_items() {
 		remove_menu_page( 'tools.php' );                  //Tools
 		remove_menu_page( 'edit.php?post_type=delete_request' );                  //Delete Requests
 
+		unset( $submenu['edit.php?post_type=product'][15] );
+		unset( $submenu['edit.php?post_type=product'][16] );
+
+//		remove_submenu_page( 'edit.php?post_type=product', 'edit-tags.php?taxonomy=product_cat&post_type=product' );
+//		remove_submenu_page( 'edit.php?post_type=product', 'edit-tags.php?taxonomy=product_tag&post_type=product' );
+		remove_submenu_page( 'edit.php?post_type=product', 'product_attributes' );
 	}
 }
 
