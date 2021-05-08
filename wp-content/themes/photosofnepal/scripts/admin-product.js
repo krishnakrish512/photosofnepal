@@ -21,6 +21,10 @@
             $("<h2>Photograph Description</h2>").insertBefore("#wp-content-editor-container");
         }
 
+        if ($("#set-post-thumbnail").length) {
+            $("#set-post-thumbnail").html("Upload Photo")
+        }
+
         wp.media.featuredImage.frame().on('open', function () {
             $(".media-router #menu-item-upload").trigger('click');
         });
