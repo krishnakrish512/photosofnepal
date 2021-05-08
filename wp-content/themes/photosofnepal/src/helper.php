@@ -124,9 +124,6 @@ function photography_insert_post_callback( $post_id ) {
 	if ( $post->post_type == 'gallery' ) {
 		$gallery_images = get_field( 'photographs', $post_id );
 
-//		var_dump( $gallery_images );
-//		exit;
-
 		if ( $gallery_images ) {
 			foreach ( $gallery_images as $image_id ) {
 				$new_post_title = get_the_title( $image_id );
@@ -137,19 +134,22 @@ function photography_insert_post_callback( $post_id ) {
 				$categories = get_field( 'categories', $post_id );
 
 				//get product id associated with the image
-				$photography_product_id = (int) get_post_meta( $post_id, 'photography_product_id', true );
+				$photography_product_id = (int) get_post_meta( $image_id, 'photography_product_id', true );
+//				var_dump( $photography_product_id );
+//				exit;
 
-				if ( $photography_product_id ) {
-					wp_update_post( [
-						'ID'           => $photography_product_id,
-						'post_title'   => $attachment->post_title,
-						'post_content' => $attachment->post_content,
-						'tax_input'    => [
-							'product_cat' => $categories,
-							'product_tag' => $tags,
-						]
-					] );
-				} else {
+//				if ( $photography_product_id ) {
+//					wp_update_post( [
+//						'ID'           => $photography_product_id,
+//						'post_title'   => $attachment->post_title,
+//						'post_content' => $attachment->post_content,
+//						'tax_input'    => [
+//							'product_cat' => $categories,
+//							'product_tag' => $tags,
+//						]
+//					] );
+//				} else {
+				if ( ! $photography_product_id ) {
 					$price = [
 						'small'  => 1000,
 						'medium' => 5000,
@@ -200,6 +200,8 @@ function photography_insert_post_callback( $post_id ) {
 
 	$galleries = get_field( 'gallery', $post_id );
 
+	$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+
 	if ( $galleries ) {
 		foreach ( $galleries as $gallery_id ) {
 			$photographs = get_field( 'photographs', $gallery_id );
@@ -243,8 +245,10 @@ function photography_insert_post_callback( $post_id ) {
 		$large_product->set_regular_price( $price['large'] );
 		$large_product->save();
 
+
 		return;
 	}
+	add_post_meta( $post_thumbnail_id, 'photography_product_id', $post_id );
 
 	$product_id = $post_id;
 
@@ -254,6 +258,9 @@ function photography_insert_post_callback( $post_id ) {
 add_action( 'wp_insert_post', 'photography_insert_post_callback', 10, 1 );
 
 function photography_create_variations( $post_id, $price = [] ) {
+//	var_dump( 'photography_create_variations' );
+//	exit;
+
 	$product = wc_get_product( $post_id );
 
 	$product_id = $post_id;
@@ -263,6 +270,7 @@ function photography_create_variations( $post_id, $price = [] ) {
 		'hide_empty' => false
 	] );
 
+//	$post_thumbnail_id = get_post_thumbnail_id( $post_id );
 
 	//make product type be variable:
 	wp_set_object_terms( $product_id, 'variable', 'product_type' );
@@ -340,6 +348,8 @@ function photography_create_variations( $post_id, $price = [] ) {
 
 		$variation->save(); // Save the data
 	}
+
+//	add_post_meta( $post_thumbnail_id, 'photography_product_id', $post_id );
 
 	# And update the meta so it won't run again
 	update_post_meta( $post_id, 'check_if_run_once', true );
