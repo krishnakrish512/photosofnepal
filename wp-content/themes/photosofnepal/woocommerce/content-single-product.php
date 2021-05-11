@@ -109,6 +109,7 @@ if ( post_password_required() ) {
         </div>
     </section>
 	<?php
+	//	var_dump( $product->get_image_id() );
 	$args = [
 		'post_type'   => 'gallery',
 		'post_status' => 'publish',
@@ -123,7 +124,13 @@ if ( post_password_required() ) {
 
 	$gallery_posts = get_posts( $args );
 
-	if ( ! empty( $gallery_posts ) && count( $gallery_posts ) != 1 ):
+	//	echo "<pre>";
+	//	print_r( $gallery_posts );
+	//	echo "</pre>";
+	//
+	//	var_dump( count( $gallery_posts ) );
+
+	if ( ! empty( $gallery_posts ) ):
 		$gallery = $gallery_posts[0];
 
 		$gallery_photos = get_field( 'photographs', $gallery->ID );
@@ -131,69 +138,78 @@ if ( post_password_required() ) {
 		//remove current photograph from gallery images list
 		$current_photograph_key = array_search( $product->get_image_id(), $gallery_photos );
 		unset( $gallery_photos[ $current_photograph_key ] );
-		?>
-        <section class="section-spacing same-series">
-            <div class="container">
-                <h2 class="mb-4">Same Galleries</h2>
-                <div class="row discover-photos__grid gutter-md justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="row gutter-md column-5 justify-content-center justify-content-lg-start">
-							<?php
-							//display five random photos from gallery_photos
-							$rand_elem_count = count( $gallery_photos ) <= 5 ? count( $gallery_photos ) : 5;
 
-							foreach ( array_rand( $gallery_photos, $rand_elem_count ) as $key ):
-								$photography_product_id = get_post_meta( $gallery_photos[ $key ], 'photography_product_id', true );
-								if ( $photography_product_id ):
-									$photography_product = wc_get_product( $photography_product_id );
-									?>
-                                    <div class="col-lg-3 column mb-4 mb-lg-0">
-                                        <div class="discover-photos__grid-item grid-item--sm position-relative">
-                                            <figure class="aspect-ratio mb-0">
-                                                <img src="<?= wp_get_attachment_image_url( $gallery_photos[ $key ], 'gallery_thumbnail' ) ?>"
-                                                     alt="<?= $photography_product->get_title() ?>">
-                                            </figure>
-
-                                            <figcaption>
-                                                <div class="figure-tools">
-                                                    <div class="figure-icons">
-														<?php echo do_shortcode( "[ti_wishlists_addtowishlist product_id='" . $photography_product->get_id() . "']" ); ?>
-                                                        <!-- <a href="#"> <span class="icon-shopping-cart"></span></a> -->
-                                                        <a href="<?= esc_url( get_permalink( $gallery ) ) ?>"> <span
-                                                                    class="icon-stack"></span></a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="figure-info">
-                                                    <a href="<?= get_photogtaphy_buy_url( $photography_product ) ?>"
-                                                       class="btn btn-primary btn-sm">Buy</a>
-                                                </div>
-                                            </figcaption>
-                                            <a href="<?= esc_url( $photography_product->get_permalink() ) ?>"
-                                               class="stretched-link"></a>
-                                        </div>
-
-                                    </div>
+		if ( count( $gallery_photos ) >= 1 ):
+			?>
+            <section class="section-spacing same-series">
+                <div class="container">
+                    <h2 class="mb-4">Same Galleries</h2>
+                    <div class="row discover-photos__grid gutter-md justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="row gutter-md column-5 justify-content-center justify-content-lg-start">
 								<?php
-								endif;
-							endforeach;
-							?>
+								//display five random photos from gallery_photos
+								$rand_photos = [];
+								if ( count( $gallery_photos ) == 1 ) {
+									$rand_photos = [ 0 ];
+								} else {
+									$rand_elem_count = count( $gallery_photos ) <= 5 ? count( $gallery_photos ) : 5;
+									$rand_photos     = array_rand( $gallery_photos, $rand_elem_count );
+								}
+
+								foreach ( $rand_photos as $key ):
+									$photography_product_id = get_post_meta( $gallery_photos[ $key ], 'photography_product_id', true );
+									if ( $photography_product_id ):
+										$photography_product = wc_get_product( $photography_product_id );
+										?>
+                                        <div class="col-lg-3 column mb-4 mb-lg-0">
+                                            <div class="discover-photos__grid-item grid-item--sm position-relative">
+                                                <figure class="aspect-ratio mb-0">
+                                                    <img src="<?= wp_get_attachment_image_url( $gallery_photos[ $key ], 'gallery_thumbnail' ) ?>"
+                                                         alt="<?= $photography_product->get_title() ?>">
+                                                </figure>
+
+                                                <figcaption>
+                                                    <div class="figure-tools">
+                                                        <div class="figure-icons">
+															<?php echo do_shortcode( "[ti_wishlists_addtowishlist product_id='" . $photography_product->get_id() . "']" ); ?>
+                                                            <!-- <a href="#"> <span class="icon-shopping-cart"></span></a> -->
+                                                            <a href="<?= esc_url( get_permalink( $gallery ) ) ?>"> <span
+                                                                        class="icon-stack"></span></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="figure-info">
+                                                        <a href="<?= get_photogtaphy_buy_url( $photography_product ) ?>"
+                                                           class="btn btn-primary btn-sm">Buy</a>
+                                                    </div>
+                                                </figcaption>
+                                                <a href="<?= esc_url( $photography_product->get_permalink() ) ?>"
+                                                   class="stretched-link"></a>
+                                            </div>
+
+                                        </div>
+									<?php
+									endif;
+								endforeach;
+								?>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4">
+                            <a href="<?= esc_url( get_permalink( $gallery ) ) ?>"
+                               class="thumb-link ">
+                                <div class="thumb-link--inner text-center">
+                                    <span class="icon-layers"></span>
+                                    See More
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-4">
-                        <a href="<?= esc_url( get_permalink( $gallery ) ) ?>"
-                           class="thumb-link ">
-                            <div class="thumb-link--inner text-center">
-                                <span class="icon-layers"></span>
-                                See More
-                            </div>
-                        </a>
-                    </div>
-                </div>
 
-            </div>
-        </section>
-	<?php
+                </div>
+            </section>
+		<?php
+		endif;
 	endif;
 	?>
 

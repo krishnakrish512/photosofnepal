@@ -252,7 +252,7 @@ function photography_insert_post_callback( $post_id ) {
 
 	$product_id = $post_id;
 
-	photography_create_variations( $product_id );
+	photography_create_variations( $product_id, $price );
 }
 
 add_action( 'wp_insert_post', 'photography_insert_post_callback', 10, 1 );
