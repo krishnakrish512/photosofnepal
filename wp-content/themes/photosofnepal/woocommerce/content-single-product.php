@@ -86,9 +86,11 @@ if ( post_password_required() ) {
                                 <div class="media-body">
 									<?php
 									$sold_by = WC_Product_Vendors_Utils::get_sold_by_link( $post->ID );
+
+
 									?>
                                     <h5 class="mb-0"><?= get_the_author() ?></h5>
-                                    <a href="<?= esc_url( $sold_by['link'] ) ?>"><?= '@' . $sold_by['name'] ?></a>
+                                    <a href="<?= esc_url( $sold_by['link'] ) ?>"><?= '@' . getProductVendorUsername( $post->ID ) ?></a>
                                 </div>
                             </div>
                         </div>

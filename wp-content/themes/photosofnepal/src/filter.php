@@ -172,3 +172,19 @@ add_action( 'shutdown', function () {
 	while ( @ob_end_flush() ) {
 	}
 } );
+
+//add_action( 'init', 'wpse_view_booking_rewrite' );
+//function wpse_view_booking_rewrite() {
+//	add_rewrite_rule(
+//		'^vendor/([^/]+)/?$',
+//		'index.php?page_id=XXX/photographer=$matches[1]',
+//		'top'
+//	);
+//}
+
+add_filter( 'wcpv_vendor_slug', 'change_vendor_url_slug' );
+function change_vendor_url_slug( $slug ) {
+	$slug = 'photographer';
+
+	return $slug;
+}

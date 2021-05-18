@@ -461,3 +461,13 @@ function get_all_product_tags() {
 		return $tag->name;
 	}, $tags );
 }
+
+function getProductVendorUsername( $post_id ) {
+	$term = wp_get_post_terms( $post_id, WC_PRODUCT_VENDORS_TAXONOMY );
+
+	if ( empty( $term ) ) {
+		return "";
+	}
+
+	return $term[0]->slug;
+}
