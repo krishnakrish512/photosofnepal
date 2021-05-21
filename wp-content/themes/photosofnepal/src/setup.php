@@ -85,3 +85,10 @@ if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current
 
 	add_action( 'admin_enqueue_scripts', 'photography_load_admin_scripts' );
 }
+
+function photos_login_scripts() {
+	wp_enqueue_style( 'custom-login-style', get_template_directory_uri() . '/assets/css/custom-login.css' );
+	wp_enqueue_script( 'custom-login-script', get_template_directory_uri() . '/scripts/custom-login.js' );
+}
+
+add_action( 'login_enqueue_scripts', 'photos_login_scripts' );
