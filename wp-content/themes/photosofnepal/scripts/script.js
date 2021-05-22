@@ -96,10 +96,21 @@ function mobileMenu() {
     });
 }
 
+function lightgallery(){
+    $('.lg-popup').lightGallery({
+        // thumbnail:true,
+        // animateThumb: false,
+        // showThumbByDefault: false,
+        download: false,
+        counter: false
+    })
+}
+
 $(document).ready(function () {
     justifyGallery();
     slideMenu();
     mobileMenu();
+    lightgallery();
 
     // $(document).on('click', '#photograph-loadmore', function (e) {
     //     const button = $(this);
