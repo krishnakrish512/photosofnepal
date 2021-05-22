@@ -183,6 +183,13 @@ function photography_insert_post_callback( $post_id ) {
 					photography_create_variations( $new_post_id, $price );
 				}
 			}
+
+			$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+
+			//if thumbnail not set, set first image of gallery as thumbnail
+			if ( ! $post_thumbnail_id ) {
+				set_post_thumbnail( $post_id, $gallery_images[0] );
+			}
 		}
 
 		return;

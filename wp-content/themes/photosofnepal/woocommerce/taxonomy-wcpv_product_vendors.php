@@ -31,7 +31,7 @@ $vendor_data = WC_Product_Vendors_Utils::get_vendor_data_by_id( $term->term_id )
             <div class="d-flex align-items-center justify-content-center">
                 <div class="profile__info text-center">
                     <h1 class="profile__info-name"><?= $vendor_data['name'] ?></h1>
-                    <p><?= $vendor_data['count'] ?> Photos </p>
+                    <p><?= $vendor_data['count'] ?> Photos</p>
                 </div>
             </div>
         </div>

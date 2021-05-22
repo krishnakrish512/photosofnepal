@@ -18,6 +18,7 @@ function photographer_remove_menu_items() {
 		$submenu['edit.php?post_type=product'][5][0] = "All Photographs";
 //		$submenu['edit.php?post_type=product'][10][2] = get_page_link( get_page_by_title( 'Add Photograph' ) );
 
+		remove_menu_page( 'upload.php' );
 		remove_menu_page( 'edit.php' );                   //Posts
 		remove_menu_page( 'edit-comments.php' );          //Comments
 		remove_menu_page( 'tools.php' );                  //Tools

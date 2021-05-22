@@ -72,7 +72,7 @@ if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current
 
 		global $typenow;
 		if ( $typenow === "product" ) {
-			wp_enqueue_style( 'admin-product-css', get_template_directory_uri() . '/assets/css/admin-product.css', false, '1.13' );
+			wp_enqueue_style( 'admin-product-css', get_template_directory_uri() . '/assets/css/admin-product.css', false, '1.15' );
 
 			wp_enqueue_script( 'photography-admin-product-js', get_template_directory_uri() . '/scripts/admin-product.js', [], '1.04', true );
 		}
@@ -87,3 +87,10 @@ if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current
 
 	add_action( 'admin_enqueue_scripts', 'photography_load_admin_scripts' );
 }
+
+function photos_login_scripts() {
+	wp_enqueue_style( 'custom-login-style', get_template_directory_uri() . '/assets/css/custom-login.css' );
+	wp_enqueue_script( 'custom-login-script', get_template_directory_uri() . '/scripts/custom-login.js' );
+}
+
+add_action( 'login_enqueue_scripts', 'photos_login_scripts' );
