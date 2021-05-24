@@ -97,13 +97,9 @@ function mobileMenu() {
 }
 
 function lightgallery(){
-    $('.lg-popup').lightGallery({
-        // thumbnail:true,
-        // animateThumb: false,
-        // showThumbByDefault: false,
-        download: false,
-        counter: false
-    })
+    $('a[data-rel^=lightcase]').lightcase({
+        transition:false
+    });
 }
 
 $(document).ready(function () {

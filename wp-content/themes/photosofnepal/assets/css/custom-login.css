@@ -19,7 +19,7 @@ body.login div#login h1 a:focus,
 }
 
 body.login div#login h1 a {
-    background-image: url("../images/logo.svg");
+    background-image: url("../images/Logo.svg");
     background-size: 65%;
     margin-bottom: 20px;
     width: auto;
