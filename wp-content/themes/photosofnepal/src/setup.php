@@ -10,7 +10,7 @@ function photos_setup() {
 	add_image_size( 'photography_small', 800, 800, false );
 	add_image_size( 'photography_medium', 1920, 1920, false );
 	add_image_size( 'photography_large', 1920, 1024, false );
-	add_image_size( 'photography_preview', 2000, 2000, false );
+	add_image_size( 'photography_preview', 1024, 1024, false );
 	add_image_size( 'gallery_thumbnail', 300, 300, true );
 	add_image_size( 'profile_gallery', 350, 350, true );
 
@@ -66,7 +66,7 @@ function photos_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'photos_scripts' );
 
-if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) || wc_current_user_has_role( 'seller' ) ) {
+if ( ! wc_current_user_has_role( 'administrator' ) && ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) || wc_current_user_has_role( 'seller' ) ) ) {
 	function photography_load_admin_scripts() {
 		wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/assets/css/admin-style.css', false, '1.1' );
 

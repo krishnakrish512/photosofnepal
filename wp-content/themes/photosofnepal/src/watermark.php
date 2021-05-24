@@ -11,16 +11,23 @@ function get_text_watermarked_image( $imageId, $text ) {
 //	}
 
 
-	$imageSource = wp_get_attachment_image_url( $imageId, 'photography_preview' );
+	$imageSource = wp_get_attachment_image_url( $imageId, 'full' );
 
-	$imageSize   = getimagesize( $imageSource );
-	$imageWidth  = $imageSize[0];
-	$imageHeight = $imageSize[1];
 
 	//$manager = new ImageManager( [ 'driver' => 'imagick' ] );
 	$manager = new ImageManager();
 
-	$image     = $manager->make( $imageSource );
+	$image = $manager->make( $imageSource );
+
+	$image->resize( 1024, 1024, function ( $constraint ) {
+		$constraint->aspectRatio();
+		$constraint->upsize();
+	} );
+
+//	$imageSize   = getimagesize( $imageSource );
+	$imageWidth  = $image->width();
+	$imageHeight = $image->height();
+
 	$watermark = $manager->make( get_template_directory() . '/assets/images/watermark_logo.png' );
 
 	$id_watermark = $manager->canvas( 200, 50, '#000000' )->opacity( 10 );
