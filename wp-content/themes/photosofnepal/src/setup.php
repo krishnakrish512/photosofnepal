@@ -32,7 +32,7 @@ function photos_scripts() {
 	wp_enqueue_style( 'font-awesome-style', get_template_directory_uri() . '/assets/css/fontawesome.min.css' );
 	wp_enqueue_style( 'jquery-gallery-style', get_template_directory_uri() . '/assets/css/justifiedGallery.min.css' );
 	wp_enqueue_style( 'photography-select2-style', get_template_directory_uri() . '/assets/css/select2.min.css' );
-	wp_enqueue_style( 'lightgallery-style', get_template_directory_uri() . '/assets/css/lightcase.css' );
+	wp_enqueue_style( 'lightcase-style', get_template_directory_uri() . '/assets/css/lightcase.css' );
 
 	wp_enqueue_style( 'jquery-tagit-style', get_template_directory_uri() . '/assets/css/jquery.tagit.css' );
 
@@ -47,7 +47,7 @@ function photos_scripts() {
 	wp_enqueue_script( 'justified-gallery-script', get_template_directory_uri() . '/scripts/jquery.justifiedGallery.min.js', [], '1.0', true );
 	wp_enqueue_script( 'photography-select2-script', get_template_directory_uri() . '/scripts/select2.min.js', [], '1.0', true );
 	wp_enqueue_script( 'photography-tagit-script', get_template_directory_uri() . '/scripts/tag-it.js', [], '1.0', true );
-	wp_enqueue_script( 'lightgallery-script', get_template_directory_uri() . '/scripts/lightcase.js', [], '1.0', true );
+	wp_enqueue_script( 'lightcase-script', get_template_directory_uri() . '/scripts/lightcase.js', [], '1.0', true );
 
 	wp_enqueue_style( 'photos-style', get_template_directory_uri() . '/assets/css/style.css' );
 
