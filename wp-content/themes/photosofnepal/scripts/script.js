@@ -98,7 +98,8 @@ function mobileMenu() {
 
 function lightgallery(){
     $('a[data-rel^=lightcase]').lightcase({
-        transition:false
+        transition:false,
+        showCaption: false
     });
 }
 
