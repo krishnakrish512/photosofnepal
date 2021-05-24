@@ -1,6 +1,6 @@
 <?php
 function photographer_remove_menu_items() {
-	if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) || wc_current_user_has_role( 'seller' ) ) {
+	if ( ! wc_current_user_has_role( 'administrator' ) && ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) || wc_current_user_has_role( 'seller' ) ) ) {
 
 		global $menu, $submenu;
 
