@@ -2,7 +2,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-3 text-center text-md-left">
-                <a href="<?= get_home_url() ?>" class="h1 footer__logo"><img
+                <p class="mb-0">Product of <a href="https://nirvanstudio.com/" targent="_blank" style="height: 40px;">
+                <img src="https://nirvanstudio.com/wp-content/uploads/2020/11/Nirvan-Studio-1.png" alt=""></a></p>  
+                <a href="<?= get_home_url() ?>" class="h1 footer__logo d-none"><img
                             src="<?= wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' ) ?>"
                             class="img-fluid d-block"
                             alt="<?php bloginfo( 'name' ); ?>">

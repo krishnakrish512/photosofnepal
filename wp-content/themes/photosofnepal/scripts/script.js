@@ -96,10 +96,17 @@ function mobileMenu() {
     });
 }
 
+function lightgallery(){
+    $('a[data-rel^=lightcase]').lightcase({
+        transition:false
+    });
+}
+
 $(document).ready(function () {
     justifyGallery();
     slideMenu();
     mobileMenu();
+    lightgallery();
 
     // $(document).on('click', '#photograph-loadmore', function (e) {
     //     const button = $(this);

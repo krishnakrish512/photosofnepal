@@ -42,7 +42,10 @@ $watermarked_image_size = getimagesize( $watermarked_image );
 
 ?>
 <div class="single-image-display__area bg-gray text-center <?= $watermarked_image_size[0] > $watermarked_image_size[1] ? 'landscape-photography' : 'portrait-photography' ?>">
-    <figure>
-        <img src="<?php echo $watermarked_image ?>" alt="<?= esc_attr( $product->get_title() ) ?>">
+    <figure class="lg-popup">
+		<a href="<?php echo $watermarked_image ?>" data-rel="lightcase">
+			<img src="<?php echo $watermarked_image ?>" alt="<?= esc_attr( $product->get_title() ) ?>">
+		</a>
+        
     </figure>
 </div>

@@ -1,0 +1,90 @@
+/*body {
+    background: #212529;
+}*/
+
+body.login div#login {
+    max-width: 400px;
+    width: 350px;
+}
+
+#loginform {
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+body.login div#login h1 a:focus,
+.login h1 a:hover {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+body.login div#login h1 a {
+    background-image: url("../images/Logo.svg");
+    background-size: 65%;
+    margin-bottom: 20px;
+    width: auto;
+    height: auto;
+    transition: all ease-in-out 0.35s;
+}
+
+.privacy-policy-link,
+.login #backtoblog a, .login #nav a {
+    color: #212529;
+    outline: none !important;
+    transition: all ease-in-out 0.35s;
+}
+.wp-core-ui .button-secondary {
+    color: #212529;
+}
+.privacy-policy-link:hover,
+.login #backtoblog a:hover, .login #nav a:hover {
+    color: #212529;
+}
+
+#loginform .button-primary {
+    background-color: #212529;
+    border-color: #212529;
+    text-shadow: none !important;
+    transform: none !important;
+    transition: all ease-in-out 0.35s;
+}
+
+#loginform .button-primary:hover {
+    background: #212529;
+    border-color: #212529;
+}
+
+.login input[type=password]:focus,
+.login input[type=text]:focus,
+.login input[type=checkbox]:focus,
+input[type=email]:focus,
+input[type=checkbox]:focus {
+    border-color: #212529;
+    box-shadow: 0 0 0 1px #212529;
+}
+
+#loginform .button-primary:focus {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #212529;
+}
+
+.login form .input, .login input[type=password], .login input[type=text] {
+    font-size: 18px;
+}
+
+.login #nav,
+#backtoblog {
+    text-align: center;
+}
+
+#login #nav a,
+#login #backtoblog a {
+    color: #212529;
+    font-size: 16px;
+    font-weight: 500;
+    outline: none !important;
+}
+
+#login #nav a:hover,
+#login #backtoblog a:hover {
+    color: #212529;
+}
