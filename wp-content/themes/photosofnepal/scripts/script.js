@@ -97,10 +97,23 @@ function mobileMenu() {
 }
 
 function lightgallery(){
-    $('a[data-rel^=lightcase]').lightcase({
-        transition:false,
-        showCaption: false
-    });
+    // $('a[data-rel^=lightcase]').lightcase({
+    //     transition:false,
+    //     showCaption: false,
+    //     shrinkFactor: 0.9,
+    //     maxWidth: 1000,
+    //     maxHeight: 700,
+
+       
+    // });
+    $('.lg-popup').magnificPopup({
+        delegate: 'a', // child items selector, by clicking on it popup will open
+        type: 'image',
+        midClick: true,
+        closeOnContentClick: true
+        // other options
+              })
+
 }
 
 $(document).ready(function () {
@@ -108,6 +121,7 @@ $(document).ready(function () {
     slideMenu();
     mobileMenu();
     lightgallery();
+
 
     // $(document).on('click', '#photograph-loadmore', function (e) {
     //     const button = $(this);

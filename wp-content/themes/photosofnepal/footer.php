@@ -1,9 +1,9 @@
 <footer class="py-5 footer <?= is_account_page() && ! is_user_logged_in() ? 'd-none' : '' ?>">
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-lg-3 col-md-3 text-center text-md-left">
-                <p class="mb-0">Product of <a href="https://nirvanstudio.com/" targent="_blank" style="height: 40px;">
-                <img src="https://nirvanstudio.com/wp-content/uploads/2020/11/Nirvan-Studio-1.png" alt=""></a></p>  
+                <p class="mb-0">Product of <a href="https://nirvanstudio.com/" target="_blank" >
+                <img src="<?php echo get_template_directory_uri() . '/assets/images/Nirvan-Studio-04.svg' ?>" alt="" style="height: 40px;"></a></p>  
                 <a href="<?= get_home_url() ?>" class="h1 footer__logo d-none"><img
                             src="<?= wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' ) ?>"
                             class="img-fluid d-block"
