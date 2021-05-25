@@ -46,6 +46,5 @@ $watermarked_image_size = getimagesize( $watermarked_image );
 		<a href="<?php echo $watermarked_image ?>"  >
 			<img src="<?php echo $watermarked_image ?>" alt="<?= esc_attr( $product->get_title() ) ?>">
 		</a>
-        
     </figure>
 </div>

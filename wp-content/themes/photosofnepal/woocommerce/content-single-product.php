@@ -153,7 +153,7 @@ if ( post_password_required() ) {
 								//display five random photos from gallery_photos
 								$rand_photos = [];
 								if ( count( $gallery_photos ) == 1 ) {
-									$rand_photos = [ 0 ];
+									$rand_photos = [ array_key_first( $gallery_photos ) ];
 								} else {
 									$rand_elem_count = count( $gallery_photos ) <= 5 ? count( $gallery_photos ) : 5;
 									$rand_photos     = array_rand( $gallery_photos, $rand_elem_count );

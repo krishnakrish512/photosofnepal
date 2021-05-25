@@ -22,7 +22,7 @@ $popular_tags = get_terms( $args );
 		<?php
 		if ( $featured_photo_id ):
 			?>
-            <img src="<?= wp_get_attachment_image_url( $featured_photo_image_id, 'photography_preview' ) ?>"
+            <img src="<?= wp_get_attachment_image_url( $featured_photo_image_id, 'photography_medium' ) ?>"
                  alt="<?= $featured_photo->get_title() ?>">
 		<?php endif; ?>
     </div>
@@ -47,11 +47,12 @@ $popular_tags = get_terms( $args );
             <p class="mb-0">
 				<?php
 				if ( $featured_photo_id ):
+					$sold_by = WC_Product_Vendors_Utils::get_sold_by_link( $featured_photo->get_id() );
 					?>
                     <a class="text-white"
                        href="<?= $featured_photo->get_permalink() ?>  "><?= $featured_photo->get_title() ?></a>
                     by <a class="text-white"
-                          href="<?= get_author_posts_url( $author_id ) ?>"><?= get_the_author_meta( 'display_name', $author_id ) ?></a>
+                          href="<?= esc_url( $sold_by['link'] ) ?>"><?= getProductVendorUsername( $featured_photo->get_id() ) ?></a>
 				<?php endif; ?>
             </p>
         </div>
