@@ -91,6 +91,11 @@ if ( ! wc_current_user_has_role( 'administrator' ) && ( wc_current_user_has_role
 function photos_login_scripts() {
 	wp_enqueue_style( 'custom-login-style', get_template_directory_uri() . '/assets/css/custom-login.css' );
 	wp_enqueue_script( 'custom-login-script', get_template_directory_uri() . '/scripts/custom-login.js' );
+
+
+	wp_localize_script( 'custom-login-script', 'localized_var', [
+		'home_url' => get_home_url(),
+	] );
 }
 
 add_action( 'login_enqueue_scripts', 'photos_login_scripts' );
