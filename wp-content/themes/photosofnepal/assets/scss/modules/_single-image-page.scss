@@ -7,6 +7,11 @@
   }
   
   &__area{
+    .lg-popup{
+      a{
+        cursor: zoom-in;
+      }
+    }
     img{
       @include media-breakpoint-up(md){
         max-height: pxToRem(370, 10);
@@ -84,6 +89,7 @@
           }
         }
       }
+      
     }
     &__actions{
       .variations_form{

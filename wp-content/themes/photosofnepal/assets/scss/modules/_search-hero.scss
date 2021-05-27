@@ -44,6 +44,9 @@
       justify-content: space-between;
       color: $white;
     }
+    p{
+      font-weight: 200;
+    }
     .social-links{
       li{
         margin-left: pxToRem(10, 10);
