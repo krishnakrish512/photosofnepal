@@ -92,62 +92,6 @@ function remove_checkout_optional_fields_label( $field, $key, $args, $value ) {
 	return $field;
 }
 
-//function action_woocommerce_payment_complete( $order_id ) {
-//	$order = new WC_Order( $order_id );
-//	$order->update_status( 'completed' ); //Order status will be updated to “Invoice To Be Printed”.
-//}
-//
-//add_action( 'woocommerce_checkout_order_processed', 'action_woocommerce_payment_complete', 1, 1 );
-
-
-add_filter( 'woocommerce_payment_gateways', 'growdev_remove_payment_gateways', 20, 1 );
-
-function growdev_remove_payment_gateways( $load_gateways ) {
-	$remove_gateways = array(
-		'WC_Gateway_COD'
-	);
-	foreach ( $load_gateways as $key => $value ) {
-		if ( in_array( $value, $remove_gateways ) ) {
-			unset( $load_gateways[ $key ] );
-		}
-	}
-
-	return $load_gateways;
-}
-
-add_filter( 'woocommerce_payment_gateways', 'my_core_gateways', 30, 1 );
-
-function my_core_gateways( $methods ) {
-	$methods[] = 'WC_Gateway_COD_custom';
-
-	return $methods;
-}
-
-class WC_Gateway_COD_custom extends WC_Gateway_COD {
-
-	public function process_payment( $order_id ) {
-
-		$order = wc_get_order( $order_id );
-
-		// Mark as on-hold
-		$order->update_status( 'completed' );
-
-		// Reduce stock levels
-		$order->reduce_order_stock();
-
-		// Remove cart
-		WC()->cart->empty_cart();
-
-		// Return thankyou redirect
-		return array(
-			'result'   => 'success',
-			'redirect' => $this->get_return_url( $order )
-		);
-
-	}
-
-}
-
 
 //restrict direct access to order-received/thank-you page
 function thank_you_rd() {
