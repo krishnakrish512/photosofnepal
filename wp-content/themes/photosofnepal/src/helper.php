@@ -118,7 +118,7 @@ function get_photogtaphy_buy_url( $photograph ) {
 	return wc_get_page_permalink( 'myaccount' );
 }
 
-function photography_insert_post_callback( $post_id ) {
+function photography_insert_post_callback( $post_id, $post, $update ) {
 	$post = get_post( $post_id );
 
 	if ( $post->post_type == 'gallery' ) {
@@ -135,20 +135,7 @@ function photography_insert_post_callback( $post_id ) {
 
 				//get product id associated with the image
 				$photography_product_id = (int) get_post_meta( $image_id, 'photography_product_id', true );
-//				var_dump( $photography_product_id );
-//				exit;
 
-//				if ( $photography_product_id ) {
-//					wp_update_post( [
-//						'ID'           => $photography_product_id,
-//						'post_title'   => $attachment->post_title,
-//						'post_content' => $attachment->post_content,
-//						'tax_input'    => [
-//							'product_cat' => $categories,
-//							'product_tag' => $tags,
-//						]
-//					] );
-//				} else {
 				if ( ! $photography_product_id ) {
 					$price = [
 						'small'  => 1000,
@@ -180,6 +167,9 @@ function photography_insert_post_callback( $post_id ) {
 
 					add_post_meta( $image_id, 'photography_product_id', $new_post_id );
 
+					//update gallery field of newly created product
+					update_field( "field_5ffe9c9438f97", [ $post_id ], $new_post_id );
+
 					photography_create_variations( $new_post_id, $price );
 				}
 			}
@@ -209,19 +199,32 @@ function photography_insert_post_callback( $post_id ) {
 
 	$post_thumbnail_id = get_post_thumbnail_id( $post_id );
 
+
+//	if gallery field is empty while updating,remove from gallery posts if current photo exists in any
+	if ( $update && ! $galleries ) {
+		removePhotographFromGalleries( $post_id );
+	}
+
+
 	if ( $galleries ) {
 		foreach ( $galleries as $gallery_id ) {
 			$photographs = get_field( 'photographs', $gallery_id );
+
 
 			if ( ! $photographs ) {
 				$photographs = [];
 			}
 
-			array_push( $photographs, $post_id );
+			if ( ! array_search( $post_thumbnail_id, $photographs ) ) {
+				array_push( $photographs, $post_thumbnail_id );
 
-			update_field( 'field_5fa8ce7d8504b', $photographs, $gallery_id );
+				update_field( 'field_5fa8ce7d8504b', $photographs, $gallery_id );
+				update_field( 'field_5fa8f9dc28644', $photographs, $gallery_id );
+			}
+
 		}
 	}
+
 
 	if ( ! empty( get_post_meta( $post_id, 'check_if_run_once' ) ) ) {
 		global $wpdb;
@@ -262,11 +265,11 @@ function photography_insert_post_callback( $post_id ) {
 	photography_create_variations( $product_id, $price );
 }
 
-add_action( 'wp_insert_post', 'photography_insert_post_callback', 10, 1 );
+add_action( 'wp_insert_post', 'photography_insert_post_callback', 10, 3 );
 
 function photography_create_variations( $post_id, $price = [] ) {
-//	var_dump( 'photography_create_variations' );
-//	exit;
+	//	var_dump( 'photography_create_variations' );
+	//	exit;
 
 	$product = wc_get_product( $post_id );
 
@@ -277,7 +280,7 @@ function photography_create_variations( $post_id, $price = [] ) {
 		'hide_empty' => false
 	] );
 
-//	$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+	//	$post_thumbnail_id = get_post_thumbnail_id( $post_id );
 
 	//make product type be variable:
 	wp_set_object_terms( $product_id, 'variable', 'product_type' );
@@ -356,7 +359,7 @@ function photography_create_variations( $post_id, $price = [] ) {
 		$variation->save(); // Save the data
 	}
 
-//	add_post_meta( $post_thumbnail_id, 'photography_product_id', $post_id );
+	//	add_post_meta( $post_thumbnail_id, 'photography_product_id', $post_id );
 
 	# And update the meta so it won't run again
 	update_post_meta( $post_id, 'check_if_run_once', true );
@@ -477,4 +480,35 @@ function getProductVendorUsername( $post_id ) {
 	}
 
 	return $term[0]->slug;
+}
+
+//Find gallery posts with given photography_id i.e. product's id and remove it
+function removePhotographFromGalleries( $photograph_id ) {
+	$photography_image_id = get_post_thumbnail_id( $photograph_id );
+
+	$args = [
+		'post_type'   => 'gallery',
+		'post_status' => 'publish',
+		'meta_query'  => [
+			[
+				'key'     => 'photographs',
+				'value'   => $photography_image_id,
+				'compare' => 'LIKE'
+			]
+		]
+	];
+
+	$gallery_posts = get_posts( $args );
+
+	if ( ! empty( $gallery_posts ) ) {
+		foreach ( $gallery_posts as $gallery ) {
+			$gallery_photos = get_field( 'photographs', $gallery->ID );
+			//remove current photograph from gallery images list
+			$current_photograph_key = array_search( $photography_image_id, $gallery_photos );
+			unset( $gallery_photos[ $current_photograph_key ] );
+
+			update_field( 'field_5fa8ce7d8504b', $gallery_photos, $gallery->ID );
+			update_field( 'field_5fa8f9dc28644', $gallery_photos, $gallery->ID );
+		}
+	}
 }
