@@ -1,20 +1,35 @@
 .footer{
   border-top:1px solid #ccc;
-  padding-top: 50px;
+  padding-top: 70px;
+  .product-by{
+    line-height: 2.4;
+    color :#fff;
+  }
   &__logo{
   	font-size: pxToRem(18, 10);
     text-transform: uppercase;
   }
   &__social-icon{
-    a{
-      display: block;
-      padding:0 pxToRem(10, 10);
-      font-size: pxToRem(16, 10);
+    li{
+      a{
+        display: block;
+        padding:0 pxToRem(10, 10);
+        font-size: pxToRem(27, 10);
+  
+        
+      }
+      &:first-child{
+        a{
+          padding-left: 0;
+        }
+      }
     }
+    
   }
   &-widget{
     h4{
       margin-bottom: 25px;
+      color: #fff;
     }
     ul{
       li{
