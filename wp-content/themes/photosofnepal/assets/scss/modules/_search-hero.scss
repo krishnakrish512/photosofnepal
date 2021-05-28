@@ -94,7 +94,7 @@
 
     @include media-breakpoint-up(md){
       margin-top: -43px;
-      width: 650px;
+      width: 750px;
     }
        &.sticky{
         width: 100%;
@@ -119,7 +119,7 @@
           padding-left: pxToRem(15, 10);
           padding-right: pxToRem(15, 10);
           @include media-breakpoint-up(lg){
-            width:  1000px;
+            width:  1200px;
             padding: 0;
           }
           
@@ -203,7 +203,7 @@
     }
 
     .form-control{
-      height: pxToRem(50,10);
+      height: pxToRem(55,10);
       border-radius: 5px;
       padding-left: 25px;
       padding-left: 60px;
