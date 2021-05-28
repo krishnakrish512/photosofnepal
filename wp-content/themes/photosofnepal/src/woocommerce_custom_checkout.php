@@ -91,20 +91,3 @@ function remove_checkout_optional_fields_label( $field, $key, $args, $value ) {
 
 	return $field;
 }
-
-
-//restrict direct access to order-received/thank-you page
-function thank_you_rd() {
-	if ( ! is_wc_endpoint_url( 'order-received' ) ) {
-		return;
-	}
-
-	if ( wp_get_referer() == wc_get_checkout_url() ) {
-		return;
-	}
-
-	wp_redirect( get_home_url() );
-	exit;
-}
-
-add_action( 'template_redirect', 'thank_you_rd' );
