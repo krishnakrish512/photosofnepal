@@ -84,43 +84,14 @@ defined( 'ABSPATH' ) || exit;
 		$downloads      = $order->get_downloadable_items();
 		$show_downloads = $order->has_downloadable_item() && $order->is_download_permitted();
 		?>
-        <div class="order-detail--download-summery mt-5">
-            <table class="woocommerce-table woocommerce-table--order-downloads shop_table shop_table_responsive order_details">
-                <thead>
-                <tr>
-                    <th class="product-thumbnail">Product Image</th>
-                    <th class="download-product"><span class="nobr">Product</span></th>
-                    <th class="download-file"><span class="nobr">Download</span></th>
-                </tr>
-                </thead>
-
-                <tbody>
-				<?php
-				if ( $show_downloads ):
-					foreach ( $downloads as $download ):
-						$product = wc_get_product( $download['product_id'] );
-						?>
-                        <tr>
-                            <td class="product-thumbnail" width="10%">
-                                <img src="<?= wp_get_attachment_image_url( $product->get_image_id(), 'photography_thumbnail' ) ?>"
-                                     alt="" width="120">
-                            </td>
-                            <td class="download-product" data-title="Product" width='40%'>
-                                <a href="<?= esc_url( $download['product_url'] ) ?>"><?= esc_html( $download['product_name'] ) ?></a>
-                            </td>
-                            <td class="download-file" data-title="Download" width="30%">
-                                <a href="<?= esc_url( $download['download_url'] ) ?>"
-                                   class="woocommerce-MyAccount-downloads-file button alt d-block text-center">
-                                    <icon class="icon-download mr-3"></icon>
-                                    Download</a>
-                            </td>
-                        </tr>
-					<?php
-					endforeach;
-				endif;
-				?>
-                </tbody>
-            </table>
+        <div class="order-detail--download-summery mt-5" style="margin-bottom: 3rem;">
+            <div style="display: flex;justify-content: center;align-items: center;font-size:1.5rem;font-weight: 600;">
+                Download your purchase<a href="<?= wc_get_account_endpoint_url( 'downloads' ) ?>"
+                                         class="woocommerce-MyAccount-downloads-file button alt d-block text-center"
+                                         style="margin-left: 1rem;">
+                    <icon class="icon-download mr-3"></icon>
+                    Download</a>
+            </div>
         </div>
         <div class="alert alert-info text-center py-5" role="alert">
             <h5>Thank you for buying images with us</h5>
