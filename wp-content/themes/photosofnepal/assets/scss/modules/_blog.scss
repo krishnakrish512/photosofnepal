@@ -1,0 +1,122 @@
+.blog-page-title{
+    background-color: #efefef;
+    padding: 2rem;
+
+    &.full-image{
+        min-height:500px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        padding-bottom: 50px;
+        &::after{
+            content: "";
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+
+        }
+        .container{
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .entry-meta{
+            font-weight: 200;
+        }
+    }
+}
+.bg-cover{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.breadcrumb{
+    background: transparent;
+    justify-content: flex-end;
+}
+.blog-card{
+    margin-bottom: 30px;
+    .entry-title{
+        color: inherit;
+        display: block;
+        &:hover{
+            color: $primary;
+        }
+    }
+    .entry-meta{
+        color: $gray-500;
+        margin-bottom: 10px;
+        font-weight: 200;
+        &--auther{
+            margin-right: 5px;
+            color:$gray-500;
+            &:hover{
+                color: $primary;
+            }
+        }
+        &--date{
+            margin-left: 5px;
+        }
+    }
+}
+
+.single-blog-content{
+    .container{
+        max-width: 800px;
+        position: relative;
+        p{
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            &.lead{
+                font-size: 1.75rem ;
+                
+            }
+        }
+        img{
+            margin-bottom: 20px;
+        }
+    }
+    .share-blog{
+        left: -50px;
+        width: 40px;
+        position: absolute;
+        li{
+            display: block;
+            margin-bottom: 10px;
+        }
+        a{
+            display: block;
+            width: 35px;
+            line-height: 37px;
+            text-align: center;
+            font-size: 18px;
+            border-radius: 4px;
+            height: 35px;
+            color: #000;
+            background-color: transparent;
+            border: 1px solid #000;
+
+            transition: all 0.2s ease-in-out;
+            // &.facebook{
+            //     background-color: #3b5998;
+            // }
+            // &.twitter{
+            //     background-color: #55acee;
+            // }
+            // &.instagram{
+            //     background-color: #E1306C;
+            // }
+            &:hover{
+                background-color   : #000;
+                color: #fff;
+            }
+        }
+    }
+}

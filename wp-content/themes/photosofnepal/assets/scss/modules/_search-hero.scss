@@ -143,6 +143,9 @@
     font-weight: 200;
     padding: pxToRem(5, 10) 0 0;
     text-align: left;
+    a{
+      color: #fff;
+    }
   }
 
   &__form{
