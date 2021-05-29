@@ -84,13 +84,13 @@ defined( 'ABSPATH' ) || exit;
 		$downloads      = $order->get_downloadable_items();
 		$show_downloads = $order->has_downloadable_item() && $order->is_download_permitted();
 		?>
-        <div class="order-detail--download-summery mt-5" style="margin-bottom: 3rem;">
-            <div style="display: flex;justify-content: center;align-items: center;font-size:1.5rem;font-weight: 600;">
-                Download your purchase<a href="<?= wc_get_account_endpoint_url( 'downloads' ) ?>"
-                                         class="woocommerce-MyAccount-downloads-file button alt d-block text-center"
-                                         style="margin-left: 1rem;">
+        <div class="order-detail--download-summery mt-5" style="margin-bottom: 60px; margin-top: 60px !important;">
+            <div style="display: flex;justify-content: center;align-items: center;">
+                <a href="<?= wc_get_account_endpoint_url( 'downloads' ) ?>"
+                   class="woocommerce-MyAccount-downloads-file button alt d-block text-center"
+                   style="margin-left: 1rem;">
                     <icon class="icon-download mr-3"></icon>
-                    Download</a>
+                    Download your purchase</a>
             </div>
         </div>
         <div class="alert alert-info text-center py-5" role="alert">

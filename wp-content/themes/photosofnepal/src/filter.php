@@ -61,6 +61,12 @@ add_filter( 'update_footer', '__return_empty_string', 11 );
 //add_filter( 'wpcf7_autop_or_not', '__return_false' );
 
 function wpdocs_channel_nav_class( $classes, $item, $args ) {
+	$nav_menu_locations = get_nav_menu_locations();
+
+	//add classes in header nav menu only i.e. primary theme location
+	if ( $args->menu->term_id !== $nav_menu_locations['primary'] ) {
+		return $classes;
+	}
 
 	$classes[] = 'header__nav-item';
 
@@ -188,3 +194,36 @@ function change_vendor_url_slug( $slug ) {
 
 	return $slug;
 }
+
+/**
+ * function to add meta tags to event single page.
+ * these meta tags are required for proper functioning of facebook share feature
+ */
+function bhaktapur_share_meta() {
+
+	global $post;
+
+	if ( is_front_page() ) {
+		$thumbnail_url = getHomepageBannerImageUrl();
+
+//		exit;
+		?>
+        <!-- For Facebook -->
+        <meta property="og:url" content="<?= get_home_url() ?>"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="<?php echo get_bloginfo( 'name' ) ?>"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:image" content="<?= esc_url( $thumbnail_url ) ?>"/>
+        <meta property="og:image:width" content="1024"/>
+        <meta property="og:image:height" content="1024"/>
+
+        <!-- For Twitter -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="<?php echo get_bloginfo( 'name' ) ?>"/>
+        <meta name="twitter:description" content=""/>
+        <meta name="twitter:image" content="<?= esc_url( $thumbnail_url ) ?>"/>
+		<?php
+	}
+}
+
+//add_action( 'wp_head', 'bhaktapur_share_meta' );
