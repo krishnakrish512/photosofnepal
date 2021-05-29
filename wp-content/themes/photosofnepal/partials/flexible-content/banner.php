@@ -12,7 +12,6 @@ $args = [
 	'orderby'    => 'count',
 	'order'      => 'DESC',
 	'hide_empty' => true,
-	'fields'     => 'names'
 ];
 
 $popular_tags = get_terms( $args );
@@ -39,7 +38,14 @@ $popular_tags = get_terms( $args );
         </div>
 
         <p class="search-hero__trending">
-            Trending: <?= implode( ', ', $popular_tags ) ?>
+            Trending:
+			<?php
+			foreach ( $popular_tags as $tag ):
+				?>
+                <a href="<?= esc_url( get_term_link( $tag->term_id ) ) ?>"><?= $tag->name ?></a>
+			<?php
+			endforeach;
+			?>
         </p>
     </div>
     <div class="search-hero__image-info">
