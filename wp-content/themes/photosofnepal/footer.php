@@ -96,13 +96,13 @@
 						$social = get_field( 'social', 'option' );
 
 						if ( $social['facebook'] ) {
-							echo "<li><a href='" . $social['facebook'] . "'> <span class='icon-facebook'></span> </a></li>";
+							echo "<li><a href='" . $social['facebook'] . "' target='_blank' rel='noopener noreferrer'> <span class='icon-facebook'></span> </a></li>";
 						}
 						if ( $social['instagram'] ) {
-							echo "<li><a href='" . $social['instagram'] . "'> <span class='icon-instagram'></span> </a></li>";
+							echo "<li><a href='" . $social['instagram'] . "' target='_blank' rel='noopener noreferrer'> <span class='icon-instagram'></span> </a></li>";
 						}
 						if ( $social['twitter'] ) {
-							echo "<li><a href='" . $social['twitter'] . "'> <span class='icon-twitter'></span> </a></li>";
+							echo "<li><a href='" . $social['twitter'] . "' target='_blank' rel='noopener noreferrer'> <span class='icon-twitter'></span> </a></li>";
 						}
 						?>
                     </ul>
