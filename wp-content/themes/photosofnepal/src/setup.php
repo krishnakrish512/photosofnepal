@@ -15,7 +15,8 @@ function photos_setup() {
 	add_image_size( 'profile_gallery', 350, 350, true );
 
 	register_nav_menus( [
-		'primary' => 'Primary'
+		'primary' => 'Primary',
+		'footer'  => 'Footer'
 	] );
 
 }

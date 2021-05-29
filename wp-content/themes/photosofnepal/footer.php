@@ -80,12 +80,12 @@
             <div class="col-lg-2">
                 <div class="footer-widget">
                     <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Landscape</a></li>
-                    </ul>
+					<?php
+					wp_nav_menu( [
+						'theme_location' => 'footer',
+						'container'      => ''
+					] )
+					?>
                 </div>
             </div>
             <div class="col-lg-2">

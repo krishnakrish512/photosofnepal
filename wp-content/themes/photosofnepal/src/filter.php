@@ -61,6 +61,12 @@ add_filter( 'update_footer', '__return_empty_string', 11 );
 //add_filter( 'wpcf7_autop_or_not', '__return_false' );
 
 function wpdocs_channel_nav_class( $classes, $item, $args ) {
+	$nav_menu_locations = get_nav_menu_locations();
+
+	//add classes in header nav menu only i.e. primary theme location
+	if ( $args->menu->term_id !== $nav_menu_locations['primary'] ) {
+		return $classes;
+	}
 
 	$classes[] = 'header__nav-item';
 
