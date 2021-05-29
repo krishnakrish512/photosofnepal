@@ -512,3 +512,25 @@ function removePhotographFromGalleries( $photograph_id ) {
 		}
 	}
 }
+
+function getHomepageBannerImageUrl() {
+	$page_id = get_option( 'page_on_front' );
+
+	var_dump( $page_id );
+	while ( have_rows( 'sections', $page_id ) ) {
+		the_row();
+
+		if ( get_row_layout() == 'banner' ) {
+			$featured_photo_id       = get_sub_field( 'featured_photograph', $page_id );
+			$featured_photo          = wc_get_product( $featured_photo_id );
+			$featured_photo_image_id = $featured_photo->get_image_id();
+
+			return wp_get_attachment_image_url( $featured_photo_image_id, 'photography_preview' );
+		}
+	}
+
+	reset_rows();
+
+	return "";
+}
+
