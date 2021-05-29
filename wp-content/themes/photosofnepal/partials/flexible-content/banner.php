@@ -40,9 +40,9 @@ $popular_tags = get_terms( $args );
         <p class="search-hero__trending">
             Trending:
 			<?php
-			foreach ( $popular_tags as $tag ):
+			foreach ( $popular_tags as $key => $tag ):
 				?>
-                <a href="<?= esc_url( get_term_link( $tag->term_id ) ) ?>"><?= $tag->name ?></a>
+                <a href="<?= esc_url( get_term_link( $tag->term_id ) ) ?>"><?= $tag->name ?><?= count( $popular_tags ) - 1 === $key ? "" : ", " ?></a>
 			<?php
 			endforeach;
 			?>
