@@ -1,9 +1,9 @@
 <footer class="footer dark">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 align-self-center">
+            <div class="col-lg-3 align-self-center col-md-6">
                 <div class="footer-widget">
-                    <p class="mb-0 h5 text-center product-by">Product of <a href="https://nirvanstudio.com/"
+                    <p class="mb-0 h5 text-lg-center product-by">Product of <a href="https://nirvanstudio.com/"
                                                                             target="_blank">
                             <br>
                             <img src="<?php echo get_template_directory_uri() . '/assets/images/Nirvan-Studio-photo.png' ?>"
@@ -25,8 +25,8 @@
 
 			$popular_categories = get_terms( $args );
 			?>
-            <div class="col-lg-5 border-left pl-md-5">
-                <div class="footer-widget pl-md-5">
+            <div class="col-lg-5 border-left pl-lg-5 col-md-6">
+                <div class="footer-widget pl-lg-5">
                     <h4>Popular Category</h4>
                     <ul class="category">
 						<?php
@@ -41,7 +41,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-md-6">
                 <div class="footer-widget">
                     <h4>Company</h4>
 					<?php
@@ -52,7 +52,7 @@
 					?>
                 </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-md-6">
                 <div class="footer-widget">
                     <h4>Follow Us</h4>
                     <ul class="inline-list footer__social-icon">
