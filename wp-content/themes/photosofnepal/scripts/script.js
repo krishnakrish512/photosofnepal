@@ -116,11 +116,20 @@ function lightgallery(){
 
 }
 
+function responsiveFooter(){
+    if($(window).width() <= 768){
+        $('.widget-title i').on('click', function(){
+            $(this).parent().next('.slideItem').slideToggle();
+        })
+    };
+    
+}
 $(document).ready(function () {
     justifyGallery();
     slideMenu();
     mobileMenu();
     lightgallery();
+    responsiveFooter();
 
 
     // $(document).on('click', '#photograph-loadmore', function (e) {
