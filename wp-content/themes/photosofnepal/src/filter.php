@@ -199,20 +199,18 @@ function change_vendor_url_slug( $slug ) {
  * function to add meta tags to event single page.
  * these meta tags are required for proper functioning of facebook share feature
  */
-function bhaktapur_share_meta() {
+function photos_share_meta() {
 
 	global $post;
 
 	if ( is_front_page() ) {
 		$thumbnail_url = getHomepageBannerImageUrl();
-
-//		exit;
 		?>
         <!-- For Facebook -->
         <meta property="og:url" content="<?= get_home_url() ?>"/>
         <meta property="og:type" content="website"/>
         <meta property="og:title" content="<?php echo get_bloginfo( 'name' ) ?>"/>
-        <meta property="og:description" content=""/>
+        <meta property="og:description" content="photography marketplace"/>
         <meta property="og:image" content="<?= esc_url( $thumbnail_url ) ?>"/>
         <meta property="og:image:width" content="1024"/>
         <meta property="og:image:height" content="1024"/>
@@ -226,4 +224,4 @@ function bhaktapur_share_meta() {
 	}
 }
 
-//add_action( 'wp_head', 'bhaktapur_share_meta' );
+add_action( 'wp_head', 'photos_share_meta' );

@@ -516,7 +516,7 @@ function removePhotographFromGalleries( $photograph_id ) {
 function getHomepageBannerImageUrl() {
 	$page_id = get_option( 'page_on_front' );
 
-	var_dump( $page_id );
+	$image_url = "";
 	while ( have_rows( 'sections', $page_id ) ) {
 		the_row();
 
@@ -525,12 +525,12 @@ function getHomepageBannerImageUrl() {
 			$featured_photo          = wc_get_product( $featured_photo_id );
 			$featured_photo_image_id = $featured_photo->get_image_id();
 
-			return wp_get_attachment_image_url( $featured_photo_image_id, 'photography_preview' );
+			$image_url = wp_get_attachment_image_url( $featured_photo_image_id, 'photography_preview' );
 		}
 	}
 
 	reset_rows();
 
-	return "";
+	return $image_url;
 }
 
