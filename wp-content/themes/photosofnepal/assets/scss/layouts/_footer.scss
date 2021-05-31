@@ -1,10 +1,11 @@
 .footer{
   border-top:1px solid #ccc;
   padding-top: 70px;
-  text-align: center;
 
-  @include media-breakpoint-up(md){
-    text-align: left;
+  [class*="col-"]:last-child{
+    .footer-widget{
+      margin-bottom: 0;
+    }
   }
   .product-by{
     line-height: 2.4;
@@ -20,8 +21,6 @@
         display: block;
         padding:0 pxToRem(10, 10);
         font-size: pxToRem(27, 10);
-  
-        
       }
       &:first-child{
         a{
@@ -40,6 +39,22 @@
     h4{
       margin-bottom: 25px;
       color: #fff;
+      @include media-breakpoint-down(md){
+        display: flex;
+        justify-content: space-between;
+      }
+      i{
+        display: block;
+        @include media-breakpoint-up(lg){
+          display: none;
+        }
+      }
+    }
+    .slideItem{
+      display: none;
+      @include media-breakpoint-up(lg){
+        display: block;
+      }
     }
     ul{
       li{
@@ -57,9 +72,9 @@
         flex-wrap: wrap;
 
         li{
-          flex: 0 0 50%;
-          max-width: 50%;
-          @include media-breakpoint-up(md){
+          flex: 0 0 100%;
+          max-width: 100%;
+          @include media-breakpoint-up(lg){
             flex: 0 0 33.33%;
             max-width: 33.33%;
           }

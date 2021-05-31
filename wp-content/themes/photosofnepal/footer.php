@@ -25,37 +25,43 @@
 
 			$popular_categories = get_terms( $args );
 			?>
-            <div class="col-lg-5 border-left pl-lg-5 col-md-6">
+            <div class="col-lg-5 border-left pl-lg-5">
                 <div class="footer-widget pl-lg-5">
-                    <h4>Popular Category</h4>
-                    <ul class="category">
-						<?php
-						foreach ( $popular_categories as $category ):
-							?>
-                            <li>
-                                <a href="<?= esc_url( get_term_link( $category->term_id ) ) ?>"><?= $category->name ?></a>
-                            </li>
-						<?php
-						endforeach;
-						?>
-                    </ul>
+                    <h4 class="widget-title">Popular Category <i class="icon-keyboard_arrow_down"></i></h4>
+                    <div class="slideItem">
+                        <ul class="category">
+                            <?php
+                            foreach ( $popular_categories as $category ):
+                                ?>
+                                <li>
+                                    <a href="<?= esc_url( get_term_link( $category->term_id ) ) ?>"><?= $category->name ?></a>
+                                </li>
+                            <?php
+                            endforeach;
+                            ?>
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
-            <div class="col-lg-2 col-md-6">
+            <div class="col-lg-2">
                 <div class="footer-widget">
-                    <h4>Company</h4>
-					<?php
+                    <h4 class="widget-title">Company <i class="icon-keyboard_arrow_down"></i></h4>
+                    <div class="slideItem">
+                    <?php
 					wp_nav_menu( [
 						'theme_location' => 'footer',
 						'container'      => ''
 					] )
 					?>
+                    </div>
+					
                 </div>
             </div>
-            <div class="col-lg-2 col-md-6">
+            <div class="col-lg-2 ">
                 <div class="footer-widget">
-                    <h4>Follow Us</h4>
-                    <ul class="inline-list footer__social-icon">
+                    <h4 class="widget-title">Follow Us </h4>
+                    <ul class="inline-list footer__social-icon ">
 						<?php
 						$social = get_field( 'social', 'option' );
 
@@ -78,8 +84,7 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 col-md-6 text-center my-4 my-md-0">
-                    <p><i class="far fa-copyright"></i> <?= date( 'Y' ) ?> | All Right Reserved
-                        Image Pasal.</p>
+                    <p><i class="far fa-copyright"></i> <?= date( 'Y' ) ?> Image Pasal | All Right Reserved.</p>
                 </div>
             </div>
         </div>
