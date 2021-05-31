@@ -225,53 +225,6 @@ function photography_set_sku( $post_id, $post, $update ) {
 	$product->save();
 }
 
-/**
- * function to add meta tags to event single page.
- * these meta tags are required for proper functioning of facebook share feature
- */
-function photography_share_meta() {
-	global $post;
-
-	if ( is_front_page() ) {
-		$image = wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' );
-		?>
-        <meta property="og:url" content="<?= esc_url( site_url() ) ?>"/>
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="<?php bloginfo( 'title' ); ?>"/>
-        <meta property="og:description" content="<?php bloginfo( 'description' ) ?>"/>
-        <meta property="og:image" content="<?= esc_url( $image ) ?>"/>
-		<?php
-		return;
-	}
-
-	if ( $post ) {
-		if ( $post->post_type == "product" && is_single() ) {
-			$product = wc_get_product( $post->ID );
-
-			$image_url = wp_get_attachment_image_url( $product->get_image_id(), 'photography_medium' );
-			?>
-            <meta property="og:url" content="<?= esc_url( $product->get_permalink() ) ?>"/>
-            <meta property="og:type" content="website"/>
-            <meta property="og:title" content="<?= esc_attr( $product->get_title() ) ?>"/>
-            <meta property="og:description" content="<?= esc_attr( $product->get_description() ) ?>"/>
-            <meta property="og:image" content="<?= esc_url( $image_url ) ?>"/>
-            <meta property="og:image:width" content="600"/>
-            <meta property="og:image:height" content="600"/>
-
-            <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:site" content="">
-            <meta name="twitter:title" content="<?= esc_attr( $product->get_title() ) ?>">
-            <meta name="twitter:description"
-                  content="<?= esc_attr( $product->get_description() ) ?>">
-            <meta name="twitter:image"
-                  content="<?= esc_url( $image_url ) ?>">
-			<?php
-		}
-	}
-}
-
-add_action( 'wp_head', 'photography_share_meta' );
-
 function photography_set_customer_username( $username, $email, $new_user_args, $suffix ) {
 	return $email;
 }
