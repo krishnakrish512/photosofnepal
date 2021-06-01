@@ -13,6 +13,7 @@ function photos_setup() {
 	add_image_size( 'photography_preview', 1024, 1024, false );
 	add_image_size( 'gallery_thumbnail', 300, 300, true );
 	add_image_size( 'profile_gallery', 350, 350, true );
+	add_image_size( 'collection_thumbnail', 400, 400, true );
 
 	register_nav_menus( [
 		'primary' => 'Primary',
