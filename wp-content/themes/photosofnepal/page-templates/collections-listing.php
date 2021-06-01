@@ -37,7 +37,7 @@ $collections = get_terms( $args );
                         <div class="col-sm-6 col-md-6 col-lg-4 ">
                             <div class="card border-0 mb-3">
                                 <a href="<?= get_term_link( $collection->term_id ) ?>" class="card-image d-block">
-                                    <img src="<?= wp_get_attachment_image_url( $thumbnail_id, 'photography_thumbnail' ) ?>"
+                                    <img src="<?= wp_get_attachment_image_url( $thumbnail_id, 'collection_thumbnail' ) ?>"
                                          class="card-img-top" alt="<?= $collection->name ?>">
                                 </a>
                                 <div class="card-body">
