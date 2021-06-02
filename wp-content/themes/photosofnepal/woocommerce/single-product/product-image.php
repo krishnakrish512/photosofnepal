@@ -43,8 +43,17 @@ $watermarked_image_size = getimagesize( $watermarked_image );
 ?>
 <div class="single-image-display__area bg-gray text-center <?= $watermarked_image_size[0] > $watermarked_image_size[1] ? 'landscape-photography' : 'portrait-photography' ?>">
     <figure class="lg-popup">
-		<a href="<?php echo $watermarked_image ?>"  >
-			<img src="<?php echo $watermarked_image ?>" alt="<?= esc_attr( $product->get_title() ) ?>">
-		</a>
+        <a href="<?php echo $watermarked_image ?>">
+			<?php
+			if ( get_field( 'is_editorial_use_only' ) ):
+				?>
+                <div>
+                    Editorial use only
+                </div>
+			<?php
+			endif;
+			?>
+            <img src="<?php echo $watermarked_image ?>" alt="<?= esc_attr( $product->get_title() ) ?>">
+        </a>
     </figure>
 </div>
