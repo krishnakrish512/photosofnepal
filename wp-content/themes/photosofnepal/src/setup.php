@@ -6,7 +6,7 @@ function photos_setup() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'woocommerce' );
 
-	add_image_size( 'photography_thumbnail', 99999, 600, false );
+	add_image_size( 'photography_thumbnail', 99999, 400, false );
 	add_image_size( 'photography_small', 800, 800, false );
 	add_image_size( 'photography_medium', 1920, 1920, false );
 	add_image_size( 'photography_large', 1920, 1024, false );
