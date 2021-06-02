@@ -11,7 +11,7 @@ $args = [
 	'post_type'           => 'product',
 	'post_status'         => 'publish',
 	'ignore_sticky_posts' => 1,
-	'posts_per_page'      => 25,
+	'posts_per_page'      => get_sub_field( 'number_of_photographs' ),
 	'orderby'             => 'date',
 	'order'               => 'desc',
 	'tax_query'           => $tax_query // <===
