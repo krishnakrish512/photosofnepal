@@ -35,6 +35,31 @@ function photographer_remove_menu_items() {
 
 add_action( 'admin_menu', 'photographer_remove_menu_items' );
 
+//customize admin bar
+add_action( 'admin_bar_menu', function ( $wp_admin_bar ) {
+	if ( ! wc_current_user_has_role( 'administrator' ) && ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current_user_has_role( 'wc_product_vendors_manager_vendor' ) || wc_current_user_has_role( 'seller' ) ) ) {
+
+		//Get a reference to the new-content node to modify.
+		$new_content_node = $wp_admin_bar->get_node( 'new-content' );
+
+		//Change href
+		$new_content_node->href = admin_url( 'post-new.php?post_type=product' );
+
+		//Update Node.
+		$wp_admin_bar->add_node( $new_content_node );
+
+		$new_product_node        = $wp_admin_bar->get_node( 'new-product' );
+		$new_product_node->title = "Photograph";
+		$wp_admin_bar->add_node( $new_product_node );
+
+		$wp_admin_bar->remove_node( 'new-post' );
+
+		$wp_admin_bar->remove_node( 'new-media' );
+
+		return $wp_admin_bar;
+	}
+}, 999 );
+
 //force the mode into grid view
 add_action( 'admin_init', function () {
 	if ( isset( $_GET['mode'] ) ) {
