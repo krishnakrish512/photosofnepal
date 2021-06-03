@@ -1,10 +1,15 @@
+<?php
+if ( ! ( is_front_page() || is_singular( 'product' ) ) ) {
+	echo "</main>";
+}
+?>
 <footer class="footer dark">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 align-self-center col-md-6">
                 <div class="footer-widget">
                     <p class="mb-0 h5 text-lg-center product-by">Product of <a href="https://nirvanstudio.com/"
-                                                                            target="_blank">
+                                                                               target="_blank">
                             <br>
                             <img src="<?php echo get_template_directory_uri() . '/assets/images/Nirvan-Studio-photo.png' ?>"
                                  alt="" style="height: 40px;"></a></p>
@@ -30,32 +35,32 @@
                     <h4 class="widget-title">Popular Category <i class="icon-keyboard_arrow_down"></i></h4>
                     <div class="slideItem">
                         <ul class="category">
-                            <?php
-                            foreach ( $popular_categories as $category ):
-                                ?>
+							<?php
+							foreach ( $popular_categories as $category ):
+								?>
                                 <li>
                                     <a href="<?= esc_url( get_term_link( $category->term_id ) ) ?>"><?= $category->name ?></a>
                                 </li>
-                            <?php
-                            endforeach;
-                            ?>
+							<?php
+							endforeach;
+							?>
                         </ul>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="footer-widget">
                     <h4 class="widget-title">Company <i class="icon-keyboard_arrow_down"></i></h4>
                     <div class="slideItem">
-                    <?php
-					wp_nav_menu( [
-						'theme_location' => 'footer',
-						'container'      => ''
-					] )
-					?>
+						<?php
+						wp_nav_menu( [
+							'theme_location' => 'footer',
+							'container'      => ''
+						] )
+						?>
                     </div>
-					
+
                 </div>
             </div>
             <div class="col-lg-2 ">
