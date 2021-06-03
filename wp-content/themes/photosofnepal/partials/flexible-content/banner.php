@@ -20,9 +20,12 @@ $popular_tags = get_terms( $args );
     <div class="search-hero__img has-overlay">
 		<?php
 		if ( $featured_photo_id ):
+			$image_url = wp_get_attachment_image_url( $featured_photo_image_id, 'full' );
+			$image     = getResizedImage( $image_url, [ 1600, 600 ] );
+			echo \NextGenImage\getWebPHTML( $image['webp'], $image['orig'], [
+				'alt' => esc_attr( $featured_photo->get_title() )
+			] );
 			?>
-            <img src="<?= wp_get_attachment_image_url( $featured_photo_image_id, 'photography_medium' ) ?>"
-                 alt="<?= $featured_photo->get_title() ?>">
 		<?php endif; ?>
     </div>
 
