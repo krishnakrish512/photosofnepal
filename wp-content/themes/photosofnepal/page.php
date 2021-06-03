@@ -4,11 +4,11 @@ get_header();
 while ( have_posts() ):
 	the_post();
 	?>
-    <section>
-        <div class="container">
+    <div class="container container-medium">
+        <div class="cms-content">
 			<?php the_content(); ?>
         </div>
-    </section>
+    </div>
 <?php
 
 endwhile;
