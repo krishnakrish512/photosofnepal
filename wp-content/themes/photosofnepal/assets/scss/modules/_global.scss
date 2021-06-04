@@ -84,4 +84,21 @@ ul.inline-list{
   }
 }
 
+.single-image-display__area{
+  .editorial-badge{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+}
+.editorial-badge{
+  background: #ccc;
+  color: #fff;
+  padding: 9px 10px;
+  text-align: center;
+  background-color: #000;
+  border-radius: 3px;
+
+}
+
 

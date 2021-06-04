@@ -79,7 +79,7 @@
     
 
     img{
-      max-width: 170%;
+      max-width: 180%;
       @include media-breakpoint-up(lg){
         max-width: 100%;
       }
