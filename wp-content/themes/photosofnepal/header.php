@@ -11,6 +11,7 @@
 
 	<?php wp_head(); ?>
 </head>
+
 <body>
 <header class="header header__light" id="header">
     <div class="container-fluid header__wrapper">

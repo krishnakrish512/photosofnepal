@@ -225,6 +225,15 @@
 }
 
 
+.blog-page-title{
+  + .main{
+    .search-hero{
+      &__content{
+        position: relative;
+      }
+    }
+  }
+}
 
 
 

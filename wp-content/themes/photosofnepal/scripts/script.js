@@ -106,6 +106,8 @@ function lightgallery(){
 
        
     // });
+
+
     $('.lg-popup').magnificPopup({
         delegate: 'a', // child items selector, by clicking on it popup will open
         type: 'image',
@@ -113,6 +115,13 @@ function lightgallery(){
         closeOnContentClick: true
         // other options
               })
+
+    //For hidden  page title /collection page
+    var loc = window.location.href; // returns the full URL
+    if(/collections/.test(loc)) {
+        $('.blog-page-title').addClass('d-none');
+    }
+
 
 }
 
