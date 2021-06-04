@@ -94,7 +94,7 @@ if ( post_password_required() ) {
                                 </div>
                             </div>
                         </div>
-                        <div class="single-image-download__actions single-image-download__area-box">
+                        <div class="single-image-download__actions single-image-download__area-box position-relative">
                             <h5 class="mb-0">Purchase a License</h5>
                             <span>select size/format</span>
 							<?php woocommerce_template_single_add_to_cart(); ?>
@@ -104,6 +104,9 @@ if ( post_password_required() ) {
                                 <a href="#" class="d-block btn btn-primary mb-4"> Download Now</a>
                                 <a href="#" class="d-block btn btn-outline"> Add to Cart</a>
                             </div>-->
+                            <div class="editorial-badge mt-4">
+                                Editorial use only
+                            </div>
                         </div>
                     </div>
                 </div>

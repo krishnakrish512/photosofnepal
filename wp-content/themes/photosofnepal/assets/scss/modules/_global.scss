@@ -64,19 +64,41 @@ ul.inline-list{
     text-align: center;
     line-height: pxToRem(30, 10);
     border-radius: 100%;
-    color : $white;
-    background-color: rgb(48, 48, 48);
+    color : $black;
+    // background-color: rgb(48, 48, 48);
+    border: 1px solid #000;
+    &:hover{
+      background-color: #000;
+      color: $white;
+    }
 
-    &.facebook{
-        background: #3b5998;
-    }
-    &.twitter{
-        background-color: #1da1f2;
-    }
-    &.pinterest{
-      background-color: #BD081C;;
-    }
+    // &.facebook{
+    //     background: #3b5998;
+    // }
+    // &.twitter{
+    //     background-color: #1da1f2;
+    // }
+    // &.pinterest{
+    //   background-color: #BD081C;;
+    // }
   }
+}
+
+.single-image-display__area{
+  .editorial-badge{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+}
+.editorial-badge{
+  background: #ccc;
+  color: #fff;
+  padding: 9px 10px;
+  text-align: center;
+  background-color: #000;
+  border-radius: 3px;
+
 }
 
 

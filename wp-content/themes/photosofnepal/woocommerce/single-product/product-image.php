@@ -47,7 +47,7 @@ $watermarked_image_size = getimagesize( $watermarked_image );
 			<?php
 			if ( get_field( 'is_editorial_use_only' ) ):
 				?>
-                <div>
+                <div class="editorial-badge">
                     Editorial use only
                 </div>
 			<?php

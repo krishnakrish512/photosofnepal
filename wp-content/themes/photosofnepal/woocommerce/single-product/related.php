@@ -33,7 +33,7 @@ if ( $related_products ) : ?>
 			<?php endif; ?>
 
 			<?php //woocommerce_product_loop_start(); ?>
-            <div class="discover-photos__grid justified-gallery">
+            <div class="discover-photos__grid justified-gallery--sm">
 				<?php foreach ( $related_products as $related_product ) : ?>
 
 					<?php
