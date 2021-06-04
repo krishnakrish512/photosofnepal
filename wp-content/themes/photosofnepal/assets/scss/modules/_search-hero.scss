@@ -2,17 +2,18 @@
 .search-hero{
   position: relative;
   overflow: hidden;
-  height: pxToRem(450, 10);
+  height: pxToRem(500, 10);
   display: flex;
   align-items:center;
+  justify-content: center;
 
 
   @include media-breakpoint-up(sm){
-    height: pxToRem(400, 10);
+    //height: pxToRem(400, 10);
   }
   @include media-breakpoint-up(lg){
     height: pxToRem(508, 10);
-    padding: pxToRem(100, 10) 0;
+    //padding: pxToRem(100, 10) 0;
   }
 
   &__inner{
@@ -70,24 +71,31 @@
   }
 
   &__img{
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    transform: translateY(-50%);
+    position: relative;
+    height: 100%;
+    width: 100%;
     
 
     img{
-      max-width: 180%;
+      max-width: 360%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       @include media-breakpoint-up(lg){
+        max-width: 150%;
+      }
+      @include media-breakpoint-up(xxl){
         max-width: 100%;
+        width: 100%;
       }
     }
   }
   &__content{
     margin : 0 auto;
-    position: relative;
+    position: absolute;
+    left: 0;
+    right: 0;
     z-index: 2;
     padding: 0 15px;
     width: 100%;

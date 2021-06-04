@@ -42,24 +42,32 @@
 
   
       figcaption{
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        display: flex;
-        justify-content:space-between;
-        flex-direction: column;
+        position: relative;
+        height: 100%;
+        // position: absolute;
+        // top: 0;
+        // bottom: 0;
+        //width: 100%;
+        //display: flex;
+        //justify-content:space-between;
+        //flex-direction: column;
         color: $white;
 
-        
+        .figure-tools,
+        .figure-info{
+          position: absolute;
+          left: 0;
+          width: 100%;
+          display: flex;
+        }
         .figure-tools{
           padding-left: pxToRem(15, 10);
           background:linear-gradient(to top, transparent 0%, rgba(0,0,0,0.8) 100%);
           opacity: 0;
-          position: relative;
-          display: flex;
+          //display: flex;
           justify-content: flex-end;
           align-items: center;
+          top: 0;
           @include transition(all 0.25s ease); 
         }
         .figure-icons{
@@ -93,7 +101,8 @@
         }
         .figure-info{
             padding: pxToRem(15, 10) pxToRem(10, 10);
-            display: flex;
+            bottom: 0;
+            //display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
