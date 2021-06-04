@@ -55,8 +55,10 @@ add_action( 'admin_bar_menu', function ( $wp_admin_bar ) {
 		$wp_admin_bar->remove_node( 'new-post' );
 
 		$wp_admin_bar->remove_node( 'new-media' );
-
-		return $wp_admin_bar;
+		$wp_admin_bar->remove_node( 'new-product' );
+		$wp_admin_bar->remove_node( 'new-shop_order' );
+		$wp_admin_bar->remove_node( 'new-delete_request' );
+		$wp_admin_bar->remove_node( 'new-gallery' );
 	}
 }, 999 );
 
