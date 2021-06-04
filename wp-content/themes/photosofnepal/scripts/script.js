@@ -123,7 +123,6 @@ function lightgallery(){
     }
 
 
-}
 
 function responsiveFooter(){
     if($(window).width() <= 768){
