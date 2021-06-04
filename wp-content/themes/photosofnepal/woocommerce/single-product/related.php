@@ -64,7 +64,7 @@ if ( $related_products ) : ?>
 					?>
                     <div class="discover-photos__grid-item">
 
-                        <img src="<?= wp_get_attachment_image_url( $product_thumbnail_id, 'photography_thumbnail' ) ?>"
+                        <img src="<?= wp_get_attachment_image_url( $product_thumbnail_id, 'gallery_thumbnail' ) ?>"
                              alt="">
                         <figcaption>
                             <div class="figure-tools">
