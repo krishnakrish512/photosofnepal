@@ -1,0 +1,12 @@
+{
+    "require": {
+        "intervention/image": "^2.4",
+        "monolog/monolog": "^1.24",
+        "symfony/event-dispatcher": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "NextGenImage\\": "src/NextGenImage"
+        }
+    }
+}
