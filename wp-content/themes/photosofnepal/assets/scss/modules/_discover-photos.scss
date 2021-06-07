@@ -128,6 +128,22 @@
       }
     }
   }
+  .similar-section{
+    .discover-photos__grid-item{
+      .figure-info{
+        h6{
+          opacity: 0;
+        }
+      }
+      &:hover{
+        .figure-info{
+          h6{
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
 
   .discover-collection{
     // .card-image{
@@ -153,3 +169,4 @@
     //   }
     // }
   }
+  

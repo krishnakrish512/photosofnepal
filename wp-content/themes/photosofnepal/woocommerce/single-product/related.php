@@ -33,7 +33,7 @@ if ( $related_products ) : ?>
 			<?php endif; ?>
 
 			<?php //woocommerce_product_loop_start(); ?>
-            <div class="discover-photos__grid justified-gallery--sm">
+            <div class="discover-photos__grid justified-gallery">
 				<?php foreach ( $related_products as $related_product ) : ?>
 
 					<?php
@@ -62,7 +62,7 @@ if ( $related_products ) : ?>
 						$gallery_url = get_permalink( $gallery[0] );
 					}
 					?>
-                    <div class="discover-photos__grid-item">
+                    <div class="discover-photos__grid-item ">
 
                         <img src="<?= wp_get_attachment_image_url( $product_thumbnail_id, 'gallery_thumbnail' ) ?>"
                              alt="">
