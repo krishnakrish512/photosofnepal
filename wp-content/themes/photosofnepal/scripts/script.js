@@ -96,47 +96,48 @@ function mobileMenu() {
     });
 }
 
-function lightgallery(){
-    // $('a[data-rel^=lightcase]').lightcase({
-    //     transition:false,
-    //     showCaption: false,
-    //     shrinkFactor: 0.9,
-    //     maxWidth: 1000,
-    //     maxHeight: 700,
-
-       
-    // });
+// function lightgallery(){
+// $('a[data-rel^=lightcase]').lightcase({
+//     transition:false,
+//     showCaption: false,
+//     shrinkFactor: 0.9,
+//     maxWidth: 1000,
+//     maxHeight: 700,
 
 
-    $('.lg-popup').magnificPopup({
-        delegate: 'a', // child items selector, by clicking on it popup will open
-        type: 'image',
-        midClick: true,
-        closeOnContentClick: true
-        // other options
-              })
-
-    //For hidden  page title /collection page
-    var loc = window.location.href; // returns the full URL
-    if(/collections/.test(loc)) {
-        $('.blog-page-title').addClass('d-none');
-    }
+// });
 
 
+$('.lg-popup').magnificPopup({
+    delegate: 'a', // child items selector, by clicking on it popup will open
+    type: 'image',
+    midClick: true,
+    closeOnContentClick: true
+    // other options
+})
 
-function responsiveFooter(){
-    if($(window).width() <= 768){
-        $('.widget-title i').on('click', function(){
+//For hidden  page title /collection page
+var loc = window.location.href; // returns the full URL
+if (/collections/.test(loc)) {
+    $('.blog-page-title').addClass('d-none');
+}
+
+
+function responsiveFooter() {
+    if ($(window).width() <= 768) {
+        $('.widget-title i').on('click', function () {
             $(this).parent().next('.slideItem').slideToggle();
         })
-    };
-    
+    }
+    ;
+
 }
+
 $(document).ready(function () {
     justifyGallery();
     slideMenu();
     mobileMenu();
-    lightgallery();
+    // lightgallery();
     responsiveFooter();
 
 
