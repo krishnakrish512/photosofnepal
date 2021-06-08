@@ -28,6 +28,7 @@
     }
     .search-hero__content{
       margin-top: 0;
+      position: relative;
       &.is-sticky{
         top: 0;
       }
@@ -225,15 +226,7 @@
 }
 
 
-.blog-page-title{
-  + .main{
-    .search-hero{
-      &__content{
-        position: relative;
-      }
-    }
-  }
-}
+
 
 
 
