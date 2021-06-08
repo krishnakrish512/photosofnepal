@@ -170,7 +170,7 @@ if ( post_password_required() ) {
                                         <div class="col-lg-3 column mb-4 mb-lg-0">
                                             <div class="discover-photos__grid-item grid-item--sm position-relative">
                                                 <figure class="aspect-ratio mb-0">
-                                                    <img src="<?= wp_get_attachment_image_url( $gallery_photos[ $key ], 'gallery_thumbnail' ) ?>"
+                                                    <img src="<?= wp_get_attachment_image_url( $gallery_photos[ $key ], 'related_photo_thumbnail' ) ?>"
                                                          alt="<?= $photography_product->get_title() ?>">
                                                 </figure>
 
