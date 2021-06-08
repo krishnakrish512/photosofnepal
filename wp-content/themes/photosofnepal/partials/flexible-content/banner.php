@@ -15,6 +15,8 @@ $args = [
 ];
 
 $popular_tags = get_terms( $args );
+
+
 ?>
 <section class="search-hero text-center text-white">
     <div class="search-hero__img has-overlay">
