@@ -97,6 +97,11 @@ ul.inline-list{
   text-align: center;
   background-color: #ffc26c;
   border-radius: 3px;
+  display: block;
+  transition: all  0.25s ease;
+  &:hover{
+    color: inherit;
+  }
 
 }
 

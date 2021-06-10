@@ -104,9 +104,9 @@ if ( post_password_required() ) {
                                 <a href="#" class="d-block btn btn-primary mb-4"> Download Now</a>
                                 <a href="#" class="d-block btn btn-outline"> Add to Cart</a>
                             </div>-->
-                            <div class="editorial-badge mt-4">
-                                Editorial use only
-                            </div>
+                            <a href="#" class="editorial-badge mt-4 d-block">
+                                Editorial use only <i class="fas fa-info-circle ml-2"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
