@@ -11,20 +11,12 @@ function get_text_watermarked_image( $imageId, $text ) {
 //	}
 
 
-	$imageSource = wp_get_attachment_image_url( $imageId, 'full' );
+	$imageSource = wp_get_attachment_image_url( $imageId, 'photography_preview' );
 
-
-	//$manager = new ImageManager( [ 'driver' => 'imagick' ] );
-	$manager = new ImageManager();
+	$manager = new ImageManager( [ 'driver' => 'imagick' ] );
 
 	$image = $manager->make( $imageSource );
 
-	$image->resize( 1024, 1024, function ( $constraint ) {
-		$constraint->aspectRatio();
-		$constraint->upsize();
-	} );
-
-//	$imageSize   = getimagesize( $imageSource );
 	$imageWidth  = $image->width();
 	$imageHeight = $image->height();
 
