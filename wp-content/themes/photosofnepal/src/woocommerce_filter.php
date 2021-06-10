@@ -373,3 +373,13 @@ function photography_admin_address_field( $admin_fields ) {
 	return $admin_fields;
 
 }
+
+/**
+ * Change number of related products output
+ */
+add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args', 20 );
+function jk_related_products_args( $args ) {
+	$args['posts_per_page'] = 8; // 4 related products
+
+	return $args;
+}
