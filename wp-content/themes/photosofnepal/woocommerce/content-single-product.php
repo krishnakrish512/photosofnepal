@@ -105,6 +105,7 @@ if ( post_password_required() ) {
                                 <a href="#" class="d-block btn btn-outline"> Add to Cart</a>
                             </div>-->
                             <a href="<?php the_field( 'editorial_information_page', 'option' ); ?>"
+                               target="_blank" rel="noreferrer noopener"
                                class="editorial-badge mt-4 d-block">
                                 Editorial use only <i class="fas fa-info-circle ml-2"></i>
                             </a>
