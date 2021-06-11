@@ -377,9 +377,22 @@ function photography_admin_address_field( $admin_fields ) {
 /**
  * Change number of related products output
  */
-add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args', 20 );
-function jk_related_products_args( $args ) {
+add_filter( 'woocommerce_output_related_products_args', 'photos_related_products_args', 20 );
+function photos_related_products_args( $args ) {
 	$args['posts_per_page'] = 8; // 4 related products
 
 	return $args;
+}
+
+add_filter( 'woocommerce_currency_symbol', 'photos_change_currency_symbol', 10, 2 );
+
+function photos_change_currency_symbol( $currency_symbol, $currency ) {
+
+	switch ( $currency ) {
+		case 'NPR':
+			$currency_symbol = 'NPR';
+			break;
+	}
+
+	return $currency_symbol;
 }
