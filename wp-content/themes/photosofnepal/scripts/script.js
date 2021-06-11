@@ -68,6 +68,15 @@ function justifyGallery() {
         margins: 3,
         captions: false
     });
+    var winWidth = $(window).width();
+    if(winWidth < 768){
+        $('.justified-gallery--sm').justifiedGallery({
+            rowHeight: 100,
+            // lastRow: 'justify',
+            margins: 3,
+            captions: false
+        });
+    }
 }
 
 function slideMenu() {
