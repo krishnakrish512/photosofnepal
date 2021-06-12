@@ -25,6 +25,9 @@
   }
     &__header{
       padding-bottom: pxToRem(30, 10);
+      border-width: 1px 0;
+      border-style: solid;
+      border-color: $border-color;
   
       .media-image{
         width: pxToRem(50, 10);
@@ -73,14 +76,17 @@
   
     &__area{
       // border: 1px solid $border-color;
+    
   
       &-box{
-        padding: pxToRem(20, 10);
-        border-bottom: 1px solid $border-color;
+        padding: pxToRem(20, 10) 0;
+        // border-bottom: 1px solid $border-color;
+        // border-top: 1px solid $border-color;
+
   
-        &:last-child{
-          border-bottom:0;
-        }
+        // &:last-child{
+        //   border-bottom:0;
+        // }
   
         .media{
           a{

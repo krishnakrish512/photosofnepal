@@ -68,6 +68,7 @@ function justifyGallery() {
         margins: 3,
         captions: false
     });
+    
     var winWidth = $(window).width();
     if(winWidth < 768){
         $('.justified-gallery--sm').justifiedGallery({

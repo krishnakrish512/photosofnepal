@@ -69,13 +69,14 @@
 .aspect-ratio{
   position: relative;
   overflow: hidden;
+  height: 140px;
 
-  &::after{
-    content: "";
-    display: block;
-    padding-bottom: 75%;
-    background: #000;
-  }
+  // &::after{
+  //   content: "";
+  //   display: block;
+  //   padding-bottom: 75%;
+  //   background: #000;
+  // }
   img{
     height: 100%;
     width: 100%;
@@ -85,6 +86,7 @@
     bottom: 0;
     left: 0;
     z-index: 0;
+    object-fit: cover;
   }
 }
 .select2-container{
