@@ -10,11 +10,11 @@ ul.inline-list{
 .section-spacing{
   margin-bottom: pxToRem(40, 10);
   @include media-breakpoint-up(md){
-    margin-bottom: pxToRem(80, 10);
+    //margin-bottom: pxToRem(80, 10);
   }
   
   &__y-padding{
-    padding: pxToRem(100, 10) 0;
+    padding: pxToRem(40, 10) 0;
     &+ .section-spacing__y-padding{
       padding-top: 0;
     }

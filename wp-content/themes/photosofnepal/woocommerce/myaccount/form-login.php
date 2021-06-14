@@ -23,7 +23,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 <div class="registrations__container">
     <div class="registrations__right-panel" id="customer_login">
         <div class="registrations__right-panel-header text-center">
-            <h2>JOIN PHOTOSOFNEPAL</h2>
+            <h2>JOIN IMAGE PASAL</h2>
         </div>
 
         <div class="registrations__right-panel-body">

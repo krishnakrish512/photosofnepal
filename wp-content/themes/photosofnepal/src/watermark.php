@@ -13,6 +13,7 @@ function get_text_watermarked_image( $imageId, $text ) {
 	$imageSource = wp_get_attachment_image_url( $imageId, 'photography_preview' );
 
 	$manager = new ImageManager( [ 'driver' => 'imagick' ] );
+	//$manager = new ImageManager();
 
 	$image = $manager->make( $imageSource );
 

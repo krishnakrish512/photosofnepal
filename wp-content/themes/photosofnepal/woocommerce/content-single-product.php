@@ -78,22 +78,7 @@ if ( post_password_required() ) {
                 </div>
                 <div class="col-lg-4 col-md-5">
                     <div class="single-image-download__area">
-                        <div class="single-image-download__area-box single-image-display__header d-flex align-items-center justify-content-between">
-                            <div class="media">
-                                <div class="media-image mr-4">
-									<?= get_avatar( get_the_author_meta( 'ID' ), 120 ); ?>
-                                </div>
-                                <div class="media-body">
-									<?php
-									$sold_by = WC_Product_Vendors_Utils::get_sold_by_link( $post->ID );
-
-
-									?>
-                                    <h5 class="mb-0"><?= get_the_author() ?></h5>
-                                    <a href="<?= esc_url( $sold_by['link'] ) ?>"><?= '@' . getProductVendorUsername( $post->ID ) ?></a>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="single-image-download__actions single-image-download__area-box position-relative">
                             <h5 class="mb-0">Purchase a License</h5>
                             <span>select size/format</span>
@@ -115,6 +100,22 @@ if ( post_password_required() ) {
 							<?php
 							endif;
 							?>
+                        </div>
+                        <div class="single-image-download__area-box single-image-display__header d-flex align-items-center justify-content-between">
+                            <div class="media">
+                                <div class="media-image mr-4">
+									<?= get_avatar( get_the_author_meta( 'ID' ), 120 ); ?>
+                                </div>
+                                <div class="media-body">
+									<?php
+									$sold_by = WC_Product_Vendors_Utils::get_sold_by_link( $post->ID );
+
+
+									?>
+                                    <h5 class="mb-0"><?= get_the_author() ?></h5>
+                                    <a href="<?= esc_url( $sold_by['link'] ) ?>"><?= '@' . getProductVendorUsername( $post->ID ) ?></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

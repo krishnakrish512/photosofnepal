@@ -517,3 +517,15 @@
 	}
 }
 
+.login-option,
+.registrations__options{
+	width: 100%;
+	.btn{
+		&.facebook{
+			background-color: #3b5998;
+		}
+		&.google{
+			background-color: #DB4437;
+		}
+	}
+}
