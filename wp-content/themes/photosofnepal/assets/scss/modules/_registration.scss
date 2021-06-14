@@ -23,8 +23,8 @@
 		display: none;
 
 		@include media-breakpoint-up(lg){
-			max-width: 40%;
-			flex:0 0 40%;
+			max-width: 65%;
+			flex:0 0 65%;
 			display: block;
 		}
 
@@ -39,9 +39,9 @@
 		overflow-y: scroll;
 
 		@include media-breakpoint-up(lg){
-			max-width: 60%;
-			flex:0 0 60%;
-			padding:pxToRem(40, 10) pxToRem(100, 10);
+			max-width: 35%;
+			flex:0 0 35%;
+			padding:pxToRem(20, 10) pxToRem(30, 10);
 		}
 
 		&-header{
