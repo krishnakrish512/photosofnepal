@@ -12,79 +12,83 @@
 	<?php wp_head(); ?>
 </head>
 <body>
-<header class="header header__light" id="header">
-    <div class="container-fluid header__wrapper">
-        <a href="<?= get_home_url() ?>" class="header__logo h1 mb-0 text-uppercase">
-            <img src="<?= wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' ) ?>"
-                 class="img-fluid d-block"
-                 alt="<?php bloginfo( 'name' ); ?>">
-        </a>
-        <nav class="header__nav">
-            <div class="header__nav--inner">
-				<?php
-				wp_nav_menu( [
-					'theme_location' => 'primary',
-					'menu_class'     => 'inline-list header__nav--list mb-md-0',
-					'container'      => '',
-				] );
+<?php
+if ( ! ( is_account_page() && ! is_user_logged_in() ) ):
+	?>
+    <header class="header header__light" id="header">
+        <div class="container-fluid header__wrapper">
+            <a href="<?= get_home_url() ?>" class="header__logo h1 mb-0 text-uppercase">
+                <img src="<?= wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' ) ?>"
+                     class="img-fluid d-block"
+                     alt="<?php bloginfo( 'name' ); ?>">
+            </a>
+            <nav class="header__nav">
+                <div class="header__nav--inner">
+					<?php
+					wp_nav_menu( [
+						'theme_location' => 'primary',
+						'menu_class'     => 'inline-list header__nav--list mb-md-0',
+						'container'      => '',
+					] );
 
+					if ( ! is_user_logged_in() ):
+						?>
+                        <ul class="mobile-header-tools">
+							<?php
+							echo "<li><a href='" . wc_get_page_permalink( 'myaccount' ) . "' class='btn btn-outline d-block mb-3'>Login</a></li>";
+							echo "<li><a href='" . wc_get_page_permalink( 'myaccount' ) . "#registration' class='btn btn-primary d-block' >Sign up</a></li>";
+							?>
+                        </ul>
+					<?php
+					endif;
+					?>
+                    <span class="btn-toggle-close">
+               <i class="icon-close"></i>
+            </span>
+                </div>
+            </nav>
+            <div class="header__tools">
+                <ul class="header__tools--user inline-list mb-0 ">
+                    <li><a href="<?= wc_get_cart_url() ?>" class="header__tools-cart"> <span
+                                    class="icon-shopping-cart"></span><label
+                                    class="ml-3">Cart <span
+                                        class="font-weight-bold"><?= WC()->cart->get_cart_contents_count() ?></span></label>
+                        </a></li>
+					<?php
+					if ( is_user_logged_in() ) {
+						$logged_in_user = wp_get_current_user();
+						?>
+                        <li>
+                            <div class="btn-usernav-toggle">
+                                <i class="far fa-user mr-2"></i>
+                                <label><?= $logged_in_user->first_name ? $logged_in_user->first_name : $logged_in_user->display_name ?></label>
+                            </div>
+                        </li>
+						<?php
+					}
+					?>
+                </ul>
+				<?php
 				if ( ! is_user_logged_in() ):
 					?>
-                    <ul class="mobile-header-tools">
+                    <ul class="header__tools--access inline-list mb-0 border-left ml-5">
 						<?php
-						echo "<li><a href='" . wc_get_page_permalink( 'myaccount' ) . "' class='btn btn-outline d-block mb-3'>Login</a></li>";
-						echo "<li><a href='" . wc_get_page_permalink( 'myaccount' ) . "#registration' class='btn btn-primary d-block' >Sign up</a></li>";
+						echo "<li><a href='" . wc_get_page_permalink( 'myaccount' ) . "' class='btn btn-white'>Login</a></li>";
+						echo "<li><a href='" . wc_get_page_permalink( 'myaccount' ) . "#registration' class='btn btn-primary text-white' >Sign up</a></li>";
 						?>
                     </ul>
 				<?php
 				endif;
 				?>
-                <span class="btn-toggle-close">
-               <i class="icon-close"></i>
-            </span>
+                <button class="btn-nav-toggle ml-3 ">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-        </nav>
-        <div class="header__tools">
-            <ul class="header__tools--user inline-list mb-0 ">
-                <li><a href="<?= wc_get_cart_url() ?>" class="header__tools-cart"> <span
-                                class="icon-shopping-cart"></span><label
-                                class="ml-3">Cart <span
-                                    class="font-weight-bold"><?= WC()->cart->get_cart_contents_count() ?></span></label>
-                    </a></li>
-				<?php
-				if ( is_user_logged_in() ) {
-					$logged_in_user = wp_get_current_user();
-					?>
-                    <li>
-                        <div class="btn-usernav-toggle">
-                            <i class="far fa-user mr-2"></i>
-                            <label><?= $logged_in_user->first_name ? $logged_in_user->first_name : $logged_in_user->display_name ?></label>
-                        </div>
-                    </li>
-					<?php
-				}
-				?>
-            </ul>
-			<?php
-			if ( ! is_user_logged_in() ):
-				?>
-                <ul class="header__tools--access inline-list mb-0 border-left ml-5">
-					<?php
-					echo "<li><a href='" . wc_get_page_permalink( 'myaccount' ) . "' class='btn btn-white'>Login</a></li>";
-					echo "<li><a href='" . wc_get_page_permalink( 'myaccount' ) . "#registration' class='btn btn-primary text-white' >Sign up</a></li>";
-					?>
-                </ul>
-			<?php
-			endif;
-			?>
-            <button class="btn-nav-toggle ml-3 ">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
-    </div>
-</header>
+    </header>
 
 <?php
+endif;
 
 if ( ( is_account_page() && is_user_logged_in() ) || is_cart() || is_checkout() || is_wishlist() ):
 	?>
@@ -133,7 +137,7 @@ if ( is_user_logged_in() ):
 <?php
 endif;
 
-if ( is_page() && ! is_front_page() ){
+if ( is_page() && ! is_front_page() && ! ( is_account_page() && ! is_user_logged_in() ) ){
 global $post;
 ?>
 <section class="blog-page-title section-spacing">

@@ -248,3 +248,29 @@ function photos_share_meta() {
 }
 
 add_action( 'wp_head', 'photos_share_meta' );
+
+add_filter( 'wp_title', 'photos_page_title', 10, 1 );
+
+function photos_page_title( $title ) {
+	if ( is_single( 'product' ) ) {
+		global $post;
+		$title = $title . get_the_content( null, false, $post->ID );
+	}
+
+	return $title;
+}
+
+add_filter( 'wpseo_title', 'remove_one_wpseo_title' );
+
+function remove_one_wpseo_title( $title ) {
+	if ( is_singular( 'product' ) ) {
+		global $post;
+
+		$title = get_the_title( $post->ID );
+		if ( get_the_content( null, false, $post->ID ) ) {
+			$title = $title . ' - ' . get_the_content( null, false, $post->ID );
+		}
+	}
+
+	return $title;
+}
