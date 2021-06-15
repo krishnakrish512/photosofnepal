@@ -21,6 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 do_action( 'woocommerce_before_customer_login_form' ); ?>
 <div class="registrations__container">
+    <div class="registrations__left-panel"
+         style="background-image: url('<?= get_template_directory_uri() ?>/assets/images/17.jpg');">
+    </div>
     <div class="registrations__right-panel" id="customer_login">
         <div class="registrations__right-panel-header text-center">
             <h2>JOIN IMAGE PASAL</h2>
@@ -233,7 +236,5 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 		<?php do_action( 'woocommerce_after_customer_login_form' ); ?>
     </div>
-    <div class="registrations__left-panel"
-         style="background-image: url('<?= get_template_directory_uri() ?>/assets/images/11.jpg');">
-    </div>
+    
 </div>
