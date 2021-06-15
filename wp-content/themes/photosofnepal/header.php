@@ -90,27 +90,27 @@ if ( ! ( is_account_page() && ! is_user_logged_in() ) ):
 <?php
 endif;
 
-if ( ( is_account_page() && is_user_logged_in() ) || is_cart() || is_checkout() || is_wishlist() ):
-	?>
-    <section class="page-title  search-hero__inner section-spacing">
-        <div class="container">
-            <div class="page-title__content ">
-                <h4><?php
-					if ( is_cart() ) {
-						echo "Cart";
-					} else if ( is_checkout() ) {
-						echo "Checkout";
-					} else if ( is_wishlist() ) {
-						echo "Wishlist";
-					} else {
-						photography_myaccount_page_title();
-					}
-					?></h4>
-            </div>
-        </div>
-    </section>
+//if ( ( is_account_page() && is_user_logged_in() ) || is_cart() || is_checkout() || is_wishlist() ):
+?>
+<!--<section class="page-title  search-hero__inner section-spacing">-->
+<!--    <div class="container">-->
+<!--        <div class="page-title__content ">-->
+<!--            <h4>--><?php
+//				if ( is_cart() ) {
+//					echo "Cart";
+//				} else if ( is_checkout() ) {
+//					echo "Checkout";
+//				} else if ( is_wishlist() ) {
+//					echo "Wishlist";
+//				} else {
+//					photography_myaccount_page_title();
+//				}
+//				?><!--</h4>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 <?php
-endif;
+//endif;
 ?>
 <?php
 if ( is_user_logged_in() ):
