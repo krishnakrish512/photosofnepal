@@ -63,3 +63,7 @@
 form#your-profile table .user-display-name-wrap {
     display: none;
 }
+
+form#your-profile .nsl-container {
+    display: none;
+}
