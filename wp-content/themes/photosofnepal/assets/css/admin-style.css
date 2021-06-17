@@ -60,3 +60,6 @@
     color: inherit;
 }
 
+form#your-profile table .user-display-name-wrap {
+    display: none;
+}

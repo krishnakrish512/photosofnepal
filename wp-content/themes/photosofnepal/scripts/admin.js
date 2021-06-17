@@ -41,5 +41,11 @@
         //         $(".media-router #menu-item-upload").trigger('click');
         //     });
         // }
+
+        $('h2:contains("About Yourself")').css('display', 'none');
+        $('h2:contains("About Yourself") + table').css('display', 'none');
+
+        $('h2:contains("Personal Options")').css('display', 'none');
+        $('h2:contains("Personal Options") + table').css('display', 'none');
     });
 })(jQuery);

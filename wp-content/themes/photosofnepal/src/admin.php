@@ -88,12 +88,32 @@ if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current
 // disable wyswyg for custom post type, using the global $post
 	add_filter( 'user_can_richedit', function ( $default ) {
 		global $post;
-		if ( $post->post_type === 'product' ) {
+
+		if ( $post && $post->post_type === 'product' ) {
 			return false;
 		}
 
 		return $default;
 	} );
+
+	function update_contact_methods( $contactmethods ) {
+		unset( $contactmethods['facebook'] );
+		unset( $contactmethods['instagram'] );
+		unset( $contactmethods['linkedin'] );
+		unset( $contactmethods['myspace'] );
+		unset( $contactmethods['pinterest'] );
+		unset( $contactmethods['soundcloud'] );
+		unset( $contactmethods['tumblr'] );
+		unset( $contactmethods['twitter'] );
+		unset( $contactmethods['youtube'] );
+		unset( $contactmethods['wikipedia'] );
+
+
+		return $contactmethods;
+
+	}
+
+	add_filter( 'user_contactmethods', 'update_contact_methods' );
 }
 
 //add featured product filter in admin
