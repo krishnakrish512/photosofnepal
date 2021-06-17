@@ -4,36 +4,25 @@ function photographer_remove_menu_items() {
 
 		global $menu, $submenu;
 
-//		echo "<pre>";
-//		print_r( $menu );
-//		echo "</pre>";
-//
-//		echo "<pre>";
-//		print_r( $submenu );
-//		echo "</pre>";
-//		exit;
-
 		//change products menu and submenu
 		$menu[26][0]                                 = "Photographs";
 		$submenu['edit.php?post_type=product'][5][0] = "All Photographs";
-//		$submenu['edit.php?post_type=product'][10][2] = get_page_link( get_page_by_title( 'Add Photograph' ) );
 
 		remove_menu_page( 'upload.php' );
 		remove_menu_page( 'edit.php' );                   //Posts
 		remove_menu_page( 'edit-comments.php' );          //Comments
 		remove_menu_page( 'tools.php' );                  //Tools
 		remove_menu_page( 'edit.php?post_type=delete_request' );                  //Delete Requests
+		remove_menu_page( 'wcpv-vendor-settings' );         //wc product vendors store setting
 
 		unset( $submenu['edit.php?post_type=product'][15] );
 		unset( $submenu['edit.php?post_type=product'][16] );
 
-//		remove_submenu_page( 'edit.php?post_type=product', 'edit-tags.php?taxonomy=product_cat&post_type=product' );
-//		remove_submenu_page( 'edit.php?post_type=product', 'edit-tags.php?taxonomy=product_tag&post_type=product' );
 		remove_submenu_page( 'edit.php?post_type=product', 'product_attributes' );
 	}
 }
 
-add_action( 'admin_menu', 'photographer_remove_menu_items' );
+add_action( 'admin_menu', 'photographer_remove_menu_items', 9999 );
 
 //customize admin bar
 add_action( 'admin_bar_menu', function ( $wp_admin_bar ) {
