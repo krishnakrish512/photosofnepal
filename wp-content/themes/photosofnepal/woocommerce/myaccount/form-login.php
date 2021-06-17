@@ -51,7 +51,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
                     <div class="login-wrapper">
                         <div class="login-form">
                             <div class="registrations__right-panel-body">
-                                <div class="registrations__form-wrapper mb-5">
+                                <div class="registrations__form-wrapper ">
                                     <form method="post">
                                         <div class="row">
 											<?php do_action( 'woocommerce_login_form_start' ); ?>
@@ -63,7 +63,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
                                                     <input type="text"
                                                            class="form-control"
                                                            name="username"
-                                                           id="username" autocomplete="username"
+                                                           id="username" placeholder="Email" autocomplete="username"
                                                            value="<?php echo ( ! empty( $_POST['username'] ) ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>"
                                                            required/><?php // @codingStandardsIgnoreLine ?>
                                                 </div>
@@ -75,7 +75,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
                                                                 class="required">*</span></label>
                                                     <input class="form-control"
                                                            type="password"
-                                                           name="password"
+                                                           name="password" placeholder="Password"
                                                            id="password" autocomplete="current-password" required/>
                                                 </div>
                                             </div>
@@ -153,7 +153,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
                                                         class="required">*</span></label>
                                             <input type="text" class="form-control"
                                                    name="username"
-                                                   id="reg_username" autocomplete="username"
+                                                   id="reg_username" placeholder="First Name" autocomplete="username"
                                                    value="<?php echo ( ! empty( $_POST['username'] ) ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>"
                                                    required/><?php // @codingStandardsIgnoreLine ?>
                                         </div>
@@ -166,7 +166,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
                                                     class="required">*</span></label>
                                         <input type="email" class="form-control"
                                                name="email"
-                                               id="reg_email" autocomplete="email"
+                                               id="reg_email" placeholder="Email" autocomplete="email"
                                                value="<?php echo ( ! empty( $_POST['email'] ) ) ? esc_attr( wp_unslash( $_POST['email'] ) ) : ''; ?>"
                                                required/><?php // @codingStandardsIgnoreLine ?>
                                     </div>
@@ -179,7 +179,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
                                                         class="required">*</span></label>
                                             <input type="password"
                                                    class="form-control"
-                                                   name="password"
+                                                   name="password" placeholder="Password"
                                                    id="reg_password" autocomplete="new-password" required/>
                                         </div>
                                     </div>
@@ -204,7 +204,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 								<?php do_action( 'woocommerce_register_form_end' ); ?>
 
-                                <div class="registrations__options mt-5 text-center">
+                                <div class="registrations__options text-center">
                                     <p class="my-4">OR REGISTER WITH</p>
                                     <ul>
                                         <li>
