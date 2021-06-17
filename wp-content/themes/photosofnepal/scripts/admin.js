@@ -42,8 +42,8 @@
         //     });
         // }
 
-        $('h2:contains("About Yourself")').css('display', 'none');
-        $('h2:contains("About Yourself") + table').css('display', 'none');
+        $('h2:contains("About Yourself"):first').css('display', 'none');
+        $('h2:contains("About Yourself"):first + table').css('display', 'none');
 
         $('h2:contains("Personal Options")').css('display', 'none');
         $('h2:contains("Personal Options") + table').css('display', 'none');
