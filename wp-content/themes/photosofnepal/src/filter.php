@@ -277,3 +277,19 @@ function remove_one_wpseo_title( $title ) {
 
 //Disable the Application Passwords Feature
 add_filter( 'wp_is_application_passwords_available', '__return_false' );
+
+
+//sync user profile with store settings
+function update_extra_profile_fields( $user_id ) {
+	if ( get_field( 'profile_picture', "user_{$user_id}" ) || get_field( 'description', "user_{$user_id}" ) ) {
+		$vendor_id   = WC_Product_Vendors_Utils::get_logged_in_vendor();
+		$vendor_data = get_term_meta( $vendor_id, 'vendor_data', true );
+
+		$vendor_data['logo']    = get_field( 'profile_picture', "user_{$user_id}" );
+		$vendor_data['profile'] = get_field( 'description', "user_{$user_id}" );
+
+		update_term_meta( WC_Product_Vendors_Utils::get_logged_in_vendor(), 'vendor_data', $vendor_data );
+	}
+}
+
+add_action( 'profile_update', 'update_extra_profile_fields' );
