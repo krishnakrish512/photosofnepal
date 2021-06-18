@@ -4,36 +4,25 @@ function photographer_remove_menu_items() {
 
 		global $menu, $submenu;
 
-//		echo "<pre>";
-//		print_r( $menu );
-//		echo "</pre>";
-//
-//		echo "<pre>";
-//		print_r( $submenu );
-//		echo "</pre>";
-//		exit;
-
 		//change products menu and submenu
 		$menu[26][0]                                 = "Photographs";
 		$submenu['edit.php?post_type=product'][5][0] = "All Photographs";
-//		$submenu['edit.php?post_type=product'][10][2] = get_page_link( get_page_by_title( 'Add Photograph' ) );
 
 		remove_menu_page( 'upload.php' );
 		remove_menu_page( 'edit.php' );                   //Posts
 		remove_menu_page( 'edit-comments.php' );          //Comments
 		remove_menu_page( 'tools.php' );                  //Tools
 		remove_menu_page( 'edit.php?post_type=delete_request' );                  //Delete Requests
+		remove_menu_page( 'wcpv-vendor-settings' );         //wc product vendors store setting
 
 		unset( $submenu['edit.php?post_type=product'][15] );
 		unset( $submenu['edit.php?post_type=product'][16] );
 
-//		remove_submenu_page( 'edit.php?post_type=product', 'edit-tags.php?taxonomy=product_cat&post_type=product' );
-//		remove_submenu_page( 'edit.php?post_type=product', 'edit-tags.php?taxonomy=product_tag&post_type=product' );
 		remove_submenu_page( 'edit.php?post_type=product', 'product_attributes' );
 	}
 }
 
-add_action( 'admin_menu', 'photographer_remove_menu_items' );
+add_action( 'admin_menu', 'photographer_remove_menu_items', 9999 );
 
 //customize admin bar
 add_action( 'admin_bar_menu', function ( $wp_admin_bar ) {
@@ -88,12 +77,32 @@ if ( wc_current_user_has_role( 'wc_product_vendors_admin_vendor' ) || wc_current
 // disable wyswyg for custom post type, using the global $post
 	add_filter( 'user_can_richedit', function ( $default ) {
 		global $post;
-		if ( $post->post_type === 'product' ) {
+
+		if ( $post && $post->post_type === 'product' ) {
 			return false;
 		}
 
 		return $default;
 	} );
+
+	function update_contact_methods( $contactmethods ) {
+		unset( $contactmethods['facebook'] );
+		unset( $contactmethods['instagram'] );
+		unset( $contactmethods['linkedin'] );
+		unset( $contactmethods['myspace'] );
+		unset( $contactmethods['pinterest'] );
+		unset( $contactmethods['soundcloud'] );
+		unset( $contactmethods['tumblr'] );
+		unset( $contactmethods['twitter'] );
+		unset( $contactmethods['youtube'] );
+		unset( $contactmethods['wikipedia'] );
+
+
+		return $contactmethods;
+
+	}
+
+	add_filter( 'user_contactmethods', 'update_contact_methods' );
 }
 
 //add featured product filter in admin

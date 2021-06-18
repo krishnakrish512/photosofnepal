@@ -274,3 +274,6 @@ function remove_one_wpseo_title( $title ) {
 
 	return $title;
 }
+
+//Disable the Application Passwords Feature
+add_filter( 'wp_is_application_passwords_available', '__return_false' );
