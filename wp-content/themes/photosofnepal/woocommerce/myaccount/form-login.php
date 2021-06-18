@@ -21,6 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 do_action( 'woocommerce_before_customer_login_form' ); ?>
 <div class="registrations__container">
+    <a href="https://imagepasal.com/" class="logo">
+        <img src="<?= get_template_directory_uri() ?>/assets/images/Logo-white.svg" alt="">
+    </a>
     <div class="registrations__left-panel"
          style="background-image: url('<?= get_template_directory_uri() ?>/assets/images/17.jpg');">
     </div>
