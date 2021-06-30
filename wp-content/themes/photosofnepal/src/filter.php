@@ -145,26 +145,47 @@ function photography_delete_request_approval( $post_id ) {
 }
 
 add_action( 'acf/save_post', 'photography_delete_request_approval' );
-//
-//function include_tags_in_search( $query ) {
-//
-//	if ( ! is_admin() && $query->is_search() && $query->is_main_query() ) {
-//
-//		$term = get_term_by( 'name', get_query_var( 's' ), 'product_tag' );
-//
-//		if ( $term ) {
-//			$query->set( 'tax_query', [
-//				[
-//					'taxonomy' => 'product_tag',
-//					'field'    => 'slug',
-//					'terms'    => $term->slug,
-//					'operator' => 'AND'
-//				]
-//			] );
-//		}
-//	}
-//}
-//
+
+function include_tags_in_search( $query ) {
+
+	if ( ! is_admin() && $query->is_search() && $query->is_main_query() ) {
+
+//		var_dump( 'search ' );
+//		exit;
+
+
+//		var_dump( get_query_var( 's' ) );
+
+		$term = get_term_by( 'name', get_query_var( 's' ), 'product_tag' );
+
+		$terms = get_terms( [
+			'taxonomy'   => 'product_tag',
+			'fields'     => 'ids',
+			'name__like' => get_query_var( 's' )
+		] );
+
+		var_dump( $terms );
+
+		if ( $terms ) {
+
+			$query->set( 'tax_query', [
+				'relation' => 'OR',
+				[
+					'taxonomy' => 'product_tag',
+					'field'    => 'term_id',
+					'terms'    => $terms,
+					'operator' => 'AND'
+				]
+			] );
+		}
+	}
+
+//	echo "<pre>";
+//	print_r( $query );
+//	echo "</pre>";
+//	exit;
+}
+
 //add_action( 'pre_get_posts', 'include_tags_in_search' );
 
 /**
@@ -245,6 +266,28 @@ function photos_share_meta() {
 		<?php
 		return;
 	}
+
+	if ( is_tax( 'wcpv_product_vendors' ) ) {
+
+		$thumbnail_url = getHomepageBannerImageUrl();
+		?>
+        <!-- For Facebook -->
+        <meta property="og:url" content="<?= get_home_url() ?>"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="<?php echo get_bloginfo( 'name' ) ?>"/>
+        <meta property="og:description" content="<?php the_field( 'description', 'option' ); ?>"/>
+        <meta property="og:image" content="<?= esc_url( $thumbnail_url ) ?>"/>
+        <meta property="og:image:width" content="1024"/>
+        <meta property="og:image:height" content="1024"/>
+
+        <!-- For Twitter -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="<?php echo get_bloginfo( 'name' ) ?>"/>
+        <meta name="twitter:description" content="<?php the_field( 'description', 'option' ); ?>"/>
+        <meta name="twitter:image" content="<?= esc_url( $thumbnail_url ) ?>"/>
+		<?php
+		return;
+	}
 }
 
 add_action( 'wp_head', 'photos_share_meta' );
@@ -293,3 +336,14 @@ function update_extra_profile_fields( $user_id ) {
 }
 
 add_action( 'profile_update', 'update_extra_profile_fields' );
+
+add_filter( 'template_include', 'photography_search_template_redirect', 99 );
+
+function photography_search_template_redirect( $template ) {
+
+	if ( is_search() ) {
+		$template = get_template_directory() . '/search.php';
+	}
+
+	return $template;
+}
