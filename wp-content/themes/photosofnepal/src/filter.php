@@ -299,8 +299,8 @@ add_filter( 'template_include', 'photography_search_template_redirect', 99 );
 
 function photography_search_template_redirect( $template ) {
 
-	if ( is_search() ) {
-		$template = get_template_directory() . '/search.php';
+	if ( is_search() && is_post_type_archive( 'product' ) ) {
+		$template = get_template_directory() . '/page-templates/product-search.php';
 	}
 
 	return $template;
