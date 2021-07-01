@@ -146,48 +146,6 @@ function photography_delete_request_approval( $post_id ) {
 
 add_action( 'acf/save_post', 'photography_delete_request_approval' );
 
-function include_tags_in_search( $query ) {
-
-	if ( ! is_admin() && $query->is_search() && $query->is_main_query() ) {
-
-//		var_dump( 'search ' );
-//		exit;
-
-
-//		var_dump( get_query_var( 's' ) );
-
-		$term = get_term_by( 'name', get_query_var( 's' ), 'product_tag' );
-
-		$terms = get_terms( [
-			'taxonomy'   => 'product_tag',
-			'fields'     => 'ids',
-			'name__like' => get_query_var( 's' )
-		] );
-
-		var_dump( $terms );
-
-		if ( $terms ) {
-
-			$query->set( 'tax_query', [
-				'relation' => 'OR',
-				[
-					'taxonomy' => 'product_tag',
-					'field'    => 'term_id',
-					'terms'    => $terms,
-					'operator' => 'AND'
-				]
-			] );
-		}
-	}
-
-//	echo "<pre>";
-//	print_r( $query );
-//	echo "</pre>";
-//	exit;
-}
-
-//add_action( 'pre_get_posts', 'include_tags_in_search' );
-
 /**
  * Proper ob_end_flush() for all levels
  *

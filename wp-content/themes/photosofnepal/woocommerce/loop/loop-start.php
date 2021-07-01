@@ -26,7 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		global $wp_query;
 
 		$term = $wp_query->queried_object;
-		if ( is_tax( WC_PRODUCT_VENDORS_TAXONOMY, $term->term_id ) ):
+
+		if ( isset( $term->term_id ) && is_tax( WC_PRODUCT_VENDORS_TAXONOMY, $term->term_id ) ):
 //			global $wp_query;
 			$tax_post_count = $wp_query->found_posts;
 

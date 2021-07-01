@@ -52,13 +52,22 @@ $matched_posts = array_unique( $matched_posts );
 $matched_posts = array_values( array_filter( $matched_posts ) );
 
 $search_result_query = null;
+$limit               = 40;
+$pagenum             = isset( $_GET['pagenum'] ) ? absint( $_GET['pagenum'] ) : 1;
+$offset              = ( $pagenum - 1 ) * $limit;
+
 if ( sizeof( $matched_posts ) > 0 ) {
 	$paged               = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$search_result_query = new WP_Query( [
 		'post_type' => 'product',
 		'post__in'  => $matched_posts,
-		'paged'     => $paged
+		'paged'     => $paged,
+		'limit'     => $limit
 	] );
+//
+//	echo "<pre>";
+//	print_r( $search_result_query );
+//	echo "</pre>";
 }
 ?>
     <section class="search-hero text-center text-white search-hero__inner section-spacing mb-5">
@@ -121,6 +130,46 @@ if ( sizeof( $matched_posts ) > 0 ) {
         </div>
     </main>
 	<?php
+
+
+	$total = $search_result_query->max_num_pages;
+
+	$current = max( 1, $GLOBALS['wp_query']->get( 'paged', 1 ) );
+	$base    = isset( $base ) ? $base : esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) );
+	$format  = isset( $format ) ? $format : '';
+
+	if ( $total > 1 ) {
+		$paginate_links = paginate_links( [
+			'base'      => $base,
+			'format'    => $format,
+			'current'   => $current,
+			'total'     => $total,
+			'prev_text' => "<i class='fas fa-angle-left'></i>",
+			'next_text' => "<i class='fas fa-angle-right'></i>",
+			'type'      => 'array'
+		] );
+		?>
+        <section class="section-spacing">
+            <div class="container">
+                <div class="row section-spacing">
+                    <div class="col-lg-12">
+                        <div class="pagination-wrap">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination text-center justify-content-center">
+									<?php
+									foreach ( $paginate_links as $paginate_link ):
+										echo "<li class='page-item'>" . $paginate_link . "</li>";
+									endforeach;
+									?>
+                                </ul>
+                            </nav>
+                        </div><!-- end pagination-wrap -->
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+            </div>
+        </section>
+		<?php
+	}
 } else {
 	wc_no_products_found();
 }
