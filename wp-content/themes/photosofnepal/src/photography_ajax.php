@@ -138,3 +138,51 @@ function add_new_photograph_callback() {
 
 add_action( 'wp_ajax_nopriv_add_new_photograph', 'add_new_photograph_callback' );
 add_action( 'wp_ajax_add_new_photograph', 'add_new_photograph_callback' );
+
+function photography_search_autocomplete_callback() {
+	$search = $_GET['term'];
+
+
+	$matched_posts = [];
+
+	$search_query = new WP_Query( [ 's' => $search, 'post_type' => 'product', 'posts_per_page' => - 1 ] );
+	if ( $search_query->have_posts() ) {
+		while ( $search_query->have_posts() ) {
+			$search_query->the_post();
+			array_push( $matched_posts, get_the_title() );
+		}
+		wp_reset_postdata();
+	}
+
+	$all_product_tags = get_terms( array( 'taxonomy' => 'product_tag', 'hide_empty' => true ) );
+
+	foreach ( $all_product_tags as $all ) {
+		$par = $all->name;
+		if ( stripos( $par, $search ) !== false ) {
+			array_push( $matched_posts, $all->name );
+		}
+	}
+
+	$matched_posts = array_unique( $matched_posts );
+	$matched_posts = array_values( array_filter( $matched_posts ) );
+
+	$results_json = array_map( function ( $post_title ) {
+		return [
+			'id'    => $post_title,
+			'label' => $post_title,
+			'value' => $post_title
+		];
+	}, $matched_posts );
+
+	/*	echo "<pre>";
+		print_r( $results_json );
+		echo "</pre>";
+		exit;*/
+
+	wp_send_json( $results_json );
+
+	die();
+}
+
+add_action( 'wp_ajax_nopriv_photography_search_autocomplete', 'photography_search_autocomplete_callback' );
+add_action( 'wp_ajax_photography_search_autocomplete', 'photography_search_autocomplete_callback' );

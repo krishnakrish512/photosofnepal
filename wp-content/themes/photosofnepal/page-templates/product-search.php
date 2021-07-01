@@ -62,10 +62,6 @@ if ( sizeof( $matched_posts ) > 0 ) {
 		'paged'     => $paged,
 		'limit'     => $limit
 	] );
-//
-//	echo "<pre>";
-//	print_r( $search_result_query );
-//	echo "</pre>";
 }
 ?>
     <section class="search-hero text-center text-white search-hero__inner section-spacing mb-5">
