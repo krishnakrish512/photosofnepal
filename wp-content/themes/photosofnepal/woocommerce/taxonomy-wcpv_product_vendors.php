@@ -214,7 +214,6 @@ $vendor_data = WC_Product_Vendors_Utils::get_vendor_data_by_id( $term->term_id )
                                 <li><a href="#"><i class="fas fa-envelope"></i></a></li>
                             </ul>
                         </div>
-                        <a href="#" class="btn btn-primary">Share</a>
                     </div>
                 </div>
             </div>

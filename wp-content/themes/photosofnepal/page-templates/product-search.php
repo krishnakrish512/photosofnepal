@@ -53,8 +53,6 @@ $matched_posts = array_values( array_filter( $matched_posts ) );
 
 $search_result_query = null;
 $limit               = 40;
-$pagenum             = isset( $_GET['pagenum'] ) ? absint( $_GET['pagenum'] ) : 1;
-$offset              = ( $pagenum - 1 ) * $limit;
 
 if ( sizeof( $matched_posts ) > 0 ) {
 	$paged               = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
