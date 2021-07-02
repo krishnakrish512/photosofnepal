@@ -7,21 +7,142 @@
   .bg-gray{
     background-color: $gray-200;
   }
-  .facebook{
-    background-color: #3b5998;
+  // .facebook{
+  //   background-color: #3b5998;
+  // }
+  // .twitter{
+  //   background-color: #00aced;
+  // }
+  // .instagram{
+  //   background-color: #C13584;
+  // }
+  // .google{
+  //   background-color: #DB4437;
+  // }
+  
+
+.row{
+  &.gutter-md{
+    margin-left: -8px;
+    margin-right: -8px;
+
+    [class*="col-"],
+    [class*="col-"]{
+      padding-left: 8px;
+      padding-right: 8px;
+    }
   }
-  .twitter{
-    background-color: #00aced;
+}
+.column-5{
+  .column{
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+
+    @include media-breakpoint-up(md){
+      flex: 0 0 20%;
+      max-width: 20%;
+    }
   }
-  .instagram{
-    background-color: #C13584;
+}
+  
+.card{
+    .card-image{
+      overflow: hidden;
+
+      img{
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        transform: scale(1);
+
+        @include transition(all 1s ease); 
+      }
+    }
+
+    &:hover{
+      img{
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+      }
+    }
+}
+.aspect-ratio{
+  position: relative;
+  overflow: hidden;
+  height: 140px;
+
+  // &::after{
+  //   content: "";
+  //   display: block;
+  //   padding-bottom: 75%;
+  //   background: #000;
+  // }
+  img{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    object-fit: cover;
   }
-  .google{
-    background-color: #DB4437;
+}
+.select2-container{
+  &--default{
+
   }
-  
-  
-  
-  
-  
-  
+}
+.select2-container--default {
+  .select2-selection--multiple{
+      border-color: #e9e9e9;
+
+    .select2-selection__choice{
+      border:none;
+      background-color: #efefef;
+      border-radius: 0.25rem;
+      padding:3px 20px 3px 15px ;
+      position: relative;
+      .select2-selection__choice__remove{
+        position: absolute;
+        right: 5px;
+        font-weight: normal;
+        color: inherit;
+      }
+    }
+    &:focus{
+      border-color: #f89fb2;
+    }
+  }
+
+  &.select2-container__focus{
+    .select2-selection--multiple{
+      border-color: #f89fb2;
+    }
+  }
+}
+ul.tagit{
+  border: 1px solid #E9E9E9;
+  border-radius: .25rem;
+  &:focus{
+    border-color: #f89fb2;
+  }
+  li{
+    &.tagit-choice{
+      border-radius: 0.25rem;
+      background-color: #efefef;
+      padding:3px 20px 3px 15px ;
+      .tagit-label{
+        text-transform: capitalize;
+      }
+      .tagit-close{
+        right: 5px;
+        display: block;
+        .text-icon{
+          display: block;
+        }
+      }
+    }
+  }
+}

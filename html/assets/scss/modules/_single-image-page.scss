@@ -7,19 +7,27 @@
   }
   
   &__area{
+    .lg-popup{
+      a{
+        cursor: zoom-in;
+      }
+    }
     img{
       @include media-breakpoint-up(md){
-        height: pxToRem(370, 10);
+        max-height: pxToRem(370, 10);
         object-fit: cover;
       }
       @include media-breakpoint-up(lg){
-        height: pxToRem(535, 10);
+        max-height: pxToRem(535, 10);
       }
-      
+
     }
   }
     &__header{
       padding-bottom: pxToRem(30, 10);
+      border-width: 1px 0;
+      border-style: solid;
+      border-color: $border-color;
   
       .media-image{
         width: pxToRem(50, 10);
@@ -68,14 +76,17 @@
   
     &__area{
       // border: 1px solid $border-color;
+    
   
       &-box{
-        padding: pxToRem(20, 10);
-        border-bottom: 1px solid $border-color;
+        padding: pxToRem(20, 10) 0;
+        // border-bottom: 1px solid $border-color;
+        // border-top: 1px solid $border-color;
+
   
-        &:last-child{
-          border-bottom:0;
-        }
+        // &:last-child{
+        //   border-bottom:0;
+        // }
   
         .media{
           a{
@@ -84,6 +95,7 @@
           }
         }
       }
+      
     }
     &__actions{
       .variations_form{
@@ -138,12 +150,24 @@
     height: 100%;
     width: 100%;
     background-color:#d2d2d2;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: inherit;
     font-size:pxToRem(16, 10);
     font-weight: 400;
+    padding: 10px;
+
     .icon-layers{
-      font-size: 24px;
+      font-size: pxToRem(18, 10);
+      display: inline-block;
+      margin-right: pxToRem(5, 10);
+
+      @include media-breakpoint-up(lg){
+        display: block;
+        font-size: pxToRem(24, 10);
+        margin-right: 0;
+      }
     }
     &:hover{
       background-color: $primary;
@@ -157,6 +181,21 @@
     .keywords{
       a{
         margin-right: pxToRem(5, 10);
+      }
+    }
+  }
+
+  .same-series{
+    .column-5{
+      .grid-item--sm{
+        
+      }
+      .column:nth-child(4),
+      .column:nth-child(5){
+        display: none;
+        @include media-breakpoint-up(md){
+          display: block;
+        }
       }
     }
   }

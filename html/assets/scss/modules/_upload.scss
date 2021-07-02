@@ -77,3 +77,30 @@
 .tjGalleryItem{
     padding-bottom: 50px;
 }
+
+.photo-detail{
+    textarea{
+        height: 115px;
+    }
+    .upload-price{
+        .col{
+            position: relative;
+        }
+        label{
+            text-transform: capitalize;
+        }
+        .input-label{
+            position: absolute;
+            top: 34px;
+            margin-left: 10px;
+            color: rgba(0,0,0,.5);
+        }
+        input{
+            padding-left:40px ;
+        }
+        .resolution{
+            font-size: 11px;
+            color: rgba(0,0,0,0.5);
+        }
+    }
+}

@@ -16,16 +16,32 @@
 			justify-content:space-between;
 			align-items: unset;
 		}
+
+		.logo{
+			display: block;
+			position: absolute;
+			top: 30px;
+			z-index: 3;
+			img{
+				width: 170px;
+			}
+
+			@include media-breakpoint-up(md){
+				left: 30px;
+			}
+		}
 		
 
 	}
 	&__left-panel{
-		display: none;
+		//display: none;
+		width: 100%;
+		height: 100%;
 
 		@include media-breakpoint-up(lg){
-			max-width: 40%;
-			flex:0 0 40%;
-			display: block;
+			// max-width: 65%;
+			// flex:0 0 65%;
+			// display: block;
 		}
 
 		background-size: cover;
@@ -33,17 +49,36 @@
 		background-position: center center;
 	}
 	&__right-panel{
+		color: #fff;
 		
-
-		padding:pxToRem(40, 10) pxToRem(30, 10);
-		overflow-y: scroll;
-
-		@include media-breakpoint-up(lg){
-			max-width: 60%;
-			flex:0 0 60%;
-			padding:pxToRem(40, 10) pxToRem(100, 10);
+		padding:pxToRem(110, 10) pxToRem(30, 10) 0;
+		overflow-y: hidden;
+		position: absolute;
+		background-color: rgba(0,0,0,.7);
+		top:0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		
+		
+		@include media-breakpoint-up(md){
+			max-width: 50%;
+			flex:0 0 50%;
+			padding:pxToRem(20, 10) pxToRem(30, 10);
+			top:50%;
+			right: 5%;
+			height: calc(100vh - 5%);
+			transform: translateY(-50%);
+			border-radius: 5px;
+			left: inherit;
 		}
-
+		@include media-breakpoint-up(xl){
+			max-width: 30%;
+			flex:0 0 30%;
+		}
+		label{
+			display: none;	
+		}
 		&-header{
 			margin-bottom: pxToRem(50, 10);
 		}
@@ -61,6 +96,12 @@
 		.registrations__form-wrapper{
 			.woocommerce-form__label-for-checkbox{
 				padding-left: pxToRem(15, 10);
+			}
+			.woocommerce-privacy-policy-text{
+				p{
+					font-size: 13px;
+					font-weight: 200;
+				}
 			}
 		}
 		
@@ -435,7 +476,48 @@
 			
 		}
 	}
+
+	&-ResetPassword{
+		max-width: 800px;
+		margin: 0 auto;
+		text-align: center;
+		background: #efefef;
+		padding: 40px;
+		border-radius: 4px;
+		position: absolute;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		left: 50%;
+
+		.woocommerce-Input{
+			width: 50% !important;
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+	}
+
+	&-order{
+		width: 900px;
+		margin: 0 auto;
+		.woocommerce-order-details{
+
+			.shop_table {
+				display: none;
+			}
+		}
+		.woocommerce-customer-details{
+			display: none;
+		}
+	}
+
+	.order-detail--download-summery{
+		background-color:lighten($gray-600, 56%);
+		border-radius: 4px;
+	}
+	
+	
 }
+
 
 .woocommerce-address-fields{
 	&__field-wrapper{
@@ -473,5 +555,30 @@
 				border-top: 0;
 			}
 		}
+	}
+}
+
+.login-option,
+.registrations__options{
+	width: 100%;
+	padding: 0 15px;
+	.btn{
+		&.facebook{
+			background-color: #3b5998;
+		}
+		&.google{
+			background-color: #DB4437;
+		}
+	}
+	ul{
+		
+	}
+}
+.registrations__options ul{
+	display: flex;
+	justify-content: space-between;
+	li{
+		max-width: 48%;
+		flex: 0 0 48%;
 	}
 }
