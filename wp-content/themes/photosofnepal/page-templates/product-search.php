@@ -77,7 +77,8 @@ if ( sizeof( $matched_posts ) > 0 ) {
 				endif;
 				?>
                 <form action="<?= get_home_url() ?>" class="">
-                    <input type="text" name="s" id="s" class="form-control" placeholder="Search photos"/>
+                    <input type="text" name="s" id="s" class="form-control" placeholder="Search photos"
+                           autocomplete="off"/>
                     <input type="hidden" name="post_type" value="product">
 					<?php
 					if ( isset( $_GET['author'] ) ):

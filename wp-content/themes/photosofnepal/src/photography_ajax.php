@@ -145,15 +145,15 @@ function photography_search_autocomplete_callback() {
 
 	$matched_posts = [];
 
-	$search_query = new WP_Query( [ 's' => $search, 'post_type' => 'product', 'posts_per_page' => - 1 ] );
-	if ( $search_query->have_posts() ) {
-		while ( $search_query->have_posts() ) {
-			$search_query->the_post();
-			array_push( $matched_posts, get_the_title() );
-		}
-		wp_reset_postdata();
+	//get products with title matching with search term
+	global $wpdb;
+	$search_posts = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE post_title LIKE '%s' AND post_type = 'product' AND post_status='publish'", '%' . $wpdb->esc_like( $search ) . '%' ) );
+
+	foreach ( $search_posts as $post ) {
+		array_push( $matched_posts, $post->post_title );
 	}
 
+	//get product tags with name maching with search term
 	$all_product_tags = get_terms( array( 'taxonomy' => 'product_tag', 'hide_empty' => true ) );
 
 	foreach ( $all_product_tags as $all ) {
