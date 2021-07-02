@@ -64,6 +64,10 @@ form#your-profile table .user-display-name-wrap {
     display: none;
 }
 
+form#your-profile table .user-nickname-wrap {
+    display: none;
+}
+
 form#your-profile .nsl-container {
     display: none;
 }

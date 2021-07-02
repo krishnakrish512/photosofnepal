@@ -145,27 +145,6 @@ function photography_delete_request_approval( $post_id ) {
 }
 
 add_action( 'acf/save_post', 'photography_delete_request_approval' );
-//
-//function include_tags_in_search( $query ) {
-//
-//	if ( ! is_admin() && $query->is_search() && $query->is_main_query() ) {
-//
-//		$term = get_term_by( 'name', get_query_var( 's' ), 'product_tag' );
-//
-//		if ( $term ) {
-//			$query->set( 'tax_query', [
-//				[
-//					'taxonomy' => 'product_tag',
-//					'field'    => 'slug',
-//					'terms'    => $term->slug,
-//					'operator' => 'AND'
-//				]
-//			] );
-//		}
-//	}
-//}
-//
-//add_action( 'pre_get_posts', 'include_tags_in_search' );
 
 /**
  * Proper ob_end_flush() for all levels
@@ -245,6 +224,28 @@ function photos_share_meta() {
 		<?php
 		return;
 	}
+
+	if ( is_tax( 'wcpv_product_vendors' ) ) {
+
+		$thumbnail_url = getHomepageBannerImageUrl();
+		?>
+        <!-- For Facebook -->
+        <meta property="og:url" content="<?= get_home_url() ?>"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="<?php echo get_bloginfo( 'name' ) ?>"/>
+        <meta property="og:description" content="<?php the_field( 'description', 'option' ); ?>"/>
+        <meta property="og:image" content="<?= esc_url( $thumbnail_url ) ?>"/>
+        <meta property="og:image:width" content="1024"/>
+        <meta property="og:image:height" content="1024"/>
+
+        <!-- For Twitter -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="<?php echo get_bloginfo( 'name' ) ?>"/>
+        <meta name="twitter:description" content="<?php the_field( 'description', 'option' ); ?>"/>
+        <meta name="twitter:image" content="<?= esc_url( $thumbnail_url ) ?>"/>
+		<?php
+		return;
+	}
 }
 
 add_action( 'wp_head', 'photos_share_meta' );
@@ -277,3 +278,30 @@ function remove_one_wpseo_title( $title ) {
 
 //Disable the Application Passwords Feature
 add_filter( 'wp_is_application_passwords_available', '__return_false' );
+
+
+//sync user profile with store settings
+function update_extra_profile_fields( $user_id ) {
+	if ( get_field( 'profile_picture', "user_{$user_id}" ) || get_field( 'description', "user_{$user_id}" ) ) {
+		$vendor_id   = WC_Product_Vendors_Utils::get_logged_in_vendor();
+		$vendor_data = get_term_meta( $vendor_id, 'vendor_data', true );
+
+		$vendor_data['logo']    = get_field( 'profile_picture', "user_{$user_id}" );
+		$vendor_data['profile'] = get_field( 'description', "user_{$user_id}" );
+
+		update_term_meta( WC_Product_Vendors_Utils::get_logged_in_vendor(), 'vendor_data', $vendor_data );
+	}
+}
+
+add_action( 'profile_update', 'update_extra_profile_fields' );
+
+add_filter( 'template_include', 'photography_search_template_redirect', 99 );
+
+function photography_search_template_redirect( $template ) {
+
+	if ( is_search() && is_post_type_archive( 'product' ) ) {
+		$template = get_template_directory() . '/page-templates/product-search.php';
+	}
+
+	return $template;
+}

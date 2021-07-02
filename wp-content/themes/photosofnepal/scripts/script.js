@@ -68,9 +68,9 @@ function justifyGallery() {
         margins: 3,
         captions: false
     });
-    
+
     var winWidth = $(window).width();
-    if(winWidth < 768){
+    if (winWidth < 768) {
         $('.justified-gallery--sm').justifiedGallery({
             rowHeight: 100,
             // lastRow: 'justify',
@@ -329,6 +329,26 @@ $(document).ready(function () {
     $('.tag-select').tagit({
         fieldName: 'tags[]',
         availableTags: localized_var.product_tags,
+    });
+
+    $(".photography-product-search").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: localized_var.ajax_url,
+                dataType: "json",
+                data: {
+                    term: request.term,
+                    action: 'photography_search_autocomplete'
+                },
+                success: function (data) {
+                    response(data);
+                }
+            });
+        },
+        // minLength: 2,
+        select: function (event, ui) {
+            log("Selected: " + ui.item.value + " aka " + ui.item.id);
+        }
     });
 });
 
