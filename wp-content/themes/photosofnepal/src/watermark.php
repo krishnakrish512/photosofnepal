@@ -6,9 +6,9 @@ use Intervention\Image\ImageManager;
 function get_text_watermarked_image( $imageId, $text ) {
 	$imageFileName = basename( get_attached_file( $imageId ) );
 
-//	if ( file_exists( ABSPATH . "watermark/${imageFileName}" ) ) {
-//		return site_url( "watermark/{$imageFileName}" );
-//	}
+	if ( file_exists( ABSPATH . "watermark/${imageFileName}" ) ) {
+		return site_url( "watermark/{$imageFileName}" );
+	}
 
 	$imageSource = wp_get_attachment_image_url( $imageId, 'photography_preview' );
 
