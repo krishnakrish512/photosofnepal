@@ -101,6 +101,19 @@ if ( ! ( is_account_page() && ! is_user_logged_in() ) ):
 endif;
 
 wp_footer(); ?>
+<style>
+    #ui-id-1 {
+        background: #ffffff;
+        width: 720px;
+        z-index: 10;
+        padding-left: 15px;
+        margin-top: 5px;
+        border-radius: 5px;
+    }
 
+    #ui-id-1 .ui-menu-item{
+        cursor: pointer;
+    }
+</style>
 </body>
 </html>
