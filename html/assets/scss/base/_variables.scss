@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $white:    #fff ;
 $black:    #000 ;
 
@@ -39,3 +40,33 @@ $grid-breakpoints: (
   xl: 1200px,
   xxl: 1600px
 ) 
+=======
+$white:    #fff ;
+$black:    #000 ;
+
+$gray-100: #f4f4f4;
+$gray-200: #E9E9E9;
+$gray-400: #020202;
+$gray-500: #989898;
+$gray-600: #706767;
+
+
+$primary: #ef2853;
+$secondary : #268DA7;
+$border-color : #ccc;
+
+//base fonts size
+$font-size-sm:  pxToRem(12, 10);
+$font-size-base:  pxToRem(14, 10);
+$font-size-lg: pxToRem(16, 10);
+$font-weight-bold:  600;
+
+//base font family
+$font-family-base:  'Poppins', sans-serif;
+$font-weight-base: 400;
+
+$input-border-color: $gray-200;
+
+//Grid
+$base_container_width: 1255px;
+>>>>>>> 2b20bb4bc3bafb5ea93290927ad54ddd607b581f

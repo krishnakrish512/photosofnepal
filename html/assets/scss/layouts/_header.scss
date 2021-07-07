@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .header{
   height: pxToRem(70, 10);
   background-color: $white;
@@ -268,3 +269,274 @@
   }
 }
 
+=======
+.header{
+  height: pxToRem(70, 10);
+  background-color: $white;
+  
+  @include media-breakpoint-down(md){
+    padding: 15px 0;
+  }
+
+  a{
+    color: $black;
+  }
+
+  &__logo{
+    font-size: pxToRem(18, 10);
+  }
+
+  &__wrapper{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__nav{
+
+    @include media-breakpoint-down(md){
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0,0,0,.8);
+      height: 100vh;
+      z-index: 1000;
+      display:flex;
+      justify-content: flex-end;
+      opacity: 0;
+      visibility: hidden;
+
+      transition: all 0.3s ease;
+    }
+    &--inner{
+      @include media-breakpoint-down(md){
+        position: relative;
+        width: pxToRem(320, 10);
+        height: 100vh;
+        background-color: $white;
+        padding: pxToRem(70, 10) pxToRem(30, 10) pxToRem(30, 10);
+        @include transform(translateX(100%));
+		    @include transition(all 0.3s ease);
+      }
+    }
+    &--list{
+      @include media-breakpoint-down(md){
+        border-bottom: 1px solid #ccc;
+        margin-bottom: pxToRem(30, 10);
+        padding-bottom: pxToRem(30, 10);
+      }
+
+    }
+    &.mobile-nav-open{
+        opacity: 1;
+        visibility: visible;
+        .header__nav--inner{
+          transform: translateX(0);
+        }
+    }
+
+    ul{
+
+      li{
+        @include media-breakpoint-down(md){
+          width: 100%;
+          margin: 0;
+        }
+      }
+    }
+    
+
+    &-item{
+      padding:0 pxToRem(10, 10);
+      margin:0 pxToRem(10, 10);
+
+      @include media-breakpoint-down(md){
+        padding:0;
+      }
+
+      a{
+        position: relative;
+        font-size: pxToRem(16, 10);
+
+        @include media-breakpoint-down(md){
+          padding: pxToRem(5,10 ) 0;
+          display: block;
+        }
+
+        &:after{
+          content: "";
+          display: block;
+          width: 0;
+          height: pxToRem(2, 10);
+          background-color: $primary;
+          margin: 0 auto;
+          position: absolute;
+          bottom: pxToRem(-5, 10);
+          left: 0;
+          right: 0;
+          @include transition(width 0.25s ease);
+        }
+
+        &:hover{
+          color: $primary;
+          &:after{
+            width: pxToRem(20, 10);
+            
+          }
+        }
+      }
+      
+      &.active{
+        a{
+          color: $primary;
+          &:after{
+            width: pxToRem(20, 10);
+            
+          }
+        }
+        
+      }
+    }
+  }
+  &__tools{
+    display: flex;
+    align-items: center;
+    &--user{
+      li{
+          margin-left: pxToRem(20,10);
+          a,
+          .btn-usernav-toggle{
+            font-size: pxToRem(16, 10);
+            position: relative;
+          }
+
+          &:first-child{
+            margin-left: 0;
+            label{
+              display:inline-block;
+              font-size: 0;
+              span{
+                @include media-breakpoint-down(sm){
+                  font-size: 1.3rem;
+                  width: 20px;
+                  border-radius: 100%;
+                  background-color: $primary;
+                  text-align: center;
+                  line-height: 20px;
+                  height: 20px;
+                  position: absolute;
+                  top: -10px;
+                  right: -2px;
+                  display: block;
+                  font-weight: normal !important;
+                  color: #fff;
+                }
+                
+              }
+              @include media-breakpoint-up(sm){
+                font-size: pxToRem(16, 10);
+              }
+              
+
+            }
+          }
+          .icon-shopping-cart,
+          .fa-user{
+            font-size:pxToRem(20, 10);
+          }
+
+          label{
+            display: none;
+            cursor: pointer;
+            @include media-breakpoint-up(lg){
+              display: inline-block;
+            }
+            
+          }
+
+      }
+
+    }
+
+
+    &--access{
+      display: none;
+      @include media-breakpoint-up(sm){
+        display: block;
+      }
+        li{
+          margin-left: 20px;
+        }
+    }
+
+
+    // ul{
+      
+    //   li{
+    //     margin-left: pxToRem(10, 10);
+    //     vertical-align: middle;
+    //     &:first-child{
+    //       margin-right: pxToRem(20, 10);
+    //       padding-right: pxToRem(30, 10);
+    //       // border-right: 1px solid #ccc;
+    //     }
+    //   }
+      
+    // }
+    &-cart{
+      display: block;
+      font-size: pxToRem(16, 10);
+      color: $primary;
+      label{
+        margin-bottom: 0;
+        cursor: pointer;
+        span{
+          font-weight: 500;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}
+
+
+.btn-nav-toggle{
+  background: transparent;
+  border: none;
+  font-size: pxToRem(24, 10);
+  display: none;
+  @include media-breakpoint-down(md){
+    display:block;
+  }
+}
+.btn-toggle-close{
+    position: absolute;
+    top: pxToRem(20, 10);
+    right: pxToRem(22, 10);
+    width: pxToRem(30, 10);
+    height: pxToRem(30, 10);
+    display: none;
+    font-size: pxToRem(26, 10);
+    color: $primary;
+    @include media-breakpoint-down(md){
+      display:block;
+    }
+}
+
+.mobile-header-tools{
+  display: none;
+  @include media-breakpoint-down(md){
+    display: block;
+  }
+  li{    
+     margin-bottom: 15px !important;
+     &:last-child{
+       margin-bottom: 0;
+     }
+  }
+}
+
+>>>>>>> 2b20bb4bc3bafb5ea93290927ad54ddd607b581f

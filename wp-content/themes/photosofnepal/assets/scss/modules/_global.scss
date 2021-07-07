@@ -106,3 +106,14 @@ ul.inline-list{
 }
 
 
+
+
+#ui-id-1{
+  padding: 15px 25px;
+  .ui-menu-item{
+    margin-bottom: 10px;
+    &:hover{
+      color: #ef2853;
+    }
+  }
+}

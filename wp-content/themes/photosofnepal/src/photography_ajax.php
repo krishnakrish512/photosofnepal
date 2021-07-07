@@ -147,7 +147,13 @@ function photography_search_autocomplete_callback() {
 
 	//get products with title matching with search term
 	global $wpdb;
-	$search_posts = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE post_title LIKE '%s' AND post_type = 'product' AND post_status='publish'", '%' . $wpdb->esc_like( $search ) . '%' ) );
+//	$search_posts = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE post_title LIKE '%s' AND post_type = 'product' AND post_status='publish' order by locate('ani', post_title) asc, post_title asc", '%' . $wpdb->esc_like( $search ) . '%' ) );
+	$search_posts = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE post_title LIKE '%s' AND post_type = 'product' AND post_status='publish' ORDER BY
+  CASE
+    WHEN post_title LIKE '%s' THEN 1
+    WHEN post_title LIKE '%s' THEN 3
+    ELSE 2
+  END, post_title", ['%' . $wpdb->esc_like( $search ) . '%',$wpdb->esc_like( $search ) . '%','%' . $wpdb->esc_like( $search ) ]) );
 
 	foreach ( $search_posts as $post ) {
 		array_push( $matched_posts, $post->post_title );
@@ -164,7 +170,7 @@ function photography_search_autocomplete_callback() {
 	}
 
 	$matched_posts = array_unique( $matched_posts );
-	$matched_posts = array_values( array_filter( $matched_posts ) );
+//	$matched_posts = array_values( array_filter( $matched_posts ) );
 
 	$results_json = array_map( function ( $post_title ) {
 		return [

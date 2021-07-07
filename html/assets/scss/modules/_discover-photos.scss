@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .discover-photos{
     &__grid{
       overflow: hidden;
@@ -170,3 +171,100 @@
     // }
   }
   
+=======
+.discover-photos{
+    &__grid{
+      overflow: hidden;
+      &-item{
+        &:hover{
+          .figure-tools{
+            opacity: 1;
+          }
+          .figure-info{
+            .btn{
+              opacity: 1;
+            }
+          }
+        }
+      }
+  
+
+  
+        figcaption{
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+          display: flex;
+          justify-content:space-between;
+          flex-direction: column;
+          color: $white;
+  
+          
+          .figure-tools{
+            padding-left: pxToRem(15, 10);
+            background:linear-gradient(to top, transparent 0%, rgba(0,0,0,0.8) 100%);
+            opacity: 0;
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            @include transition(all 0.25s ease); 
+          }
+          .figure-icons{
+              padding: pxToRem(15, 10) pxToRem(10, 10);
+    
+              > a {
+                display: inline-block;
+                position: relative;
+                z-index: 3;
+                color: $white;
+                width: pxToRem(36, 10);
+                height: pxToRem(36, 10);
+                line-height: pxToRem(36, 10);
+                text-align: center;
+                font-size: pxToRem(20, 10);
+                               
+              }
+              .tinv-wishlist{
+                display: inline-block;
+                position: relative;
+                z-index: 3;
+                a{
+                  top: pxToRem(-1, 10);
+                  vertical-align: middle !important;
+                  &:before{
+                    font-size: pxToRem(24, 10);
+                    margin-top: pxToRem(-16, 10) !important;
+                  }
+                }
+              }
+          }
+          .figure-info{
+            padding: pxToRem(15, 10) pxToRem(10, 10);
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             flex-wrap: wrap;
+             background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+  
+             h6{
+              font-size: pxToRem(16, 10);
+              font-weight: normal;
+             }
+             p{
+              font-size: pxToRem(14, 10);
+              font-weight: 300;
+             }
+             .btn{
+               opacity: 0;
+               position: relative;
+               z-index: 2;
+               @include transition(all 0.25s ease); 
+             }
+
+          }
+        }
+    }
+  }
+>>>>>>> 2b20bb4bc3bafb5ea93290927ad54ddd607b581f
