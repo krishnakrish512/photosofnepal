@@ -1,61 +1,65 @@
 <?php
 
-function photography_add_product_tag_callback() {
-	$new_tag = wp_insert_term( $_POST["new_tag"], 'product_tag', [] );
+function photography_add_product_tag_callback()
+{
+    $new_tag = wp_insert_term($_POST["new_tag"], 'product_tag', []);
 
-	wp_send_json( get_term( $new_tag['term_id'] ) );
+    wp_send_json(get_term($new_tag['term_id']));
 
-	die();
+    die();
 }
 
-add_action( 'wp_ajax_nopriv_photography_add_product_tag', 'photography_add_product_tag_callback' );
-add_action( 'wp_ajax_photography_add_product_tag', 'photography_add_product_tag_callback' );
+add_action('wp_ajax_nopriv_photography_add_product_tag', 'photography_add_product_tag_callback');
+add_action('wp_ajax_photography_add_product_tag', 'photography_add_product_tag_callback');
 
-function photography_get_all_product_tags_callback() {
-	$tags = get_terms( 'product_tag', array(
-		'hide_empty' => false,
-	) );
+function photography_get_all_product_tags_callback()
+{
+    $tags = get_terms('product_tag', array(
+        'hide_empty' => false,
+    ));
 
-	$tag_names = array_map( function ( $tag ) {
-		return $tag->name;
-	}, $tags );
+    $tag_names = array_map(function ($tag) {
+        return $tag->name;
+    }, $tags);
 
-	wp_send_json( $tag_names );
-	die();
+    wp_send_json($tag_names);
+    die();
 }
 
-add_action( 'wp_ajax_nopriv_photography_get_all_product_tags', 'photography_get_all_product_tags_callback' );
-add_action( 'wp_ajax_photography_get_all_product_tags', 'photography_get_all_product_tags_callback' );
+add_action('wp_ajax_nopriv_photography_get_all_product_tags', 'photography_get_all_product_tags_callback');
+add_action('wp_ajax_photography_get_all_product_tags', 'photography_get_all_product_tags_callback');
 
-function photography_upload_attachment_callback() {
+function photography_upload_attachment_callback()
+{
 // These files need to be included as dependencies when on the front end.
-	require_once( ABSPATH . 'wp-admin/includes/image.php' );
-	require_once( ABSPATH . 'wp-admin/includes/file.php' );
-	require_once( ABSPATH . 'wp-admin/includes/media.php' );
+    require_once(ABSPATH . 'wp-admin/includes/image.php');
+    require_once(ABSPATH . 'wp-admin/includes/file.php');
+    require_once(ABSPATH . 'wp-admin/includes/media.php');
 
-	var_dump( $_POST );
+    var_dump($_POST);
 
-	die();
+    die();
 }
 
-add_action( 'wp_ajax_nopriv_photography_upload_attachment', 'photography_upload_attachment_callback' );
-add_action( 'wp_ajax_photography_upload_attachment', 'photography_upload_attachment_callback' );
+add_action('wp_ajax_nopriv_photography_upload_attachment', 'photography_upload_attachment_callback');
+add_action('wp_ajax_photography_upload_attachment', 'photography_upload_attachment_callback');
 
-function add_new_photograph_callback() {
+function add_new_photograph_callback()
+{
 
-	// These files need to be included as dependencies when on the front end.
-	require_once( ABSPATH . 'wp-admin/includes/image.php' );
-	require_once( ABSPATH . 'wp-admin/includes/file.php' );
-	require_once( ABSPATH . 'wp-admin/includes/media.php' );
+    // These files need to be included as dependencies when on the front end.
+    require_once(ABSPATH . 'wp-admin/includes/image.php');
+    require_once(ABSPATH . 'wp-admin/includes/file.php');
+    require_once(ABSPATH . 'wp-admin/includes/media.php');
 
-	$title       = filter_var( $_POST['title'], FILTER_SANITIZE_STRING );
-	$description = filter_var( $_POST['description'], FILTER_SANITIZE_STRING );
+    $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
+    $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
 
-	$categories = isset( $_POST['categories'] ) ? (array) $_POST['categories'] : [];
-	$categories = array_map( 'esc_attr', $categories );
+    $categories = isset($_POST['categories']) ? (array)$_POST['categories'] : [];
+    $categories = array_map('esc_attr', $categories);
 
-	$tags = isset( $_POST['tags'] ) ? (array) $_POST['tags'] : [];
-	$tags = array_map( 'esc_attr', $tags );
+    $tags = isset($_POST['tags']) ? (array)$_POST['tags'] : [];
+    $tags = array_map('esc_attr', $tags);
 //	$tags = array_map( 'intval', $tags );
 
 //	foreach ( $tags as &$tag ) {
@@ -70,125 +74,126 @@ function add_new_photograph_callback() {
 //	wp_set_object_terms( $product_id, $tags, 'product_tag' );
 
 
-	$galleries = isset( $_POST['galleries'] ) ? (array) $_POST['galleries'] : [];
-	$galleries = array_map( 'esc_attr', $galleries );
-	$galleries = array_map( 'intval', $galleries );
+    $galleries = isset($_POST['galleries']) ? (array)$_POST['galleries'] : [];
+    $galleries = array_map('esc_attr', $galleries);
+    $galleries = array_map('intval', $galleries);
 
-	$price = [];
+    $price = [];
 
-	foreach ( [ 'small', 'medium', 'large' ] as $term_name ) {
-		$price[ $term_name ] = $_POST["{$term_name}_price"];
-	}
+    foreach (['small', 'medium', 'large'] as $term_name) {
+        $price[$term_name] = $_POST["{$term_name}_price"];
+    }
 
-	// Let WordPress handle the upload.
-	$attachment_id = media_handle_upload( 'photograph', 0 );
+    // Let WordPress handle the upload.
+    $attachment_id = media_handle_upload('photograph', 0);
 
-	if ( is_wp_error( $attachment_id ) ) {
-		// There was an error uploading the image.
-		echo "error uploading image";
-	} else {
-		// The image was uploaded successfully!
-		$new_post_id = wp_insert_post( [
-			'post_title'   => $title,
-			'post_content' => $description,
-			'post_author'  => get_current_user_id(),
-			'post_type'    => 'product',
-			'post_status'  => 'publish',
-			'tax_input'    => [
-				'product_cat' => $categories,
-				'product_tag' => $tags
-			]
-		] );
+    if (is_wp_error($attachment_id)) {
+        // There was an error uploading the image.
+        echo "error uploading image";
+    } else {
+        // The image was uploaded successfully!
+        $new_post_id = wp_insert_post([
+            'post_title' => $title,
+            'post_content' => $description,
+            'post_author' => get_current_user_id(),
+            'post_type' => 'product',
+            'post_status' => 'publish',
+            'tax_input' => [
+                'product_cat' => $categories,
+                'product_tag' => $tags
+            ]
+        ]);
 
-		wp_set_object_terms( $new_post_id, $tags, 'product_tag' );
+        wp_set_object_terms($new_post_id, $tags, 'product_tag');
 
 
-		update_post_meta( $new_post_id, '_thumbnail_id', $attachment_id );
+        update_post_meta($new_post_id, '_thumbnail_id', $attachment_id);
 
-		// Update the original image (attachment) to reflect new status.
-		wp_update_post( [
-			'ID'           => $attachment_id,
-			'post_parent'  => $new_post_id,
-			'post_status'  => 'inherit',
-			'post_title'   => $title,
-			'post_content' => $description
-		] );
+        // Update the original image (attachment) to reflect new status.
+        wp_update_post([
+            'ID' => $attachment_id,
+            'post_parent' => $new_post_id,
+            'post_status' => 'inherit',
+            'post_title' => $title,
+            'post_content' => $description
+        ]);
 
-		add_post_meta( $attachment_id, 'photography_product_id', $new_post_id );
+        add_post_meta($attachment_id, 'photography_product_id', $new_post_id);
 
-		update_field( 'categories', $categories, $attachment_id );
-		update_field( 'tags', $tags, $attachment_id );
+        update_field('categories', $categories, $attachment_id);
+        update_field('tags', $tags, $attachment_id);
 
-		//add photograph to gallery posts
-		if ( ! empty( $galleries ) ) {
-			foreach ( $galleries as $gallery_id ) {
-				$gallery_photographs = get_field( 'photographs', $gallery_id );
+        //add photograph to gallery posts
+        if (!empty($galleries)) {
+            foreach ($galleries as $gallery_id) {
+                $gallery_photographs = get_field('photographs', $gallery_id);
 
-				array_push( $gallery_photographs, $attachment_id );
+                array_push($gallery_photographs, $attachment_id);
 
-				update_field( 'photographs', $gallery_photographs, $gallery_id );
-			}
-		}
+                update_field('photographs', $gallery_photographs, $gallery_id);
+            }
+        }
 
-		create_photography_variations( $new_post_id, $price );
-	}
+        create_photography_variations($new_post_id, $price);
+    }
 
-	die();
+    die();
 }
 
-add_action( 'wp_ajax_nopriv_add_new_photograph', 'add_new_photograph_callback' );
-add_action( 'wp_ajax_add_new_photograph', 'add_new_photograph_callback' );
+add_action('wp_ajax_nopriv_add_new_photograph', 'add_new_photograph_callback');
+add_action('wp_ajax_add_new_photograph', 'add_new_photograph_callback');
 
-function photography_search_autocomplete_callback() {
-	$search = $_GET['term'];
+function photography_search_autocomplete_callback()
+{
+    $search = $_GET['term'];
 
 
-	$matched_posts = [];
+    $matched_posts = [];
 
-	//get products with title matching with search term
-	global $wpdb;
+    //get products with title matching with search term
+    global $wpdb;
 //	$search_posts = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE post_title LIKE '%s' AND post_type = 'product' AND post_status='publish' order by locate('ani', post_title) asc, post_title asc", '%' . $wpdb->esc_like( $search ) . '%' ) );
-	$search_posts = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE post_title LIKE '%s' AND post_type = 'product' AND post_status='publish' ORDER BY
+    $search_posts = $wpdb->get_results($wpdb->prepare("SELECT * FROM $wpdb->posts WHERE post_title LIKE '%s' AND post_type = 'product' AND post_status='publish' ORDER BY
   CASE
     WHEN post_title LIKE '%s' THEN 1
     WHEN post_title LIKE '%s' THEN 3
     ELSE 2
-  END, post_title", ['%' . $wpdb->esc_like( $search ) . '%',$wpdb->esc_like( $search ) . '%','%' . $wpdb->esc_like( $search ) ]) );
+  END, post_title", ['%' . $wpdb->esc_like($search) . '%', $wpdb->esc_like($search) . '%', '%' . $wpdb->esc_like($search)]));
 
-	foreach ( $search_posts as $post ) {
-		array_push( $matched_posts, $post->post_title );
-	}
+    foreach ($search_posts as $post) {
+        array_push($matched_posts, $post->post_title);
+    }
 
-	//get product tags with name maching with search term
-	$all_product_tags = get_terms( array( 'taxonomy' => 'product_tag', 'hide_empty' => true ) );
+    //get product tags with name maching with search term
+    $all_product_tags = get_terms(array('taxonomy' => 'product_tag', 'hide_empty' => true));
 
-	foreach ( $all_product_tags as $all ) {
-		$par = $all->name;
-		if ( stripos( $par, $search ) !== false ) {
-			array_push( $matched_posts, $all->name );
-		}
-	}
+    foreach ($all_product_tags as $all) {
+        $par = $all->name;
+        if (stripos($par, $search) !== false) {
+            array_push($matched_posts, $all->name);
+        }
+    }
 
-	$matched_posts = array_unique( $matched_posts );
+    $matched_posts = array_unique($matched_posts);
 //	$matched_posts = array_values( array_filter( $matched_posts ) );
 
-	$results_json = array_map( function ( $post_title ) {
-		return [
-			'id'    => $post_title,
-			'label' => $post_title,
-			'value' => $post_title
-		];
-	}, $matched_posts );
+    $results_json = array_map(function ($post_title) {
+        return [
+            'id' => $post_title,
+            'label' => $post_title,
+            'value' => $post_title
+        ];
+    }, $matched_posts);
 
-	/*	echo "<pre>";
-		print_r( $results_json );
-		echo "</pre>";
-		exit;*/
+    /*	echo "<pre>";
+        print_r( $results_json );
+        echo "</pre>";
+        exit;*/
 
-	wp_send_json( $results_json );
+    wp_send_json(array_slice($results_json, 0, 15));
 
-	die();
+    die();
 }
 
-add_action( 'wp_ajax_nopriv_photography_search_autocomplete', 'photography_search_autocomplete_callback' );
-add_action( 'wp_ajax_photography_search_autocomplete', 'photography_search_autocomplete_callback' );
+add_action('wp_ajax_nopriv_photography_search_autocomplete', 'photography_search_autocomplete_callback');
+add_action('wp_ajax_photography_search_autocomplete', 'photography_search_autocomplete_callback');
