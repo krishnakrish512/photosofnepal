@@ -19,8 +19,10 @@ function photography_update_product_yoast_image($url)
     global $post;
 
     $thumbnail_id = get_post_thumbnail_id($post->ID);
-    $watermarked_image = get_text_watermarked_image($thumbnail_id, "ID: {$post->ID}");
+    if ($thumbnail_id) {
+        return get_text_watermarked_image($thumbnail_id, "ID: {$post->ID}");
+    }
 
-    return $watermarked_image;
+    return $url;
 }
 
