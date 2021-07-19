@@ -16,6 +16,10 @@ add_filter('wpseo_opengraph_image', 'photography_update_product_yoast_image');
 
 function photography_update_product_yoast_image($url)
 {
+    if (is_admin()) {
+        return $url;
+    }
+
     global $post;
 
     $thumbnail_id = get_post_thumbnail_id($post->ID);
