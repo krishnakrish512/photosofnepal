@@ -21,7 +21,7 @@
             $("<h2>Photograph Description</h2>").insertBefore("#wp-content-editor-container");
         }
 
-        if ($("#set-post-thumbnail").length) {
+        if ($("#set-post-thumbnail").length && $('#_thumbnail_id').val() === "-1") {
             $("#set-post-thumbnail").html("Upload Photo")
         }
 
