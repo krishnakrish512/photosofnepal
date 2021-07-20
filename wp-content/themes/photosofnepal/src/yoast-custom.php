@@ -1,6 +1,9 @@
 <?php
 function photography_update_yoast_meta($post_id)
 {
+    if (is_admin()) {
+        return;
+    }
     if ($_POST['content']) {
         $_POST["yoast_wpseo_title"] = $_POST['post_title'] . ' - ' . $_POST['content'];
 
@@ -35,6 +38,7 @@ function photography_remove_yoast_metabox()
     if (!wc_current_user_has_role('administrator') && (wc_current_user_has_role('wc_product_vendors_admin_vendor') ||
             wc_current_user_has_role('wc_product_vendors_manager_vendor') || wc_current_user_has_role('seller'))) {
         remove_meta_box('wpseo_meta', 'product', 'normal');
+        remove_meta_box('wpseo_meta', 'gallery', 'normal');
     }
 }
 
