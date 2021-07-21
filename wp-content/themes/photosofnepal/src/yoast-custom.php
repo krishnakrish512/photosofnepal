@@ -1,16 +1,13 @@
 <?php
 function photography_update_yoast_meta($post_id)
 {
-    if (is_admin()) {
-        return;
-    }
-    if ($_POST['content']) {
+    if (isset($_POST['content']) && $_POST['content']) {
         $_POST["yoast_wpseo_title"] = $_POST['post_title'] . ' - ' . $_POST['content'];
 
     } else {
-        $_POST['yoast_wpseo_title'] = $_POST['post_title'];
+        $_POST['yoast_wpseo_title'] = $_POST['post_title'] ?? "";
     }
-    $_POST["yoast_wpseo_metadesc"] = $_POST['content'];
+    $_POST["yoast_wpseo_metadesc"] = $_POST['content'] ?? "";
 }
 
 add_action('save_post', 'photography_update_yoast_meta');
