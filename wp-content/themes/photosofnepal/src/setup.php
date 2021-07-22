@@ -79,7 +79,7 @@ if (!wc_current_user_has_role('administrator') && (wc_current_user_has_role('wc_
 
         global $typenow;
         if ($typenow === "product") {
-            wp_enqueue_style('admin-product-css', get_template_directory_uri() . '/assets/css/admin-product.css', false, '1.15');
+            wp_enqueue_style('admin-product-css', get_template_directory_uri() . '/assets/css/admin-product.css', false, '1.16');
 
             wp_enqueue_script('photography-admin-product-js', get_template_directory_uri() . '/scripts/admin-product.js', [], '1.05', true);
         }

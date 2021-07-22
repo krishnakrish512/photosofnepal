@@ -29,14 +29,3 @@ function photography_update_product_yoast_image($url)
 
     return $url;
 }
-
-function photography_remove_yoast_metabox()
-{
-    if (!wc_current_user_has_role('administrator') && (wc_current_user_has_role('wc_product_vendors_admin_vendor') ||
-            wc_current_user_has_role('wc_product_vendors_manager_vendor') || wc_current_user_has_role('seller'))) {
-        remove_meta_box('wpseo_meta', 'product', 'normal');
-        remove_meta_box('wpseo_meta', 'gallery', 'normal');
-    }
-}
-
-add_action('add_meta_boxes', 'photography_remove_yoast_metabox', 11);
