@@ -191,27 +191,6 @@ function photos_share_meta()
 
     global $post;
 
-    if (is_front_page()) {
-        $thumbnail_url = getHomepageBannerImageUrl();
-        ?>
-        <!-- For Facebook -->
-        <meta property="og:url" content="<?= get_home_url() ?>"/>
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="<?php echo get_bloginfo('name') ?>"/>
-        <meta property="og:description" content="<?php the_field('description', 'option'); ?>"/>
-        <meta property="og:image" content="<?= esc_url($thumbnail_url) ?>"/>
-        <meta property="og:image:width" content="1024"/>
-        <meta property="og:image:height" content="1024"/>
-
-        <!-- For Twitter -->
-        <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:title" content="<?php echo get_bloginfo('name') ?>"/>
-        <meta name="twitter:description" content="<?php the_field('description', 'option'); ?>"/>
-        <meta name="twitter:image" content="<?= esc_url($thumbnail_url) ?>"/>
-        <?php
-        return;
-    }
-
 
     if (is_tax('wcpv_product_vendors')) {
 
@@ -232,7 +211,6 @@ function photos_share_meta()
         <meta name="twitter:description" content="<?php the_field('description', 'option'); ?>"/>
         <meta name="twitter:image" content="<?= esc_url($thumbnail_url) ?>"/>
         <?php
-        return;
     }
 }
 
@@ -282,3 +260,14 @@ function photography_search_template_redirect($template)
 
     return $template;
 }
+
+function so_3261107_hash_filename($filename)
+{
+    $info = pathinfo($filename);
+    $ext = empty($info['extension']) ? '' : '.' . $info['extension'];
+    $name = basename($filename, $ext);
+
+    return $name . '-image-pasal-' . date('Y-m-d') . $ext;
+}
+
+add_filter('sanitize_file_name', 'so_3261107_hash_filename', 10);
