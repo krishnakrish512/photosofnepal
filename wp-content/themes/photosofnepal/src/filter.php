@@ -261,7 +261,7 @@ function photography_search_template_redirect($template)
     return $template;
 }
 
-function so_3261107_hash_filename($filename)
+function photography_custom_filename($filename)
 {
     $info = pathinfo($filename);
     $ext = empty($info['extension']) ? '' : '.' . $info['extension'];
@@ -270,4 +270,4 @@ function so_3261107_hash_filename($filename)
     return $name . '-image-pasal-' . date('Y-m-d') . $ext;
 }
 
-add_filter('sanitize_file_name', 'so_3261107_hash_filename', 10);
+add_filter('sanitize_file_name', 'photography_custom_filename', 10);
