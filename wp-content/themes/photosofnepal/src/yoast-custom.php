@@ -13,7 +13,7 @@ function photography_update_yoast_meta($post_id)
     }
 }
 
-add_action('save_post', 'photography_update_yoast_meta');
+//add_action('save_post', 'photography_update_yoast_meta');
 
 add_filter('wpseo_opengraph_image', 'photography_update_yoast_image');
 
@@ -30,10 +30,10 @@ function photography_update_yoast_image($url)
     }
 
     if ($post->post_type === "product") {
-        $thumbnail_id = get_post_thumbnail_id($post->ID);
-        if ($thumbnail_id) {
-            return get_text_watermarked_image($thumbnail_id, "ID: {$post->ID}");
-        }
+//        $thumbnail_id = get_post_thumbnail_id($post->ID);
+//        if ($thumbnail_id) {
+//            return get_text_watermarked_image($thumbnail_id, "ID: {$post->ID}");
+//        }
     }
 
     return $url;
