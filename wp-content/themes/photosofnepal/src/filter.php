@@ -191,6 +191,33 @@ function photos_share_meta()
 
     global $post;
 
+    if (is_singular('product')) {
+        $product = wc_get_product($post->ID);
+        $watermarked_image = get_text_watermarked_image($product->get_image_id(), "ID: {$product->get_id()}");
+
+        $product_title = $product->get_title();
+        if ($product->get_description()) {
+            $product_title = $product_title . ' - ' . $product->get_description();
+        }
+        ?>
+        <!-- For Facebook -->
+        <meta property="og:url" content="<?= esc_url($product->get_permalink()) ?>"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="<?= esc_attr($product_title) ?>"/>
+        <meta property="og:description" content="<?= esc_attr($product->get_description()) ?>"/>
+        <meta property="og:image" content="<?= esc_url($watermarked_image) ?>"/>
+        <meta property="og:image:width" content="1024"/>
+        <meta property="og:image:height" content="1024"/>
+
+        <!-- For Twitter -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="<?= esc_attr($product_title) ?>"/>
+        <meta name="twitter:description" content="<?= esc_attr($product->get_description()) ?>"/>
+        <meta name="twitter:image" content="<?= esc_url($watermarked_image) ?>"/>
+        <?php
+        return;
+    }
+
 
     if (is_tax('wcpv_product_vendors')) {
 
