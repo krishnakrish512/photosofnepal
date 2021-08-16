@@ -191,6 +191,27 @@ function photos_share_meta()
 
     global $post;
 
+    if (is_front_page()) {
+        $thumbnail_url = getHomepageBannerImageUrl();
+        ?>
+        <!-- For Facebook -->
+        <meta property="og:url" content="<?= get_home_url() ?>"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="<?php echo get_bloginfo('name') ?>"/>
+        <meta property="og:description" content="<?php the_field('description', 'option'); ?>"/>
+        <meta property="og:image" content="<?= esc_url($thumbnail_url) ?>"/>
+        <meta property="og:image:width" content="1024"/>
+        <meta property="og:image:height" content="1024"/>
+
+        <!-- For Twitter -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="<?php echo get_bloginfo('name') ?>"/>
+        <meta name="twitter:description" content="<?php the_field('description', 'option'); ?>"/>
+        <meta name="twitter:image" content="<?= esc_url($thumbnail_url) ?>"/>
+        <?php
+        return;
+    }
+
     if (is_singular('product')) {
         $product = wc_get_product($post->ID);
         $watermarked_image = get_text_watermarked_image($product->get_image_id(), "ID: {$product->get_id()}");
