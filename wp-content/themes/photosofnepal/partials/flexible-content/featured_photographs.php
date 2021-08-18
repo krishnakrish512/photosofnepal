@@ -83,7 +83,7 @@ $photograph_query = new WP_Query($args);
             ?>
         </div>
     </div>
-    <div class="see-more-div text-center mt-4">
+    <div class="justified-gallery-see-more text-center mt-4 d-none">
         <a href="<?= get_home_url() . '/shop/?orderby=date' ?>" class="btn btn-primary see-more-button">See More</a>
     </div>
 </section>
