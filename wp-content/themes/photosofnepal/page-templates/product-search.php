@@ -67,7 +67,7 @@ if ( sizeof( $matched_posts ) > 0 ) {
     <section class="search-hero text-center text-white search-hero__inner section-spacing mb-5">
         <div class="search-hero__content sticky-search-bar">
             <h1 class="search-hero__title">Moving the world with images</h1>
-            <div class="search-hero__form has-badge input-style">
+            <div class="search-hero__form input-style">
 				<?php
 				if ( isset( $_GET['author'] ) ):
 					?>
