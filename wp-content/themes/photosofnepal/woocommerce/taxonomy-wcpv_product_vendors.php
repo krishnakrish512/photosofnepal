@@ -21,7 +21,7 @@ $vendor_data = WC_Product_Vendors_Utils::get_vendor_data_by_id( $term->term_id )
                     <input type="text" name="s" id="s" class="form-control" placeholder="Search photos"/>
                     <input type="hidden" name="post_type" value="product">
                     <input type="hidden" name="author" value="<?= $author->ID ?>"/>
-                    <span><i class="icon-search"></i></span>
+                    <button><i class="icon-search"></i></button>
                 </form>
             </div>
         </div>

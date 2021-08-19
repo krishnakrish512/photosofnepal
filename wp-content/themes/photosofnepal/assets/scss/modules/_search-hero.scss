@@ -103,7 +103,7 @@
 
     @include media-breakpoint-up(md){
       margin-top: -43px;
-      width: 750px;
+      width: 850px;
     }
        &.sticky{
         width: 100%;
@@ -176,7 +176,7 @@
       .badge{
         max-width: 20%;
         flex: 0 0 20%;
-        line-height: 43px;
+        line-height: 48px;
         border-radius: 5px;
         font-size: 14px;
         background-color: #f4f4f4;
@@ -202,15 +202,18 @@
 
     form{
       position: relative;
-      span{
+      button{
         position: absolute;
         top: 50%;
-        left: 22px;
+        right: 22px;
         transform: translateY(-50%);
         display: block;
         font-size: pxToRem(18, 10);
         height: pxToRem(22, 10);
         color: #000;
+        padding: 0;
+        border:none;
+        background-color: transparent;
       }
     }
 
@@ -218,7 +221,7 @@
       height: pxToRem(55,10);
       border-radius: 5px;
       padding-left: 25px;
-      padding-left: 60px;
+      padding-right: 60px;
     }
 
   }

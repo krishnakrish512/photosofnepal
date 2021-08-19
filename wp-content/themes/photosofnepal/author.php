@@ -15,7 +15,7 @@ $author = get_user_by( 'slug', $wp_query->query_vars['author_name'] );
                     <input type="text" name="s" id="s" class="form-control" placeholder="Search photos"/>
                     <input type="hidden" name="post_type" value="product">
                     <input type="hidden" name="author" value="<?= $author->ID ?>"/>
-                    <span><i class="icon-search"></i></span>
+                    <button><i class="icon-search"></i></button>
                 </form>
             </div>
         </div>

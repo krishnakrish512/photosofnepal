@@ -4,12 +4,12 @@ get_header();
     <section class="search-hero text-center text-white search-hero__inner section-spacing mb-5">
         <div class="search-hero__content sticky-search-bar">
             <h1 class="search-hero__title">Moving the world with images</h1>
-            <div class="search-hero__form has-badge input-style">
+            <div class="search-hero__form input-style">
 
                 <form action="<?= get_home_url() ?>" class="">
                     <input type="text" name="s" id="s" class="form-control" placeholder="Search photos"/>
                     <input type="hidden" name="post_type" value="product">
-                    <span><i class="icon-search"></i></span>
+                    <button><i class="icon-search"></i></button>
                 </form>
             </div>
 

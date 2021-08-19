@@ -87,7 +87,7 @@ if ( sizeof( $matched_posts ) > 0 ) {
 					<?php
 					endif;
 					?>
-                    <span><i class="icon-search"></i></span>
+                    <button><i class="icon-search"></i></button>
                 </form>
             </div>
 

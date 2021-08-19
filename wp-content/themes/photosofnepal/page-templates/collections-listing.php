@@ -21,7 +21,7 @@ $collections = get_terms( $args );
                 <form action="<?= get_home_url() ?>" class="">
                     <input type="text" name="s" id="s" class="form-control" placeholder="Search photos">
                     <input type="hidden" name="post_type" value="product">
-                    <span><i class="icon-search"></i></span>
+                    <button><i class="icon-search"></i></button>
                 </form>
             </div>
         </div>

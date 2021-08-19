@@ -39,7 +39,10 @@ $popular_tags = get_terms( $args );
                        placeholder="Search photos" autocomplete="off"/>
                 <input type="hidden" name="post_type" value="product">
                 <!--            <input type="hidden" name="author" value="1"/>-->
-                <span><i class="icon-search"></i></span>
+                <button>
+                    <i class="icon-search"></i>
+                </button>
+                
             </form>
         </div>
 
