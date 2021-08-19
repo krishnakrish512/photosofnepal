@@ -231,6 +231,7 @@
 				a{
 					// max-width: pxToRem(110, 10);
 					display: block;
+				
 				}
 			}
 			.actions{
@@ -305,6 +306,14 @@
 				}
 			}
 		}
+		&_cart-item{
+			.product-thumbnail{
+				@include media-breakpoint-down(md){
+					display: block !important;
+				}
+			}
+		}
+
 	}
 	&-checkout{		
 		margin-bottom: pxToRem(100, 10);
@@ -316,7 +325,7 @@
 		}
 		.shop_table{
 			thead{
-				display: none;;
+				display: none;
 			}
 			tfoot{
 				th{
@@ -358,13 +367,13 @@
 		.purchase-detail{
 			padding-left:pxToRem(20,10);
 			@include media-breakpoint-up(sm){
-				padding-left:pxToRem(50,10);
+				padding-left:pxToRem(30,10);
 			}
 		}
 		.purchase-form{
 			padding: pxToRem(20, 10);
 			@include media-breakpoint-up(sm){
-				padding: 0 pxToRem(50,10) 0 0;
+				padding: 0 pxToRem(30,10) 0 0;
 				
 			}
 		}
@@ -518,7 +527,9 @@
 	
 }
 
-
+.woocommerce #content table.cart .product-thumbnail, .woocommerce table.cart .product-thumbnail, .woocommerce-page #content table.cart .product-thumbnail, .woocommerce-page table.cart .product-thumbnail{
+	display: block !important;
+}
 .woocommerce-address-fields{
 	&__field-wrapper{
 		max-width: pxToRem(400, 10);
@@ -546,14 +557,34 @@
 	.cart_item{
 		padding-left: 0;
 		padding-right: 0;
-		td:first-child{
-			padding-left: 0;
+		td{
+			&:first-child{
+				padding-left: 0;
+				width: 30%
+			}
+			&.product-name{
+				padding-left:0;
+			}
+			&.product-total{
+				text-align: right;
+				padding-left: 0;
+				.woocommerce-Price-currencySymbol{
+					margin-right: 5px;
+				}
+			}
+			
 		}
 
 		&:first-child{
 			td{
 				border-top: 0;
 			}
+		}
+		
+	}
+	.woocommerce-Price-amount{
+		.woocommerce-Price-currencySymbol{
+			margin-right: 5px;
 		}
 	}
 }

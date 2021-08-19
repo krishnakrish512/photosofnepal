@@ -38,7 +38,7 @@ defined( 'ABSPATH' ) || exit;
                 <td>
 					<?php echo $_product->get_image() ?>
                 </td>
-                <td class="product-name">
+                <td class="product-name" colspan="2">
 					<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times;&nbsp;%s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -92,12 +92,14 @@ defined( 'ABSPATH' ) || exit;
 			<?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : // phpcs:ignore WordPress.WP.GlobalVariablesOverride.OverrideProhibited ?>
                 <tr class="tax-rate tax-rate-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
                     <th><?php echo esc_html( $tax->label ); ?></th>
-                    <td><?php echo wp_kses_post( $tax->formatted_amount ); ?></td>
+                    <td colspan="2"></td>
+                    <td class="text-right"><?php echo wp_kses_post( $tax->formatted_amount ); ?></td>
                 </tr>
 			<?php endforeach; ?>
 		<?php else : ?>
             <tr class="tax-total">
                 <th><?php echo esc_html( WC()->countries->tax_or_vat() ); ?></th>
+                <td colspan="2"></td>
                 <td><?php wc_cart_totals_taxes_total_html(); ?></td>
             </tr>
 		<?php endif; ?>
@@ -107,7 +109,7 @@ defined( 'ABSPATH' ) || exit;
 
     <tr class="order-total">
         <th><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
-        <td></td>
+        <td colspan="2"></td>
         <td><?php wc_cart_totals_order_total_html(); ?></td>
         
     </tr>
