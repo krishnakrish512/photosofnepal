@@ -406,9 +406,15 @@
 		.cart_totals{
 			background-color: #fbfbfb;
 			padding: 10px;
+			table{
+				border:none;
+				th,td{
+					border:none;
+				}
+			}
 		}
 	}
-	
+
 	.cart-subtotal{
 		display: none;
 	}
