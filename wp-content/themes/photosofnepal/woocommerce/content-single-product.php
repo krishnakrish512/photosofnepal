@@ -195,7 +195,7 @@ if (post_password_required()) {
                                                         </div>
 
                                                         <div class="figure-info">
-                                                            <a href="<?= get_photogtaphy_buy_url($photography_product) ?>"
+                                                            <a href="<?= esc_url($photography_product->get_permalink()) ?>"
                                                                class="btn btn-primary btn-sm">Buy</a>
                                                         </div>
                                                     </figcaption>

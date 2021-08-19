@@ -30,26 +30,26 @@ get_header();
     <main class="main section-spacing">
         <div class="container-fluid">
             <div class="infiniteScroll-gallery justified-gallery discover-photos__grid ">
-				<?php
-				while ( have_posts() ):
-					the_post();
-					$album_images = get_field( 'photographs' );
+                <?php
+                while (have_posts()):
+                    the_post();
+                    $album_images = get_field('photographs');
 
-					foreach ( $album_images as $image ):
-						$photography_product_id = get_post_meta( $image, 'photography_product_id', true );
-						if ( $photography_product_id ):
-							$product = wc_get_product( $photography_product_id );
-							?>
+                    foreach ($album_images as $image):
+                        $photography_product_id = get_post_meta($image, 'photography_product_id', true);
+                        if ($photography_product_id):
+                            $product = wc_get_product($photography_product_id);
+                            ?>
                             <div class="discover-photos__grid-item">
-								<?php
-								$image_id = $product->get_image_id();
-								?>
-                                <img src="<?= wp_get_attachment_image_url( $image_id, 'photography_thumbnail' ) ?>"
+                                <?php
+                                $image_id = $product->get_image_id();
+                                ?>
+                                <img src="<?= wp_get_attachment_image_url($image_id, 'photography_thumbnail') ?>"
                                      alt="<?= $product->get_title() ?>"/>
                                 <figcaption>
                                     <div class="figure-tools">
                                         <div class="figure-icons">
-											<?php echo do_shortcode( "[ti_wishlists_addtowishlist product_id='" . $product->get_id() . "']" ); ?>
+                                            <?php echo do_shortcode("[ti_wishlists_addtowishlist product_id='" . $product->get_id() . "']"); ?>
                                             <!-- <a href="#"> <span class="icon-shopping-cart"></span></a> -->
                                             <!--                                            <a href="#"> <span class="icon-stack"></span></a>-->
                                         </div>
@@ -57,18 +57,18 @@ get_header();
 
                                     <div class="figure-info ">
                                         <h6 class="font-weight-light mb-0"><?= $product->get_title() ?></h6>
-                                        <a href="<?= get_photogtaphy_buy_url( $product ) ?>"
+                                        <a href="<?= esc_url($product->get_permalink()) ?>"
                                            class="btn btn-primary btn-sm">Buy</a>
                                     </div>
                                 </figcaption>
                                 <a href="<?= $product->get_permalink() ?>" class="stretched-link"></a>
                             </div>
-						<?php
-						endif;
-					endforeach;
-				endwhile;
+                        <?php
+                        endif;
+                    endforeach;
+                endwhile;
 
-				?>
+                ?>
             </div>
         </div>
     </main>

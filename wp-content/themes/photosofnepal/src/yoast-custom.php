@@ -13,9 +13,9 @@ function photography_update_yoast_meta($post_id)
     }
 }
 
-add_action('save_post', 'photography_update_yoast_meta');
+//add_action('save_post', 'photography_update_yoast_meta');
 
-add_filter('wpseo_opengraph_image', 'photography_update_yoast_image');
+//add_filter('wpseo_opengraph_image', 'photography_update_yoast_image');
 
 function photography_update_yoast_image($url)
 {

@@ -60,6 +60,11 @@ function justifyGallery() {
         // lastRow: 'justify',
         margins: 3,
         captions: false
+    }).on('jg.complete', function (e) {
+        const seeMoreDivs = $(e.target.parentElement.nextElementSibling);
+        if (seeMoreDivs.length && seeMoreDivs[0].className.includes('justified-gallery-see-more')) {
+            $(e.target.parentElement.nextElementSibling).toggleClass('d-none');
+        }
     });
 
     $('.justified-gallery--sm').justifiedGallery({
