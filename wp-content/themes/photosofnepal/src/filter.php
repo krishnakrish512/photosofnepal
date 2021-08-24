@@ -241,22 +241,27 @@ function photos_share_meta()
 
 
     if (is_tax('wcpv_product_vendors')) {
+        $thumbnail_url = get_the_post_thumbnail_url($post->ID, 'photography_preview');
 
-        $thumbnail_url = getHomepageBannerImageUrl();
+        global $wp_query;
+
+        $term = $wp_query->queried_object;
+
+        $vendor_data = WC_Product_Vendors_Utils::get_vendor_data_by_id($term->term_id);
         ?>
         <!-- For Facebook -->
         <meta property="og:url" content="<?= get_home_url() ?>"/>
         <meta property="og:type" content="website"/>
-        <meta property="og:title" content="<?php echo get_bloginfo('name') ?>"/>
-        <meta property="og:description" content="<?php the_field('description', 'option'); ?>"/>
+        <meta property="og:title" content="<?= esc_attr($vendor_data['name'] . ' Archive') ?>"/>
+        <meta property="og:description" content="<?= esc_attr($vendor_data['profile']) ?>"/>
         <meta property="og:image" content="<?= esc_url($thumbnail_url) ?>"/>
         <meta property="og:image:width" content="1024"/>
         <meta property="og:image:height" content="1024"/>
 
         <!-- For Twitter -->
         <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:title" content="<?php echo get_bloginfo('name') ?>"/>
-        <meta name="twitter:description" content="<?php the_field('description', 'option'); ?>"/>
+        <meta name="twitter:title" content="<?= esc_attr($vendor_data['name'] . ' Archive') ?>"/>
+        <meta name="twitter:description" content="<?= esc_attr($vendor_data['profile']) ?>"/>
         <meta name="twitter:image" content="<?= esc_url($thumbnail_url) ?>"/>
         <?php
     }
