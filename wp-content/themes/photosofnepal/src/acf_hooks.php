@@ -1,161 +1,228 @@
 <?php
 
-if ( function_exists( 'acf_add_options_page' ) ) {
+if (function_exists('acf_add_options_page')) {
 
-	acf_add_options_page( array(
-		'page_title' => 'Theme General Settings',
-		'menu_title' => 'Theme Settings',
-		'menu_slug'  => 'theme-general-settings',
-		'capability' => 'manage_options',
+    acf_add_options_page(array(
+        'page_title' => 'Theme General Settings',
+        'menu_title' => 'Theme Settings',
+        'menu_slug' => 'theme-general-settings',
+        'capability' => 'manage_options',
 //		'redirect'		=> false
-	) );
+    ));
 }
 
 
-add_filter( 'acf/fields/post_object/query/name=gallery', 'my_acf_fields_post_object_query', 10, 3 );
-function my_acf_fields_post_object_query( $args, $field, $post_id ) {
+add_filter('acf/fields/post_object/query/name=gallery', 'my_acf_fields_post_object_query', 10, 3);
+function my_acf_fields_post_object_query($args, $field, $post_id)
+{
 
-	$args['author'] = get_current_user_id();
+    $args['author'] = get_current_user_id();
 
-	return $args;
+    return $args;
 }
 
-add_filter( 'acf/fields/post_object/query/name=gallery_photographs', 'my_acf_fields_photographs_query', 10, 3 );
-function my_acf_fields_photographs_query( $args, $field, $post_id ) {
+add_filter('acf/fields/post_object/query/name=gallery_photographs', 'my_acf_fields_photographs_query', 10, 3);
+function my_acf_fields_photographs_query($args, $field, $post_id)
+{
 
 //	$args['author'] = get_current_user_id();
 
-	$args['meta_key']     = 'photography_product_id';
-	$args['meta_compare'] = 'EXISTS';
+    $args['meta_key'] = 'photography_product_id';
+    $args['meta_compare'] = 'EXISTS';
 
-	var_dump( $args );
+    var_dump($args);
 
 
-	return $args;
+    return $args;
 }
 
-add_action( 'acf/save_post', 'my_acf_save_post', 5 );
-function my_acf_save_post( $post_id ) {
-	if ( get_post_type( $post_id ) !== "gallery" ) {
-		return;
-	}
+add_action('acf/save_post', 'my_acf_save_post', 5);
+function my_acf_save_post($post_id)
+{
+    if (get_post_type($post_id) == "gallery") {
 
-	// Get previous values.
-	$old_gallery_photos = get_field( "photographs", $post_id );
+        // Get previous values.
+        $old_gallery_photos = get_field("photographs", $post_id);
 
-	if ( isset( $_POST['acf']['field_5fa8ce7d8504b'] ) ) {
+        $new_gallery_photos = [];
 
-		$new_gallery_photos = $_POST['acf']['field_5fa8ce7d8504b'];
+        //for localhost
+        if (isset($_POST['acf']['field_5fa8ce7d8504b'])) {
+            $new_gallery_photos = $_POST['acf']['field_5fa8ce7d8504b'];
 
-		if ( count( $old_gallery_photos ) === count( $new_gallery_photos ) ) {
-			return;
-		} elseif ( count( $old_gallery_photos ) > count( $new_gallery_photos ) ) {
-			var_dump( 'removed photos' );
-			var_dump( array_diff( $old_gallery_photos, $new_gallery_photos ) );
+            echo "<pre>";
+            var_dump($old_gallery_photos);
+            echo "</pre>";
+            echo "<pre>";
+            var_dump($new_gallery_photos);
+            echo "</pre>";
 
-			$removed_photos = array_diff( $old_gallery_photos, $new_gallery_photos );
+            foreach ($new_gallery_photos as $photo_id) {
+                if (!in_array($photo_id, $old_gallery_photos)) { // new photo has been added
 
-			foreach ( $removed_photos as $photo_id ) {
+                    $photography_product_id = (int)get_post_meta($photo_id, 'photography_product_id', true);
 
-				$photography_product_id = (int) get_post_meta( $photo_id, 'photography_product_id', true );
+                    if ($photography_product_id) {
+                        $photography_product_galleries = get_field('gallery', $photography_product_id);
 
-				if ( $photography_product_id ) {
-					$photography_product_galleries = get_field( 'gallery', $photography_product_id );
+                        if ($photography_product_galleries) {
+                            if (!in_array($post_id, $photography_product_galleries)) {
+                                array_push($photography_product_galleries,intval( $post_id));
 
-					$gallery_key = array_search( $post_id, $photography_product_galleries );
-					if ( $gallery_key ) {
-						array_splice( $photography_product_galleries, $gallery_key, 1 );
-						var_dump( 'new gallery posts' );
-						var_dump( $photography_product_galleries );
-						update_field( "field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id );
+                                update_field("field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id);
+                            }
+                        } else {
+                            update_field("field_5ffe9c9438f97", [intval( $post_id)], $photography_product_id);
+                        }
 
-					}
-				}
+                    }
+                }
+            }
 
-//				get_post
-			}
-		} else {
-			var_dump( 'added photos' );
-			var_dump( array_diff( $new_gallery_photos, $old_gallery_photos ) );
+            foreach ($old_gallery_photos as $photo_id) {
+                if (!in_array($photo_id, $new_gallery_photos)) { //photo removed from gallery
+                    $photography_product_id = (int)get_post_meta($photo_id, 'photography_product_id', true);
 
-			$added_photos = array_diff( $new_gallery_photos, $old_gallery_photos );
+                    if ($photography_product_id) {
+                        $photography_product_galleries = get_field('gallery', $photography_product_id);
 
-			foreach ( $added_photos as $photo_id ) {
-				$photography_product_id = (int) get_post_meta( $photo_id, 'photography_product_id', true );
+                        if ($photography_product_galleries) {
+                            if (($key = array_search($photo_id, $photography_product_galleries)) !== false) {
+                                unset($photography_product_galleries[$key]);
 
-				if ( $photography_product_id ) {
-					$photography_product_galleries = get_field( 'gallery', $photography_product_id );
+                                update_field("field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id);
 
-					if ( $photography_product_galleries ) {
-						if ( ! array_search( $post_id, $photography_product_galleries ) ) {
-							array_push( $photography_product_galleries, $post_id );
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-							var_dump( 'new gallery' );
-							var_dump( $photography_product_galleries );
+        //for live
+        if (isset($_POST['acf']['field_5fa8f9dc28644'])) {
+            $new_gallery_photos = $_POST['acf']['field_5fa8f9dc28644'];
 
-							update_field( "field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id );
+            echo "<pre>";
+            var_dump($old_gallery_photos);
+            echo "</pre>";
+            echo "<pre>";
+            var_dump($new_gallery_photos);
+            echo "</pre>";
 
-						}
-					} else {
-						var_dump( update_field( "field_5ffe9c9438f97", [ $post_id ], $photography_product_id ) );
-					}
+            foreach ($new_gallery_photos as $photo_id) {
+                if (!in_array($photo_id, $old_gallery_photos)) { // new photo has been added
 
-				}
-			}
-		}
-	}
+                    $photography_product_id = (int)get_post_meta($photo_id, 'photography_product_id', true);
 
+                    if ($photography_product_id) {
+                        $photography_product_galleries = get_field('gallery', $photography_product_id);
 
-	if ( isset( $_POST['acf']['field_5fa8f9dc28644'] ) ) {
+                        if ($photography_product_galleries) {
+                            if (!in_array($post_id, $photography_product_galleries)) {
+                                array_push($photography_product_galleries, intval( $post_id));
 
-		$new_gallery_photos = $_POST['acf']['field_5fa8f9dc28644'];
+                                update_field("field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id);
+                            }
+                        } else {
+                            update_field("field_5ffe9c9438f97", [intval( $post_id)], $photography_product_id);
+                        }
 
-		if ( count( $old_gallery_photos ) === count( $new_gallery_photos ) ) {
-			return;
-		} elseif ( count( $old_gallery_photos ) > count( $new_gallery_photos ) ) {
-			var_dump( array_diff( $old_gallery_photos, $new_gallery_photos ) );
+                    }
+                }
+            }
 
-			$removed_photos = array_diff( $old_gallery_photos, $new_gallery_photos );
+            foreach ($old_gallery_photos as $photo_id) {
+                if (!in_array($photo_id, $new_gallery_photos)) { //photo removed from gallery
+                    $photography_product_id = (int)get_post_meta($photo_id, 'photography_product_id', true);
 
-			foreach ( $removed_photos as $photo_id ) {
+                    if ($photography_product_id) {
+                        $photography_product_galleries = get_field('gallery', $photography_product_id);
 
-				$photography_product_id = (int) get_post_meta( $photo_id, 'photography_product_id', true );
+                        if ($photography_product_galleries) {
+                            if (($key = array_search($photo_id, $photography_product_galleries)) !== false) {
+                                unset($photography_product_galleries[$key]);
 
-				if ( $photography_product_id ) {
-					$photography_product_galleries = get_field( 'gallery', $photography_product_id );
+                                update_field("field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id);
 
-					$gallery_key = array_search( $post_id, $photography_product_galleries );
-					if ( $gallery_key ) {
-						array_splice( $photography_product_galleries, $gallery_key, 1 );
-						var_dump( $photography_product_galleries );
-						update_field( "field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id );
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-					}
-				}
+//        exit;
 
-//				get_post
-			}
-		} else {
-			var_dump( array_diff( $new_gallery_photos, $old_gallery_photos ) );
+    }
 
-			$added_photos = array_diff( $new_gallery_photos, $old_gallery_photos );
+    if (get_post_type($post_id) == "product") {
+        var_dump($post_id);
+        $old_galleries = get_field('gallery',$post_id);
 
-			foreach ( $added_photos as $photo_id ) {
-				$photography_product_id = (int) get_post_meta( $photo_id, 'photography_product_id', true );
+        echo "<pre>";
+        var_dump($old_galleries);
+        echo "</pre>";
 
-				if ( $photography_product_id ) {
-					$photography_product_galleries = get_field( 'gallery', $photography_product_id );
-					if ( ! array_search( $post_id, $photography_product_galleries ) ) {
-						array_push( $photography_product_galleries, $post_id );
+        if(isset($_POST['acf']['field_5ffe9c9438f97'])){
+            echo "<pre>";
+            var_dump($_POST);
+            echo "</pre>";
 
-						var_dump( $photography_product_galleries );
+            echo "<pre>";
+            var_dump($_POST['acf']['field_5ffe9c9438f97']);
+            echo "</pre>";
 
-						update_field( "field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id );
+            $new_galleries = $_POST['acf']['field_5ffe9c9438f97'];
 
-					}
-				}
-			}
-		}
-	}
-//	exit;
+            if(!$old_galleries){
+                foreach ($new_galleries as $gallery_id){
+                    $gallery_photographs = get_field('photographs',$gallery_id);
+
+                    $photograph_id = $_POST['_thumbnail_id'];
+
+                    if(!in_array($photograph_id,$gallery_photographs)){
+                        array_push($gallery_photographs,$photograph_id);
+
+                        update_field('field_5fa8ce7d8504b', $gallery_photographs, $gallery_id);
+                        update_field('field_5fa8f9dc28644', $gallery_photographs, $gallery_id);
+                    }
+                }
+            }
+
+            foreach ($new_galleries as $gallery_id){
+                if(!in_array($gallery_id,$old_galleries)){// new gallery added
+
+                    $gallery_photographs = get_field('photographs',$gallery_id);
+
+                    $photograph_id = $_POST['_thumbnail_id'];
+
+                    if(!in_array($photograph_id,$gallery_photographs)){
+                        array_push($gallery_photographs,$photograph_id);
+
+                        update_field('field_5fa8ce7d8504b', $gallery_photographs, $gallery_id);
+                        update_field('field_5fa8f9dc28644', $gallery_photographs, $gallery_id);
+                    }
+                }
+            }
+
+            foreach ($old_galleries as $gallery_id){ //gallery removed
+                if(!in_array($gallery_id,$new_galleries)){
+                    $gallery_photographs = get_field('photographs',$gallery_id);
+
+                    $photograph_id = $_POST['_thumbnail_id'];
+
+                    if (($key = array_search($photograph_id, $gallery_photographs)) !== false) {
+                        unset($gallery_photographs[$key]);
+
+                        update_field('field_5fa8ce7d8504b', $gallery_photographs, $gallery_id);
+                        update_field('field_5fa8f9dc28644', $gallery_photographs, $gallery_id);
+
+                    }
+                }
+            }
+        }
+
+//        exit;
+    }
 }
