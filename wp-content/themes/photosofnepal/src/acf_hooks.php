@@ -44,18 +44,9 @@ function my_acf_save_post($post_id)
         // Get previous values.
         $old_gallery_photos = get_field("photographs", $post_id);
 
-        $new_gallery_photos = [];
-
         //for localhost
         if (isset($_POST['acf']['field_5fa8ce7d8504b'])) {
             $new_gallery_photos = $_POST['acf']['field_5fa8ce7d8504b'];
-
-            echo "<pre>";
-            var_dump($old_gallery_photos);
-            echo "</pre>";
-            echo "<pre>";
-            var_dump($new_gallery_photos);
-            echo "</pre>";
 
             foreach ($new_gallery_photos as $photo_id) {
                 if (!in_array($photo_id, $old_gallery_photos)) { // new photo has been added
@@ -67,12 +58,12 @@ function my_acf_save_post($post_id)
 
                         if ($photography_product_galleries) {
                             if (!in_array($post_id, $photography_product_galleries)) {
-                                array_push($photography_product_galleries,intval( $post_id));
+                                array_push($photography_product_galleries, intval($post_id));
 
                                 update_field("field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id);
                             }
                         } else {
-                            update_field("field_5ffe9c9438f97", [intval( $post_id)], $photography_product_id);
+                            update_field("field_5ffe9c9438f97", [intval($post_id)], $photography_product_id);
                         }
 
                     }
@@ -103,13 +94,6 @@ function my_acf_save_post($post_id)
         if (isset($_POST['acf']['field_5fa8f9dc28644'])) {
             $new_gallery_photos = $_POST['acf']['field_5fa8f9dc28644'];
 
-            echo "<pre>";
-            var_dump($old_gallery_photos);
-            echo "</pre>";
-            echo "<pre>";
-            var_dump($new_gallery_photos);
-            echo "</pre>";
-
             foreach ($new_gallery_photos as $photo_id) {
                 if (!in_array($photo_id, $old_gallery_photos)) { // new photo has been added
 
@@ -120,12 +104,12 @@ function my_acf_save_post($post_id)
 
                         if ($photography_product_galleries) {
                             if (!in_array($post_id, $photography_product_galleries)) {
-                                array_push($photography_product_galleries, intval( $post_id));
+                                array_push($photography_product_galleries, intval($post_id));
 
                                 update_field("field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id);
                             }
                         } else {
-                            update_field("field_5ffe9c9438f97", [intval( $post_id)], $photography_product_id);
+                            update_field("field_5ffe9c9438f97", [intval($post_id)], $photography_product_id);
                         }
 
                     }
@@ -151,38 +135,22 @@ function my_acf_save_post($post_id)
                 }
             }
         }
-
-//        exit;
-
     }
 
     if (get_post_type($post_id) == "product") {
-        var_dump($post_id);
-        $old_galleries = get_field('gallery',$post_id);
+        $old_galleries = get_field('gallery', $post_id);
 
-        echo "<pre>";
-        var_dump($old_galleries);
-        echo "</pre>";
-
-        if(isset($_POST['acf']['field_5ffe9c9438f97'])){
-            echo "<pre>";
-            var_dump($_POST);
-            echo "</pre>";
-
-            echo "<pre>";
-            var_dump($_POST['acf']['field_5ffe9c9438f97']);
-            echo "</pre>";
-
+        if (isset($_POST['acf']['field_5ffe9c9438f97'])) {
             $new_galleries = $_POST['acf']['field_5ffe9c9438f97'];
 
-            if(!$old_galleries){
-                foreach ($new_galleries as $gallery_id){
-                    $gallery_photographs = get_field('photographs',$gallery_id);
+            if (!$old_galleries) {
+                foreach ($new_galleries as $gallery_id) {
+                    $gallery_photographs = get_field('photographs', $gallery_id);
 
                     $photograph_id = $_POST['_thumbnail_id'];
 
-                    if(!in_array($photograph_id,$gallery_photographs)){
-                        array_push($gallery_photographs,$photograph_id);
+                    if (!in_array($photograph_id, $gallery_photographs)) {
+                        array_push($gallery_photographs, $photograph_id);
 
                         update_field('field_5fa8ce7d8504b', $gallery_photographs, $gallery_id);
                         update_field('field_5fa8f9dc28644', $gallery_photographs, $gallery_id);
@@ -190,15 +158,15 @@ function my_acf_save_post($post_id)
                 }
             }
 
-            foreach ($new_galleries as $gallery_id){
-                if(!in_array($gallery_id,$old_galleries)){// new gallery added
+            foreach ($new_galleries as $gallery_id) {
+                if (!in_array($gallery_id, $old_galleries)) {// new gallery added
 
-                    $gallery_photographs = get_field('photographs',$gallery_id);
+                    $gallery_photographs = get_field('photographs', $gallery_id);
 
                     $photograph_id = $_POST['_thumbnail_id'];
 
-                    if(!in_array($photograph_id,$gallery_photographs)){
-                        array_push($gallery_photographs,$photograph_id);
+                    if (!in_array($photograph_id, $gallery_photographs)) {
+                        array_push($gallery_photographs, $photograph_id);
 
                         update_field('field_5fa8ce7d8504b', $gallery_photographs, $gallery_id);
                         update_field('field_5fa8f9dc28644', $gallery_photographs, $gallery_id);
@@ -206,9 +174,9 @@ function my_acf_save_post($post_id)
                 }
             }
 
-            foreach ($old_galleries as $gallery_id){ //gallery removed
-                if(!in_array($gallery_id,$new_galleries)){
-                    $gallery_photographs = get_field('photographs',$gallery_id);
+            foreach ($old_galleries as $gallery_id) { //gallery removed
+                if (!in_array($gallery_id, $new_galleries)) {
+                    $gallery_photographs = get_field('photographs', $gallery_id);
 
                     $photograph_id = $_POST['_thumbnail_id'];
 
@@ -222,7 +190,5 @@ function my_acf_save_post($post_id)
                 }
             }
         }
-
-//        exit;
     }
 }

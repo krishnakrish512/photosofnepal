@@ -202,69 +202,8 @@ function photography_insert_post_callback($post_id, $post, $update)
 
     $price = get_field('price', $post_id);
 
-    $galleries = get_field('gallery', $post_id);
-
     $post_thumbnail_id = get_post_thumbnail_id($post_id);
 
-
-//	if gallery field is empty while updating,remove from gallery posts if current photo exists in any
-//	if ( $update && ! $galleries ) {
-//		removePhotographFromGalleries( $post_id );
-//	}
-
-
-//    if ($galleries) {
-//        foreach ($galleries as $gallery_id) {
-//            $photographs = get_field('photographs', $gallery_id);
-//
-//
-//            if (!$photographs) {
-//                $photographs = [];
-//            }
-//
-//            if (!array_search($post_thumbnail_id, $photographs)) {
-//                array_push($photographs, $post_thumbnail_id);
-//
-//                update_field('field_5fa8ce7d8504b', $photographs, $gallery_id);
-//                update_field('field_5fa8f9dc28644', $photographs, $gallery_id);
-//            }
-//
-//        }
-//    }
-
-
-    if (!empty(get_post_meta($post_id, 'check_if_run_once'))) {
-        global $wpdb;
-        $query = "SELECT postmeta.post_id AS product_id FROM {$wpdb->prefix}postmeta AS postmeta LEFT JOIN {$wpdb->prefix}posts AS products ON ( products.ID = postmeta.post_id ) WHERE postmeta.meta_key LIKE 'attribute_%' AND postmeta.meta_value = 'small' AND products.post_parent = {$post_id}";
-
-        $variation_id = $wpdb->get_col($query);
-
-        $small_product = new WC_Product_Variation($variation_id[0]);
-
-        $query = "SELECT postmeta.post_id AS product_id FROM {$wpdb->prefix}postmeta AS postmeta LEFT JOIN {$wpdb->prefix}posts AS products ON ( products.ID = postmeta.post_id ) WHERE postmeta.meta_key LIKE 'attribute_%' AND postmeta.meta_value = 'medium' AND products.post_parent = {$post_id}";
-
-        $variation_id = $wpdb->get_col($query);
-
-        $medium_product = new WC_Product_Variation($variation_id[0]);
-
-        $query = "SELECT postmeta.post_id AS product_id FROM {$wpdb->prefix}postmeta AS postmeta LEFT JOIN {$wpdb->prefix}posts AS products ON ( products.ID = postmeta.post_id ) WHERE postmeta.meta_key LIKE 'attribute_%' AND postmeta.meta_value = 'large' AND products.post_parent = {$post_id}";
-
-        $variation_id = $wpdb->get_col($query);
-
-        $large_product = new WC_Product_Variation($variation_id[0]);
-
-        $small_product->set_regular_price($price['small']);
-        $small_product->save();
-
-        $medium_product->set_regular_price($price['medium']);
-        $medium_product->save();
-
-        $large_product->set_regular_price($price['large']);
-        $large_product->save();
-
-
-        return;
-    }
     add_post_meta($post_thumbnail_id, 'photography_product_id', $post_id);
 
     $product_id = $post_id;
@@ -549,4 +488,3 @@ function getHomepageBannerImageUrl()
 
     return $image_url;
 }
-
