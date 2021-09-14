@@ -52,7 +52,6 @@ function my_acf_save_post($post_id)
                 if (!in_array($photo_id, $old_gallery_photos)) { // new photo has been added
 
                     $photography_product_id = (int)get_post_meta($photo_id, 'photography_product_id', true);
-
                     if ($photography_product_id) {
                         $photography_product_galleries = get_field('gallery', $photography_product_id);
 
@@ -78,7 +77,7 @@ function my_acf_save_post($post_id)
                         $photography_product_galleries = get_field('gallery', $photography_product_id);
 
                         if ($photography_product_galleries) {
-                            if (($key = array_search($photo_id, $photography_product_galleries)) !== false) {
+                            if (($key = array_search($post_id, $photography_product_galleries)) !== false) {
                                 unset($photography_product_galleries[$key]);
 
                                 update_field("field_5ffe9c9438f97", $photography_product_galleries, $photography_product_id);
