@@ -118,8 +118,17 @@
 
         transition: all 0.3s ease;
 
+        @include media-breakpoint-up(md){
+          //margin-top: -43px;
+          width: 1200px;
+        }
+
         &.is-sticky{
           top: 0;
+          @include media-breakpoint-up(md){
+            //margin-top: -43px;
+            width: 1200px;
+          }
         }
         .search-hero__title{
           display: none;
@@ -128,7 +137,7 @@
           padding-left: pxToRem(15, 10);
           padding-right: pxToRem(15, 10);
           @include media-breakpoint-up(lg){
-            width:  1200px;
+            // width:  1200px;
             padding: 0;
           }
           
