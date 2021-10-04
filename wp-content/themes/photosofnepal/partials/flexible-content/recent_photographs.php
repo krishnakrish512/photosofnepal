@@ -8,10 +8,13 @@ $args = [
 $photograph_query = new WP_Query($args);
 ?>
 <section class="discover-photos section-spacing">
-    <div class="section-title text-center section-spacing">
-        <h4 class="text-capitalize"><?php the_sub_field('heading'); ?></h4>
-        <p class="lead"><?php the_sub_field('sub_heading'); ?></p>
+    <div class="container-fluid">
+        <div class="section-title text-center section-spacing">
+            <h4 class="text-capitalize"><?php the_sub_field('heading'); ?></h4>
+            <p class="lead"><?php the_sub_field('sub_heading'); ?></p>
+        </div>
     </div>
+    
     <div class="container-fluid">
         <div class="discover-photos__grid justified-gallery" id="photography-html">
             <?php

@@ -1,6 +1,10 @@
 .container{
   max-width: $base_container_width;
 }
+.container-fluid{
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
 ul.inline-list{
   li{
     display: inline-block;
