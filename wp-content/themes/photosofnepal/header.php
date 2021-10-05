@@ -16,7 +16,7 @@
 if ( ! ( is_account_page() && ! is_user_logged_in() ) ):
 	?>
     <header class="header header__light" id="header">
-        <div class="container-fluid header__wrapper">
+        <div class="container header__wrapper">
             <a href="<?= get_home_url() ?>" class="header__logo h1 mb-0 text-uppercase">
                 <img src="<?= wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' ) ?>"
                      class="img-fluid d-block"
