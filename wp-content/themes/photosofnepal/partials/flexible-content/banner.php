@@ -83,8 +83,8 @@ $popular_tags = get_terms($args);
             ?>
         </p>
     </div>
-    <div class="search-hero__image-info">
-        <div class="container-fluid">
+    <div class="search-hero__image-info text-left">
+        <div class="container">
             <p class="mb-0">
                 <?php
                 if ($featured_photo_id):

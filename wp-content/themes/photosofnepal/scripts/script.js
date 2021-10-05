@@ -137,6 +137,14 @@ if (/collections/.test(loc)) {
     $('.blog-page-title').addClass('d-none');
 }
 
+if (/privacy-policy/.test(loc)) {
+    $('.blog-page-title > .container, .main > .container').addClass('container-medium');
+}
+if (/privacy-policy/.test(loc)) {
+    $('.main > .container').addClass('container-medium');
+}
+
+
 
 function responsiveFooter() {
     if ($(window).width() <= 768) {

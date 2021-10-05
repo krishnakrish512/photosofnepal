@@ -4,7 +4,7 @@ get_header();
 while ( have_posts() ):
 	the_post();
 	?>
-    <div class="container container-medium">
+    <div class="container">
         <div class="cms-content">
 			<?php the_content(); ?>
         </div>

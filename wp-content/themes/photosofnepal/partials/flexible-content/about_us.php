@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row align-items-center justify-content-between">
-        <div class="col-lg-5 ">
+        <div class="col-lg-5 mb-5 mb-lg-0">
             <h2><?php the_sub_field( 'title' ); ?></h2>
             <p class="lead"><?php the_sub_field( 'description' ); ?></p>
 			<?php
@@ -19,7 +19,7 @@
 			endif;
 			?>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 mt-5 mt-lg-0">
             <ul class="photo-grid">
 				<?php
 				$images = get_sub_field( 'images' );

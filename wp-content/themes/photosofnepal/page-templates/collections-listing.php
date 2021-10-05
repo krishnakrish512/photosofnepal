@@ -28,7 +28,7 @@ $collections = get_terms( $args );
     </section>
     <main class="main section-spacing">
         <div class="discover-collection">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
 					<?php
 					foreach ( $collections as $collection ):
