@@ -8,7 +8,7 @@ if ($featured_photo_id) {
 
 $args = array(
     'post_type' => 'product',
-    'posts_per_page' => 50,
+    'posts_per_page' => 20,
     'orderby' => 'date',
     'order' => 'DESC',
 );
