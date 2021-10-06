@@ -41,6 +41,11 @@
     bottom:pxToRem(20, 10);
     left: 0;
     right: 0;
+    // .name{
+    //   &:hover{
+    //     text-decoration: underline;
+    //   }
+    // }
     .container-fluid{
       display: flex;
       justify-content: space-between;
@@ -167,6 +172,19 @@
     text-align: left;
     a{
       color: #fff;
+      &:hover{
+        text-decoration: underline;
+      }
+      &:after{
+        content: ",";
+        display: inline-block;
+        margin: 0 2px;
+      }
+      &:last-child{
+        &:after{
+          display: none;
+        }
+      }
     }
   }
 

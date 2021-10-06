@@ -77,13 +77,13 @@ $popular_tags = get_terms($args);
             <?php
             foreach ($popular_tags as $key => $tag):
                 ?>
-                <a href="<?= esc_url(get_term_link($tag->term_id)) ?>"><?= $tag->name ?><?= count($popular_tags) - 1 === $key ? "" : ", " ?></a>
+                <a href="<?= esc_url(get_term_link($tag->term_id)) ?>"><?= $tag->name ?><?= count($popular_tags) - 1 === $key ?></a>
             <?php
             endforeach;
             ?>
         </p>
     </div>
-    <div class="search-hero__image-info text-left">
+    <div class="search-hero__image-info text-left test">
         <div class="container">
             <p class="mb-0">
                 <?php
@@ -92,7 +92,7 @@ $popular_tags = get_terms($args);
                     ?>
                     <a class="text-white"
                        href="<?= $featured_photo->get_permalink() ?>  "><?= $featured_photo->get_title() ?></a>
-                    by <a class="text-white"
+                    by <a class="text-white font-italic text-capitalize name"
                           href="<?= esc_url($sold_by['link']) ?>"><?= getProductVendorUsername($featured_photo->get_id()) ?></a>
                 <?php endif; ?>
             </p>
