@@ -38,7 +38,7 @@ global $product;
     <input type="hidden" name="product_id" value="<?php echo absint( $product->get_id() ); ?>"/>
     <input type="hidden" name="variation_id" class="variation_id" value="0"/>
 
-	<a href="javascript:void(0)" class="d-block btn btn-transparent w-100 mt-2" data-toggle="modal" data-target="#exampleModal"> <i class="far fa-image mr-2"></i>
+	<a href="javascript:void(0)" class="d-block btn btn-transparent w-100 mt-2 btn-custom" data-toggle="modal" data-target="#exampleModal"> <i class="far fa-image mr-2"></i>
  Buy the Print Copy</a>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

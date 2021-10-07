@@ -81,6 +81,9 @@ if ( ! ( is_account_page() && ! is_user_logged_in() ) ):
 							if ( $social['twitter'] ) {
 								echo "<li><a href='" . $social['twitter'] . "' target='_blank' rel='noopener noreferrer'> <span class='icon-twitter'></span> </a></li>";
 							}
+                            if ( $social['twitter'] ) {
+								echo "<li><a href='" . $social['twitter'] . "' target='_blank' rel='noopener noreferrer'> <span class='fab fa-pinterest-p'></span> </a></li>";
+							}
 							?>
                         </ul>
                     </div>
