@@ -8,7 +8,7 @@ if ($featured_photo_id) {
 
 $args = array(
     'post_type' => 'product',
-    'posts_per_page' => 50,
+    'posts_per_page' => 20,
     'orderby' => 'date',
     'order' => 'DESC',
 );
@@ -23,26 +23,13 @@ while ($latest_posts->have_posts()) :
 
     if ($product_tags) {
         foreach ($product_tags as $product_tag) {
-            if (!in_array($product_tag->term_id, $temp_ids)) {
-                $temp_ids[] = $product_tag->term_id;
-            }
+            $temp_ids[] = $product_tag->term_id;
         }
     }
 endwhile;
 wp_reset_query();
 
-$args = [
-    'taxonomy' => 'product_tag',
-    'number' => 5,
-    'orderby' => 'count',
-    'order' => 'DESC',
-    'hide_empty' => true,
-    'include' => $temp_ids
-];
-
-$popular_tags = get_terms($args);
-
-
+$sorted_terms = array_count_values($temp_ids);
 ?>
 <section class="search-hero text-center text-white">
     <div class="search-hero__img has-overlay">
@@ -72,13 +59,18 @@ $popular_tags = get_terms($args);
             </form>
         </div>
 
-        <p class="search-hero__trending">
+        <p class="search-hero__trending" data-sorted-count="<?= count($sorted_terms) ?>">
             Trending:
             <?php
-            foreach ($popular_tags as $key => $tag):
+            $temp_count = 1;
+            foreach ($sorted_terms as $term_id => $count):
+                if ($temp_count > 5) break;
+
+                $term = get_term($term_id);
                 ?>
-                <a href="<?= esc_url(get_term_link($tag->term_id)) ?>"><?= $tag->name ?><?= count($popular_tags) - 1 === $key ?></a>
-            <?php
+                <a href="<?= esc_url(get_term_link($term_id)) ?>"><?= $term->name ?></a>
+                <?php
+                $temp_count = $temp_count + 1;
             endforeach;
             ?>
         </p>
