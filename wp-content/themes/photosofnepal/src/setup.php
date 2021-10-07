@@ -55,6 +55,7 @@ function photos_scripts()
 
     wp_enqueue_script('magnific-script', get_template_directory_uri() . '/scripts/jquery.magnific-popup.js', [], '1.0', true);
 
+    wp_enqueue_style('animate-style', get_template_directory_uri() . '/assets/css/animate.css');
     wp_enqueue_style('photos-style', get_template_directory_uri() . '/assets/css/style.css');
 
     wp_enqueue_script('photos-script', get_template_directory_uri() . '/scripts/script.js', [], '1.0', true);

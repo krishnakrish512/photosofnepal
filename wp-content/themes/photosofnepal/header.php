@@ -49,6 +49,7 @@ if ( ! ( is_account_page() && ! is_user_logged_in() ) ):
             </nav>
             <div class="header__tools">
                 <ul class="header__tools--user inline-list mb-0 ">
+                    <li><a href="#" class="btn btn-image"> Free Dashain Images </a></li>
                     <li><a href="<?= wc_get_cart_url() ?>" class="header__tools-cart"> <span
                                     class="icon-shopping-cart"></span><label
                                     class="ml-3">Cart <span

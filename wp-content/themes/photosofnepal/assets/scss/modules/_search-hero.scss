@@ -1,4 +1,22 @@
 
+@keyframes flying {
+  0% , 100% {
+    top: 0%;
+    left: 0%;
+  }
+  25% {
+    top: -20%;
+    left: 5%;
+  }
+  50% {
+    top: -15%;
+    left: 20%;
+  }
+  75% {
+    top: -10%;
+    left: 5%;
+  }
+}
 .search-hero{
   position: relative;
   overflow: hidden;
@@ -41,11 +59,6 @@
     bottom:pxToRem(20, 10);
     left: 0;
     right: 0;
-    // .name{
-    //   &:hover{
-    //     text-decoration: underline;
-    //   }
-    // }
     .container-fluid{
       display: flex;
       justify-content: space-between;
@@ -255,6 +268,16 @@
       padding-right: 60px;
     }
 
+  }
+  
+  .kites{
+    position: absolute;
+    bottom: -1px;
+    right: 100px;
+    svg{
+      height: 410px;
+      width: 220px;
+    }
   }
 
 }
