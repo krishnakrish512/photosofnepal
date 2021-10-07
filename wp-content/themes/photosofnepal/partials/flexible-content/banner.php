@@ -75,7 +75,7 @@ $sorted_terms = array_count_values($temp_ids);
             ?>
         </p>
     </div>
-    <div class="search-hero__image-info text-left">
+    <div class="search-hero__image-info text-left test">
         <div class="container">
             <p class="mb-0">
                 <?php
@@ -84,7 +84,7 @@ $sorted_terms = array_count_values($temp_ids);
                     ?>
                     <a class="text-white"
                        href="<?= $featured_photo->get_permalink() ?>  "><?= $featured_photo->get_title() ?></a>
-                    by <a class="text-white"
+                    by <a class="text-white font-italic text-capitalize name"
                           href="<?= esc_url($sold_by['link']) ?>"><?= getProductVendorUsername($featured_photo->get_id()) ?></a>
                 <?php endif; ?>
             </p>

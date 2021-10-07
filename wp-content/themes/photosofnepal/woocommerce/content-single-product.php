@@ -102,19 +102,18 @@ if (post_password_required()) {
                             ?>
                         </div>
                         <div class="single-image-download__area-box single-image-display__header d-flex align-items-center justify-content-between">
-                            <div class="media">
+                            <div class="media position-relative">
                                 <div class="media-image mr-4">
                                     <?= get_avatar(get_the_author_meta('ID'), 120); ?>
                                 </div>
                                 <div class="media-body">
                                     <?php
                                     $sold_by = WC_Product_Vendors_Utils::get_sold_by_link($post->ID);
-
-
                                     ?>
                                     <h5 class="mb-0"><?= get_the_author() ?></h5>
-                                    <a href="<?= esc_url($sold_by['link']) ?>"><?= '@' . getProductVendorUsername($post->ID) ?></a>
+                                    <a href="javascript:void(0)"><?= '@' . getProductVendorUsername($post->ID) ?></a>
                                 </div>
+                                <a href="<?= esc_url($sold_by['link']) ?>" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
