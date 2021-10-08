@@ -144,9 +144,6 @@ if (/privacy-policy/.test(loc)) {
     $('.main > .container').addClass('container-medium');
 }
 
-// if ($('.header__nav--list:contains("\ Free Dashain Offer\")').length) {
-//     $(".header__nav--list .menu-item").addClass("special-btn");
-// }
 
 
 

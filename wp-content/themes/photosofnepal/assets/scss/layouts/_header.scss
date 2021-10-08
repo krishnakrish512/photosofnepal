@@ -138,20 +138,6 @@
         }
         
       }
-      &:last-child{
-        a{
-          // &:before{
-          //   content: "";
-          //   background-image: url(../images/tika-jamara.jpg);
-          //   background-size: 100% auto;
-          //   background-repeat: no-repeat;
-          //   width: 70px;
-          //   height: 27px;
-          //   display: inline-block;
-          //   margin-right: -43px;
-          // }
-        }
-      }
     }
   }
   &__tools{
@@ -292,3 +278,11 @@
   }
 }
 
+
+.special-link{
+  background-image: url(../images/tika-jamara.jpg);
+  background-size: 35% auto;
+  background-repeat: no-repeat;
+  padding-left: 25px;
+  background-position: center left;
+}
