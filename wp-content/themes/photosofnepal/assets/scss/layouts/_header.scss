@@ -140,16 +140,16 @@
       }
       &:last-child{
         a{
-          &:before{
-            content: "";
-            background-image: url(../images/tika-jamara.jpg);
-            background-size: 100% auto;
-            background-repeat: no-repeat;
-            width: 70px;
-            height: 27px;
-            display: inline-block;
-            margin-right: -43px;
-          }
+          // &:before{
+          //   content: "";
+          //   background-image: url(../images/tika-jamara.jpg);
+          //   background-size: 100% auto;
+          //   background-repeat: no-repeat;
+          //   width: 70px;
+          //   height: 27px;
+          //   display: inline-block;
+          //   margin-right: -43px;
+          // }
         }
       }
     }
