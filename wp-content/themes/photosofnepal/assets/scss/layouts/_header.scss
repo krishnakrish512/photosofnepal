@@ -57,6 +57,10 @@
         margin-bottom: pxToRem(30, 10);
         padding-bottom: pxToRem(30, 10);
       }
+      @include media-breakpoint-up(md){
+        display: flex;
+        align-items: center;
+      }
 
     }
     &.mobile-nav-open{
@@ -94,6 +98,10 @@
           padding: pxToRem(5,10 ) 0;
           display: block;
         }
+        @include media-breakpoint-up(md){
+          display: flex;
+          align-items: center;
+        }
 
         &:after{
           content: "";
@@ -108,6 +116,8 @@
           right: 0;
           @include transition(width 0.25s ease);
         }
+        
+
 
         &:hover{
           color: $primary;
@@ -127,6 +137,20 @@
           }
         }
         
+      }
+      &:last-child{
+        a{
+          &:before{
+            content: "";
+            background-image: url(../images/tika-jamara.jpg);
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            width: 70px;
+            height: 27px;
+            display: inline-block;
+            margin-right: -43px;
+          }
+        }
       }
     }
   }
