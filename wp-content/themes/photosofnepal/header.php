@@ -30,7 +30,7 @@ if (!(is_account_page() && !is_user_logged_in())):
                         'menu_class' => 'inline-list header__nav--list mb-md-0',
                         'container' => '',
                     ]);
-
+                    echo "<a class='special-link'> Free Dashain Images</a>";
                     if (!is_user_logged_in()):
                         ?>
                         <ul class="mobile-header-tools">
