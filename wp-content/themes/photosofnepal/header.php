@@ -50,7 +50,8 @@ if (!(is_account_page() && !is_user_logged_in())):
             <div class="header__tools">
                 <ul class="header__tools--user inline-list mb-0 ">
                     <li>
-                        <a href="<?= get_page_link(get_page_by_title('Dashain Offer')) ?>" class="special-link">Free Dashain Images</a>
+                        <a href="<?= get_page_link(get_page_by_title('Dashain Offer')) ?>" class="special-link">Free
+                            Dashain Images</a>
                     </li>
                     <li><a href="<?= wc_get_cart_url() ?>" class="header__tools-cart"> <span
                                     class="icon-shopping-cart"></span><label
@@ -140,7 +141,7 @@ if (is_user_logged_in()):
 <?php
 endif;
 
-if (is_page() && !is_front_page() && !(is_account_page() && !is_user_logged_in())){
+if (is_page() && !is_front_page() && !(is_account_page() && !is_user_logged_in()) && (is_page_template('page-templates/dashain-offer.php') && !get_query_var('product_id'))){
 global $post;
 ?>
 <section class="blog-page-title section-spacing">
