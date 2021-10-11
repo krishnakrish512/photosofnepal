@@ -50,7 +50,7 @@ if (!(is_account_page() && !is_user_logged_in())):
             <div class="header__tools">
                 <ul class="header__tools--user inline-list mb-0 ">
                     <li>
-                        <a href="#" class="special-link">Free Dashain Images</a>
+                        <a href="<?= get_page_link(get_page_by_title('Dashain Offer')) ?>" class="special-link">Free Dashain Images</a>
                     </li>
                     <li><a href="<?= wc_get_cart_url() ?>" class="header__tools-cart"> <span
                                     class="icon-shopping-cart"></span><label
