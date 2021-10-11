@@ -140,7 +140,7 @@ if (is_user_logged_in()):
 <?php
 endif;
 
-if (is_page() && !is_front_page() && !(is_account_page() && !is_user_logged_in()) && !is_page_template('page-templates/dashain-offer.php')){
+if (is_page() && !is_front_page() && !(is_account_page() && !is_user_logged_in())){
 global $post;
 ?>
 <section class="blog-page-title section-spacing">
