@@ -345,3 +345,19 @@ function photography_custom_filename($filename)
 }
 
 add_filter('sanitize_file_name', 'photography_custom_filename', 10);
+
+add_action('init', 'wpse26388_rewrites_init');
+function wpse26388_rewrites_init()
+{
+    add_rewrite_rule(
+        'dashain-offer/([0-9]+)/?$',
+        'index.php?pagename=dashain-offer&product_id=$matches[1]',
+        'top');
+}
+
+add_filter('query_vars', 'wpse26388_query_vars');
+function wpse26388_query_vars($query_vars)
+{
+    $query_vars[] = 'product_id';
+    return $query_vars;
+}
