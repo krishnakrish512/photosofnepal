@@ -91,7 +91,11 @@ $sorted_terms = array_count_values($temp_ids);
             </p>
         </div>
     </div>
-    <div class="kites">
+    <div class="fireworks-container">
+            <div class="demo">
+        </div>
+    </div>
+    <!-- <div class="kites">
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 76.5 173.8" style="enable-background:new 0 0 76.5 173.8;" xml:space="preserve">
 <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#EABF86;" points="56.9,138.7 55,143.3 48.7,141.7 48,142.7 55.6,145.7 
@@ -176,5 +180,5 @@ $sorted_terms = array_count_values($temp_ids);
 }
 </style>
 </svg>  
-    </div>
+    </div> -->
 </section>

@@ -104,6 +104,17 @@ if (!(is_account_page() && !is_user_logged_in())):
 endif;
 
 wp_footer(); ?>
+  <script>
+      $(document).ready(function(){
+        $('.demo').fireworks({ 
+        sound: false, // sound effect
+        opacity: 0.3, 
+        width: '100%', 
+        height: '100%' 
+        });
+      })
+      
+  </script>
 <style>
     #ui-id-1 {
         background: #ffffff;
