@@ -295,11 +295,19 @@
 
 
 .special-link{
-  background-image: url(../images/tika-jamara.jpg);
+  //background-image: url(../images/tika-jamara.jpg);
   background-size: 35% auto;
   background-repeat: no-repeat;
-  padding-left: 25px;
+  padding-left: 46px;
   background-position: center left;
   font-size: pxToRem(16, 10);
+  .svg-diyo{
+    position: absolute;
+    left: 0;
+    top: -20px;
+    svg{
+      width: 60px;
+    }
+  }
 
 }

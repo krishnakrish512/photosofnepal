@@ -104,6 +104,7 @@ if (!(is_account_page() && !is_user_logged_in())):
 endif;
 
 wp_footer(); ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js"></script>
   <script>
       $(document).ready(function(){
         $('.demo').fireworks({ 
