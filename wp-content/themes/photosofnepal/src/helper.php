@@ -200,6 +200,10 @@ function photography_insert_post_callback($post_id, $post, $update)
         return;
     }
 
+    if (get_post_meta($post_id, 'check_if_run_once', true)) {
+        return;
+    }
+
     $price = get_field('price', $post_id);
 
     $post_thumbnail_id = get_post_thumbnail_id($post_id);
