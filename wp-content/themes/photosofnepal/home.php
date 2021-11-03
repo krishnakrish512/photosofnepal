@@ -75,27 +75,31 @@ get_header();
             'next_text' => "<i class='fas fa-angle-right'></i>",
             'type' => 'array'
         ]);
-        ?>
-        <section class="section-spacing">
-            <div class="container">
-                <div class="row section-spacing">
-                    <div class="col-lg-12">
-                        <div class="pagination-wrap">
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination text-center justify-content-center">
-                                    <?php
-                                    foreach ($paginate_links as $paginate_link):
-                                        echo "<li class='page-item'>" . $paginate_link . "</li>";
-                                    endforeach;
-                                    ?>
-                                </ul>
-                            </nav>
-                        </div><!-- end pagination-wrap -->
-                    </div><!-- end col-lg-12 -->
-                </div><!-- end row -->
-            </div>
-        </section>
 
+        if ($paginate_links):
+            ?>
+            <section class="section-spacing">
+                <div class="container">
+                    <div class="row section-spacing">
+                        <div class="col-lg-12">
+                            <div class="pagination-wrap">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination text-center justify-content-center">
+                                        <?php
+                                        foreach ($paginate_links as $paginate_link):
+                                            echo "<li class='page-item'>" . $paginate_link . "</li>";
+                                        endforeach;
+                                        ?>
+                                    </ul>
+                                </nav>
+                            </div><!-- end pagination-wrap -->
+                        </div><!-- end col-lg-12 -->
+                    </div><!-- end row -->
+                </div>
+            </section>
+        <?php
+        endif;
+        ?>
     </main>
 <?php
 
