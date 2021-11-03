@@ -53,13 +53,15 @@ while (have_posts()):
         'post_type' => 'post',
         'post_status' => 'publish',
         'posts_per_page' => 3,
-        'post__not_in' => [get_the_ID()]
+        'post__not_in' => [get_the_ID()],
+        'orderby'=>'rand'
     ];
 
     $other_posts_query = new WP_Query($args);
     ?>
     <section class="main section-spacing">
         <div class="container">
+            <h3 class="other-articles-heading">Other Articles</h3>
             <div class="row">
                 <?php
                 while ($other_posts_query->have_posts()):
