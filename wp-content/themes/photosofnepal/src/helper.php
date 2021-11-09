@@ -49,6 +49,23 @@ function get_photography_tags($product)
     return implode(',', $tags);
 }
 
+function get_post_tags($post_id)
+{
+    $terms = get_the_tags($post_id);
+
+    if (!$terms) {
+        return "";
+    }
+
+    $tags = [];
+
+    foreach ($terms as $term) {
+        $tags[] = str_replace(' ', '', $term->name);
+    }
+
+    return implode(',', $tags);
+}
+
 function photography_myaccount_page_title()
 {
     if (is_wc_endpoint_url('orders')) {
@@ -111,6 +128,62 @@ function photography_single_product_sharing()
         </li>
         <li><a href="<?= $pinterest_url ?>" target="_blank" rel="noreferrer noopener"
                class="pinterest"><i class="fab fa-pinterest"></i></a></li>
+    </ul>
+    <?php
+}
+
+function post_single_sharing()
+{
+    global $post;
+
+    $permalink = get_the_permalink($post->ID);
+
+    $facebook_url = "https://www.facebook.com/sharer.php?u=" . $permalink;
+//    $pinterest_url = add_query_arg(
+//        [
+//            'url' => urlencode($permalink),
+//            'media' => urlencode(get_the_post_thumbnail_url(get_post_thumbnail_id($post->ID), 'photography_preview')),
+//            'description' => urlencode($post->post_title)
+//        ],
+//        "http://pinterest.com/pin/create/button/"
+//    );
+
+    $twitter_url = add_query_arg(
+        [
+            'text' => urlencode($post->post_title),
+            'url' => $permalink,
+            'hashtags' => get_post_tags($post->ID)
+        ],
+        "https://www.twitter.com/intent/tweet?"
+    );
+
+    $mail_body = $post->post_content . " For details, link here : " . $permalink;
+
+    $gmail_url = add_query_arg(
+        [
+            'view' => 'cm',
+            'fs' => 1,
+            'to' => '',
+            'su' => urlencode($post->post_title),
+            'body' => urlencode($mail_body),
+            'bcc' => ''
+        ],
+        "https://mail.google.com/mail/"
+    );
+    ?>
+    <ul>
+        <li>
+            <a href="<?= $facebook_url ?>" class="facebook"> <span class="icon-facebook"></span> </a>
+        </li>
+        <li>
+            <a href="<?= $twitter_url ?>" class="twitter"> <span class="icon-twitter"></span> </a>
+        </li>
+        <li>
+            <a href="<?= $gmail_url ?>" class="gmail"> <span class="icon-google"></span> </a>
+        </li>
+        <!--        <li>-->
+        <!--            <a href="#" class="instagram"> <span class="icon-instagram"></span> </a>-->
+        <!--        </li>-->
     </ul>
     <?php
 }
@@ -197,6 +270,10 @@ function photography_insert_post_callback($post_id, $post, $update)
     }
 
     if (!get_post_thumbnail_id($post_id)) {
+        return;
+    }
+
+    if (get_post_meta($post_id, 'check_if_run_once', true)) {
         return;
     }
 

@@ -35,7 +35,7 @@ while (have_posts()):
 
                                     <div class="figure-info ">
                                         <h6 class="font-weight-light mb-0"><?= $product->get_title() ?></h6>
-                                        <a href="<?= esc_url($product->get_permalink()) ?>"
+                                        <a href="<?= get_page_link() . $product_id ?>"
                                            class="btn btn-primary btn-sm">Download</a>
                                     </div>
                                 </figcaption>
@@ -97,10 +97,21 @@ while (have_posts()):
 
                                 <div class="single-image-download__actions single-image-download__area-box position-relative">
                                     <div class="single-image-download__btn">
-                                        <a href="<?= esc_url(get_the_post_thumbnail_url($product_id, 'photography_medium')) ?>"
-                                           download="" class="d-block btn btn-primary mb-4"> Download Now</a>
+                                        <?php
+                                        if (is_user_logged_in()):
+                                            ?>
+                                            <a href="<?= esc_url(get_the_post_thumbnail_url($product_id, 'photography_medium')) ?>"
+                                               download="" class="d-block btn btn-primary mb-4"> Download Now</a>
+                                        <?php
+                                        else:
+                                            ?>
+                                            <a href="<?= wc_get_page_permalink('myaccount') ?>"
+                                               class="d-block btn btn-primary mb-4"> Download Now</a>
+                                        <?php
+                                        endif;
+                                        ?>
                                         <a href="<?= esc_url(get_permalink($product_id)) ?>"
-                                           class="d-block btn btn-outline">Download Full Size</a>
+                                           class="d-block btn btn-outline">Buy Full Size</a>
                                     </div>
                                 </div>
                                 <div class="single-image-download__area-box single-image-display__header d-flex align-items-center justify-content-between">
@@ -226,7 +237,7 @@ while (have_posts()):
             endif;
             ?>
 
-<!--            --><?php //woocommerce_output_related_products();
+            <!--            --><?php //woocommerce_output_related_products();
             ?>
 
             <?php

@@ -239,6 +239,27 @@ function photos_share_meta()
         return;
     }
 
+    if (is_singular('post')) {
+        $image = getResizedImage(get_the_post_thumbnail_url($post->ID, 'full'), [1024, 1024]);
+        ?>
+        <!-- For Facebook -->
+        <meta property="og:url" content="<?= esc_url(get_the_permalink($post->ID)) ?>"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="<?= esc_attr($post->post_title) ?>"/>
+        <meta property="og:description" content="<?= esc_attr(strip_tags(get_field('excerpt', $post->ID))) ?>"/>
+        <meta property="og:image" content="<?= esc_url($image['orig']) ?>"/>
+        <meta property="og:image:width" content="1024"/>
+        <meta property="og:image:height" content="1024"/>
+
+        <!-- For Twitter -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="<?= esc_attr($post->post_title) ?>"/>
+        <meta name="twitter:description" content="<?= esc_attr(strip_tags(get_field('excerpt', $post->ID))) ?>"/>
+        <meta name="twitter:image" content="<?= esc_url($image['orig']) ?>"/>
+        <?php
+        return;
+    }
+
     if (is_singular('gallery')) {
         $thumbnail_url = get_the_post_thumbnail_url($post->ID, 'photography_preview');
         ?>
