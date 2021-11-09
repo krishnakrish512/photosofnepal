@@ -45,10 +45,11 @@ while (have_posts()):
 
             the_content();
             ?>
+            <hr class="my-5"></hr>
         </div>
+        
 
-    </main>
-    <?php
+        <?php
     $args = [
         'post_type' => 'post',
         'post_status' => 'publish',
@@ -59,9 +60,8 @@ while (have_posts()):
 
     $other_posts_query = new WP_Query($args);
     ?>
-    <section class="main section-spacing">
         <div class="container">
-            <h3 class="other-articles-heading">Other Articles</h3>
+            <h3 class="mb-4">Other Articles</h3>
             <div class="row">
                 <?php
                 while ($other_posts_query->have_posts()):
@@ -99,7 +99,8 @@ while (have_posts()):
                 ?>
             </div>
         </div>
-    </section>
+    </main>
+   
 <?php
 endwhile;
 get_footer();
