@@ -14,7 +14,8 @@ $include_files = [
     "src/watermark.php",
     "src/wcfm.php",
     "src/photography_ajax.php",
-    "src/yoast-custom.php"
+    "src/yoast-custom.php",
+    "src/rankmath-custom.php"
 //    "src/classes/SKA_Menu_Walker.php",
 //    "src/classes/SKA_Responsive_Menu_Walker.php"
 ];
