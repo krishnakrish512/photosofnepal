@@ -4,9 +4,12 @@
  */
 function photography_update_product_focus_keyword($post_id)
 {
+    if (get_post_status($post_id) === "auto-draft") return;
+
     $rank_math_keyword = get_post_meta($post_id, 'rank_math_focus_keyword', true);
-    if (!$rank_math_keyword) {
-        update_post_meta($post_id, 'rank_math_focus_keyword', strtolower(get_the_title($post_id)));
+    $title = strtolower(get_the_title($post_id));
+    if (!$rank_math_keyword && $title !== "auto-draft") {
+        update_post_meta($post_id, 'rank_math_focus_keyword', $title);
     }
 }
 
@@ -17,9 +20,7 @@ add_action('save_post', 'photography_update_product_focus_keyword');
  */
 function photography_sync_product_title_with_thumbnail($post_id)
 {
-    if (get_post_type($post_id) !== "product") {
-        return;
-    }
+    if (get_post_status($post_id) === "auto-draft" || get_post_type($post_id) !== "product") return;
 
     $thumbnail_id = get_post_thumbnail_id($post_id);
 
