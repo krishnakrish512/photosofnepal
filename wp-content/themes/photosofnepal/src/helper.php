@@ -179,7 +179,7 @@ function post_single_sharing()
             <a href="<?= $twitter_url ?>" class="twitter"> <span class="icon-twitter"></span> </a>
         </li>
         <li>
-            <a href="<?= $gmail_url ?>" class="gmail"> <span class="icon-google"></span> </a>
+            <a href="<?= $gmail_url ?>" class="gmail"> <span class="fas fa-envelope"></span> </a>
         </li>
         <!--        <li>-->
         <!--            <a href="#" class="instagram"> <span class="icon-instagram"></span> </a>-->
