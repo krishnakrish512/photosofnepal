@@ -25,6 +25,13 @@
             $("#set-post-thumbnail").html("Upload Photo")
         }
 
+        if ($("#set-post-thumbnail").length && $('#_thumbnail_id').val() !== "-1") {
+            $("#set-post-thumbnail").click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            })
+        }
+
         wp.media.featuredImage.frame().on('open', function () {
             $(".media-router #menu-item-upload").trigger('click');
         });
